@@ -1,0 +1,16 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "e18f0d8b-d519-4f1a-98ac-61fe929f0705": {
+      "ProjectGuid": "e18f0d8b-d519-4f1a-98ac-61fe929f0705",
+      "DisplayName": "Katalyst-TDD-Starter",
+      "ColorIndex": 0
+    },
+    "ede53e76-737d-4900-a7dc-ed8fbd60980e": {
+      "ProjectGuid": "ede53e76-737d-4900-a7dc-ed8fbd60980e",
+      "DisplayName": "Katalyst-TDD-Starter.Test",
+      "ColorIndex": 1
+    }
+  },
+  "NextColorIndex": 2
+}

@@ -1,12 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Katalyst_TDD_Starter
+﻿namespace Katalyst_TDD_Starter
 {
-    internal class FizzBuzz
+    public class FizzBuzz
     {
+        public void Execute()
+        {
+            Console.WriteLine("FizzBuzz start");
+        }
+
+        public string Convert(int value)
+        {
+            return "1";
+        }
     }
 }

@@ -1,1 +1,3 @@
-﻿Console.WriteLine("Hello, World!");
+﻿using Katalyst_TDD_Starter;
+
+new FizzBuzz().Execute();
