@@ -16,14 +16,23 @@ namespace Katalyst_TDD_Starter.Test
         [TestMethod]
         public void Convert_1_to_1()
         {
-            string expected = "1";
-
             var input = 1;
 
+            string expected = "1";
             string actual = ToTest.Convert(input);
 
+            Assert.AreEqual(expected, actual, $"Fizzbuzz({input}) does not return {expected}.");
+        }
 
-            Assert.AreEqual(expected, actual, "Fizzbuzz(1) does not return 1.");
+        [TestMethod]
+        public void Convert_2_to_2()
+        {
+            var input = 2;
+
+            string expected = "2";
+            string actual = ToTest.Convert(input);
+
+            Assert.AreEqual(expected, actual, $"Fizzbuzz({input}) does not return {expected}.");
         }
     }
 }
