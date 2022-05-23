@@ -34,5 +34,16 @@ namespace Katalyst_TDD_Starter.Test
 
             Assert.AreEqual(expected, actual, $"Fizzbuzz({input}) does not return {expected}.");
         }
+
+        [TestMethod]
+        public void Convert_4_to_4()
+        {
+            var input = 4;
+
+            string expected = "4";
+            string actual = ToTest.Convert(input);
+
+            Assert.AreEqual(expected, actual, $"Fizzbuzz({input}) does not return {expected}.");
+        }
     }
 }
