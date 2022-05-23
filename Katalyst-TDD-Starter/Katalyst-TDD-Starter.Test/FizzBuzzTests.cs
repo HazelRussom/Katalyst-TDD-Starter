@@ -13,37 +13,16 @@ namespace Katalyst_TDD_Starter.Test
             ToTest = new FizzBuzz();
         }
 
-        [TestMethod]
-        public void Convert_1_to_1()
+        [DataRow(1, "1")]
+        [DataRow(2, "2")]
+        [DataRow(4, "4")]
+        [DataRow(7, "7")]
+        [DataTestMethod]
+        public void Convert_number_to_default_fizzbuzz_string(int input, string expectedResult)
         {
-            var input = 1;
-
-            string expected = "1";
             string actual = ToTest.Convert(input);
 
-            Assert.AreEqual(expected, actual, $"Fizzbuzz({input}) does not return {expected}.");
-        }
-
-        [TestMethod]
-        public void Convert_2_to_2()
-        {
-            var input = 2;
-
-            string expected = "2";
-            string actual = ToTest.Convert(input);
-
-            Assert.AreEqual(expected, actual, $"Fizzbuzz({input}) does not return {expected}.");
-        }
-
-        [TestMethod]
-        public void Convert_4_to_4()
-        {
-            var input = 4;
-
-            string expected = "4";
-            string actual = ToTest.Convert(input);
-
-            Assert.AreEqual(expected, actual, $"Fizzbuzz({input}) does not return {expected}.");
+            Assert.AreEqual(expectedResult, actual, $"Fizzbuzz({input}) does not return {expectedResult}.");
         }
     }
 }
