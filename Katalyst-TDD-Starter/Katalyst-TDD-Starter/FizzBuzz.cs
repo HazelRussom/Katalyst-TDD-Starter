@@ -14,7 +14,7 @@
                 return "Fizz";
             }
 
-            if(value == 5)
+            if(value % 5 == 0)
             {
                 return "Buzz";
             }
