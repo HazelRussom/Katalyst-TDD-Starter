@@ -1,3 +1,3 @@
-﻿using Katalyst_TDD_Starter;
+﻿using Katalyst_TDD_Starter.FizzBuzz;
 
-new FizzBuzz().Execute();
+new FizzBuzzExecutor(new FizzBuzzConverter()).Execute();

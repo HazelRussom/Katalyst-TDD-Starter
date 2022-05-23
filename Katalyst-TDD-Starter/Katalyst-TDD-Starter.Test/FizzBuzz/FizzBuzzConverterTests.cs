@@ -1,16 +1,17 @@
+using Katalyst_TDD_Starter.FizzBuzz;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Katalyst_TDD_Starter.Test
+namespace Katalyst_TDD_Starter.Test.FizzBuzz
 {
     [TestClass]
-    public class FizzBuzzTests
+    public class FizzBuzzConverterTests
     {
-        public FizzBuzz ToTest { get; set; }
+        public FizzBuzzConverter ToTest { get; set; }
 
 
-        public FizzBuzzTests()
+        public FizzBuzzConverterTests()
         {
-            ToTest = new FizzBuzz();
+            ToTest = new FizzBuzzConverter();
         }
 
         [DataTestMethod]

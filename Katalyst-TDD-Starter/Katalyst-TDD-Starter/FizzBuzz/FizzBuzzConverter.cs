@@ -1,12 +1,12 @@
-﻿namespace Katalyst_TDD_Starter
+﻿namespace Katalyst_TDD_Starter.FizzBuzz
 {
-    public class FizzBuzz
+    public interface IFizzBuzzConverter
     {
-        public void Execute()
-        {
-            Console.WriteLine("FizzBuzz start");
-        }
+        public string Convert(int value);
+    }
 
+    public class FizzBuzzConverter : IFizzBuzzConverter
+    {
         public string Convert(int value)
         {
             var result = string.Empty;
