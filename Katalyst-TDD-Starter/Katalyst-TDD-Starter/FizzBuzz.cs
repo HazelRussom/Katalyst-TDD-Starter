@@ -9,24 +9,19 @@
 
         public string Convert(int value)
         {
-            var result = value.ToString();
+            var result = string.Empty;
 
             if(value % 3 == 0)
             {
-                result = "Fizz";
+                result += "Fizz";
             }
 
             if(value % 5 == 0)
             {
-                result = "Buzz";
+                result += "Buzz";
             }
 
-            if (value == 15)
-            {
-                result = "FizzBuzz";
-            }
-
-            return result;
+            return result.Equals(string.Empty) ? value.ToString() : result;
         }
     }
 }

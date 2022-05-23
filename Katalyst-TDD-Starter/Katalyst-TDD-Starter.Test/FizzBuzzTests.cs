@@ -52,10 +52,11 @@ namespace Katalyst_TDD_Starter.Test
         }
 
         [DataTestMethod]
-        public void Convert_fifteen_to_FizzBuzz()
+        [DataRow(15)]
+        [DataRow(30)]
+        [DataRow(45)]
+        public void Convert_multiples_of_both_three_and_five_to_FizzBuzz(int input)
         {
-            var input = 15;
-
             var expected = "FizzBuzz";
             string actual = ToTest.Convert(input);
 
