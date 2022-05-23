@@ -9,7 +9,7 @@
 
         public string Convert(int value)
         {
-            if(value == 3)
+            if(value % 3 == 0)
             {
                 return "Fizz";
             }
