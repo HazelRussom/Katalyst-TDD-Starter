@@ -4,14 +4,14 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Katalyst_TDD_Starter.Test.FizzBuzz
 {
     [TestClass]
-    public class FizzBuzzConverterTests
+    public class FizzBuzzWithDigitsConverterTests
     {
-        public FizzBuzzConverter ToTest { get; set; }
+        public FizzBuzzWithDigitsConverter ToTest { get; set; }
 
 
-        public FizzBuzzConverterTests()
+        public FizzBuzzWithDigitsConverterTests()
         {
-            ToTest = new FizzBuzzConverter();
+            ToTest = new FizzBuzzWithDigitsConverter();
         }
 
         [DataTestMethod]
@@ -28,7 +28,6 @@ namespace Katalyst_TDD_Starter.Test.FizzBuzz
 
 
         [DataTestMethod]
-        [DataRow(3)]
         [DataRow(6)]
         [DataRow(9)]
         [DataRow(27)]
@@ -41,9 +40,9 @@ namespace Katalyst_TDD_Starter.Test.FizzBuzz
         }
 
         [DataTestMethod]
-        [DataRow(5)]
         [DataRow(10)]
-        [DataRow(25)]
+        [DataRow(20)]
+        [DataRow(110)]
         public void Convert_multiples_of_five_to_Buzz(int input)
         {
             var expected = "Buzz";
@@ -53,9 +52,9 @@ namespace Katalyst_TDD_Starter.Test.FizzBuzz
         }
 
         [DataTestMethod]
-        [DataRow(15)]
-        [DataRow(30)]
-        [DataRow(45)]
+        [DataRow(60)]
+        [DataRow(90)]
+        [DataRow(120)]
         public void Convert_multiples_of_both_three_and_five_to_FizzBuzz(int input)
         {
             var expected = "FizzBuzz";

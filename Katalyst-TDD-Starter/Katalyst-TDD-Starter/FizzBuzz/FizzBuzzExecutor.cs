@@ -1,4 +1,6 @@
-﻿namespace Katalyst_TDD_Starter.FizzBuzz
+﻿using Katalyst_TDD_Starter.FizzBuzz.Converters;
+
+namespace Katalyst_TDD_Starter.FizzBuzz
 {
     public class FizzBuzzExecutor
     {

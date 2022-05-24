@@ -1,5 +1,6 @@
 using Autofac.Extras.Moq;
 using Katalyst_TDD_Starter.FizzBuzz;
+using Katalyst_TDD_Starter.FizzBuzz.Converters;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 

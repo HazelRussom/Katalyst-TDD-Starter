@@ -1,10 +1,5 @@
-﻿namespace Katalyst_TDD_Starter.FizzBuzz
+﻿namespace Katalyst_TDD_Starter.FizzBuzz.Converters
 {
-    public interface IFizzBuzzConverter
-    {
-        public string Convert(int value);
-    }
-
     public class FizzBuzzConverter : IFizzBuzzConverter
     {
         public string Convert(int value)
