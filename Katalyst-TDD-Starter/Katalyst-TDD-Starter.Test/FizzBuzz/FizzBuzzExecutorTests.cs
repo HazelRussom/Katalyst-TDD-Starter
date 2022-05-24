@@ -12,8 +12,12 @@ namespace Katalyst_TDD_Starter.Test.FizzBuzz
         {
         }
 
-        [TestMethod]
-        public void FizzBuzz_converter_is_called_1_time()
+        [DataTestMethod]
+        [DataRow(0)]
+        [DataRow(1)]
+        [DataRow(10)]
+        [DataRow(100)]
+        public void FizzBuzz_converter_is_called_expected_number_of_times(int count)
         {
             using( var mock = AutoMock.GetLoose())
             {
@@ -21,9 +25,9 @@ namespace Katalyst_TDD_Starter.Test.FizzBuzz
 
                 var ToTest = mock.Create<FizzBuzzExecutor>();
 
-                ToTest.Execute(1);
+                ToTest.Execute(count);
 
-                mock.Mock<IFizzBuzzConverter>().Verify(x => x.Convert(It.IsAny<int>()), Times.Exactly(1));
+                mock.Mock<IFizzBuzzConverter>().Verify(x => x.Convert(It.IsAny<int>()), Times.Exactly(count));
             }
         }
     }
