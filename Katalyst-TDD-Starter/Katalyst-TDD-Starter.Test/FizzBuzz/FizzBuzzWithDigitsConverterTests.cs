@@ -62,5 +62,73 @@ namespace Katalyst_TDD_Starter.Test.FizzBuzz
 
             Assert.AreEqual(expected, actual, $"Fizzbuzz({input}) does not return {expected}.");
         }
+
+        [DataTestMethod]
+        [DataRow(3)]
+        [DataRow(63)]
+        [DataRow(93)]
+        public void Convert_multiples_of_3_with_the_digit_3_to_FizzFizz(int input)
+        {
+            var expected = "FizzFizz";
+            string actual = ToTest.Convert(input);
+
+            Assert.AreEqual(expected, actual, $"Fizzbuzz({input}) does not return {expected}.");
+        }
+
+        [DataTestMethod]
+        [DataRow(13)]
+        [DataRow(23)]
+        [DataRow(43)]
+        public void Convert_numbers_with_the_digit_3_to_Fizz(int input)
+        {
+            var expected = "Fizz";
+            string actual = ToTest.Convert(input);
+
+            Assert.AreEqual(expected, actual, $"Fizzbuzz({input}) does not return {expected}.");
+        }
+
+        [DataTestMethod]
+        [DataRow(331, "FizzFizz")]
+        [DataRow(332, "FizzFizz")]
+        [DataRow(3331, "FizzFizzFizz")]
+        public void Convert_numbers_with_multiple_3_digits(int input, string expected)
+        {
+            string actual = ToTest.Convert(input);
+
+            Assert.AreEqual(expected, actual, $"Fizzbuzz({input}) does not return {expected}.");
+        }
+
+        [DataTestMethod]
+        [DataRow(5, "BuzzBuzz")]
+        [DataRow(25, "BuzzBuzz")]
+        [DataRow(52, "Buzz")]
+        public void Add_a_Buzz_for_each_5_digit(int input, string expected)
+        {
+            string actual = ToTest.Convert(input);
+
+            Assert.AreEqual(expected, actual, $"Fizzbuzz({input}) does not return {expected}.");
+        }
+
+        [DataTestMethod]
+        public void Convert_15_to_FizzBuzzBuzz()
+        {
+            var input = 15;
+
+            var expected = "FizzBuzzBuzz";
+            string actual = ToTest.Convert(input);
+
+            Assert.AreEqual(expected, actual, $"Fizzbuzz({input}) does not return {expected}.");
+        }
+
+        [DataTestMethod]
+        public void Convert_30_to_FizzFizzBuzz()
+        {
+            var input = 30;
+
+            var expected = "FizzFizzBuzz";
+            string actual = ToTest.Convert(input);
+
+            Assert.AreEqual(expected, actual, $"Fizzbuzz({input}) does not return {expected}.");
+        }
     }
 }
