@@ -1,4 +1,4 @@
-﻿using Katalyst_TDD_Starter.FizzBuzz.Converters;
+﻿using Katalyst_TDD_Starter.LeapYear;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Katalyst_TDD_Starter.Test.LeapYear

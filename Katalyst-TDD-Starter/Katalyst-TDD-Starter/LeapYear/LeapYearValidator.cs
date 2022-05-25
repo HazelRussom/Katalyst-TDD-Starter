@@ -1,4 +1,4 @@
-﻿namespace Katalyst_TDD_Starter.FizzBuzz.Converters
+﻿namespace Katalyst_TDD_Starter.LeapYear
 {
     public interface ILeapYearValidator
     {
