@@ -27,6 +27,7 @@ namespace Katalyst_TDD_Starter.Test.LeapYear
                 ToTest.Execute(input);
 
                 mock.Mock<ILeapYearValidator>().Verify(x => x.Validate(input), Times.Exactly(1));
+                mock.Mock<ILeapYearValidator>().Verify(x => x.Validate(It.IsAny<int>()), Times.Exactly(1));
             }
         }
     }
