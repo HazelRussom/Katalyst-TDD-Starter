@@ -1,19 +1,27 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Katalyst_TDD_Starter.RomanNumerals;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Katalyst_TDD_Starter.Test.RomanNumerals
 {
     [TestClass]
     public class RomanNumeralConverterTest
     {
-        [TestMethod]
-        public void One_should_become_I()
+        public RomanNumeralConverterTest()
         {
+            ToTest = new RomanNumeralConverter();
+        }
 
+        public RomanNumeralConverter ToTest { get; private set; }
+
+        [TestMethod]
+        [DataRow(1, "I")]
+        [DataRow(2, "II")]
+        [DataRow(3, "III")]
+        public void Arabic_number_should_become_Roman_numeral_equivalent(int input, string expected)
+        {
+            var actual = ToTest.Convert(input);
+
+            Assert.AreEqual(expected, actual);
         }
     }
 }
