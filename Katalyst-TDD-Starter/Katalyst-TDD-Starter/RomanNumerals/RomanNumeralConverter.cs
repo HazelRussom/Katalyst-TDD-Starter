@@ -37,6 +37,12 @@
                 input -= number;
                 result += numeral;
             }
+
+            if(input + 1 == number && numeral != RomanNumerals.I)
+            {
+                input = 0;
+                result += $"{RomanNumerals.I}{numeral}";
+            }
         }
     }
 }
