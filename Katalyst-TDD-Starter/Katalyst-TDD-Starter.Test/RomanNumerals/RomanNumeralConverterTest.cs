@@ -19,11 +19,7 @@ namespace Katalyst_TDD_Starter.Test.RomanNumerals
         [DataRow(3, "III")]
         [DataRow(5, "V")]
         [DataRow(6, "VI")]
-        [DataRow(7, "VII")]
-        [DataRow(8, "VIII")]
         [DataRow(10, "X")]
-        [DataRow(11, "XI")]
-        [DataRow(12, "XII")]
         [DataRow(13, "XIII")]
         [DataRow(15, "XV")]
         [DataRow(16, "XVI")]
@@ -31,6 +27,11 @@ namespace Katalyst_TDD_Starter.Test.RomanNumerals
         [DataRow(26, "XXVI")]
         [DataRow(30, "XXX")]
         [DataRow(38, "XXXVIII")]
+        [DataRow(50, "L")]
+        [DataRow(86, "LXXXVI")]
+        [DataRow(100, "C")]
+        [DataRow(382, "CCCLXXXII")]
+        [DataRow(500, "D")]
         public void Arabic_number_should_become_Roman_numeral_equivalent(int input, string expected)
         {
             var actual = ToTest.Convert(input);

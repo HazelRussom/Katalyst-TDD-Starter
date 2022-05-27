@@ -2,10 +2,12 @@
 {
     public enum RomanNumerals
     {
-        NotSpecified = 0,
         I = 1,
         V = 5,
         X = 10,
+        L = 50,
+        C = 100,
+        D = 500,
     }
 
     public class RomanNumeralConverter
@@ -14,9 +16,13 @@
         {
             var result = string.Empty;
 
-            ConvertGivenCharacter(ref input, ref result, RomanNumerals.X);
-            ConvertGivenCharacter(ref input, ref result, RomanNumerals.V);
-            ConvertGivenCharacter(ref input, ref result, RomanNumerals.I);
+            var numerals = Enum.GetValues(typeof(RomanNumerals)).Cast<RomanNumerals>().ToList();
+            numerals.Reverse();
+
+            foreach(var numeral in numerals)
+            {
+                ConvertGivenCharacter(ref input, ref result, numeral);
+            }          
 
             return result;
         }
