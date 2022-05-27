@@ -3,11 +3,17 @@
     public enum RomanNumerals
     {
         I = 1,
+        IV = 4,
         V = 5,
+        IX = 9,
         X = 10,
+        XL = 40,
         L = 50,
+        XC = 90,
         C = 100,
+        CD = 400,
         D = 500,
+        CM = 900,
         M = 1000,
     }
 
@@ -29,26 +35,9 @@
                     input -= number;
                     result += numeral;
                 }
-
-                if (input + 10 == number && number > 10)
-                {
-                    input = 0;
-                    result += $"{RomanNumerals.X}{numeral}";
-                }
-
-                if (input + 1 == number && number > 1)
-                {
-                    input = 0;
-                    result += $"{RomanNumerals.I}{numeral}";
-                }
             }          
 
             return result;
-        }
-
-        private static void ConvertGivenCharacter(ref int input, ref string result, RomanNumerals numeral)
-        {
-            
         }
     }
 }
