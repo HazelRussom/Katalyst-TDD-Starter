@@ -9,17 +9,15 @@
                 return 0;
             }
 
-            if (input.Contains(","))
+            var numbers = input.Split(',');
+            var result = 0;
+
+            foreach (var number in numbers)
             {
-                var numbers = input.Split(',');
-
-                var num1 = int.Parse(numbers[0]);
-                var num2 = int.Parse(numbers[1]);
-
-                return num1 + num2;
+                result += int.Parse(number);
             }
 
-            return int.Parse(input);
+            return result;
         }
     }
 }

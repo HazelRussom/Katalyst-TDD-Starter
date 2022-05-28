@@ -43,7 +43,12 @@ namespace Katalyst_TDD_Starter.Test.StringCalculation
         [DataRow("10,1", 11)]
         [DataRow("10,11", 21)]
         [DataRow("100,2", 102)]
-        public void Two_comma_separated_numbers_should_return_their_summed_value(string input, int expected)
+        [DataRow("1,2,3", 6)]
+        [DataRow("1,2,3,4", 10)]
+        [DataRow("1,2,3,4,5", 15)]
+        [DataRow("1,2,3,4,5,6,7,8,9", 45)]
+        [DataRow("1,2,3,4,5,6,7,8,9,10", 55)]
+        public void Comma_separated_numbers_should_return_their_summed_value(string input, int expected)
         {
             var actual = ToTest.Add(input);
 
