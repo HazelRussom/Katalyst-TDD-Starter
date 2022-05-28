@@ -9,15 +9,9 @@
                 return 0;
             }
 
-
-            var numbers = input.Split(',');
-
-            if (input.Contains('\n'))
-            {
-                numbers = input.Split('\n');
-            }
-
             var result = 0;
+            var delimiters = new char[] { ',', '\n' };
+            var numbers = input.Split(delimiters);
 
             foreach (var number in numbers)
             {
