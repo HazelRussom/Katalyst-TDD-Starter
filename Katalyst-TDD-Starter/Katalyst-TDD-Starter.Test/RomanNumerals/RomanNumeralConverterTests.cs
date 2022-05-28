@@ -4,9 +4,9 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Katalyst_TDD_Starter.Test.RomanNumerals
 {
     [TestClass]
-    public class RomanNumeralConverterTest
+    public class RomanNumeralConverterTests
     {
-        public RomanNumeralConverterTest()
+        public RomanNumeralConverterTests()
         {
             ToTest = new RomanNumeralConverter();
         }
