@@ -10,7 +10,7 @@
             }
 
             var result = 0;
-            var delimiters = new List<char> { ',', '\n'};
+            var delimiters = new List<char> {',', '\n'};
             
             if (input.StartsWith("//"))
             {
@@ -19,17 +19,25 @@
             }
 
             var numbers = input.Split(delimiters.ToArray());
+            var invalidNumbers = new List<string>();
 
             foreach (var number in numbers)
             {
-                if(int.Parse(number) < 0)
-                {
-                    throw new ArgumentException("Error: Negatives not allowed.");
-                }
+                var parsedNumber = int.Parse(number);
+                result += parsedNumber;
 
-                result += int.Parse(number);
+                if(parsedNumber < 0)
+                {
+                    invalidNumbers.Add(number);
+                }
             }
 
+            if (invalidNumbers.Any())
+            {
+                var invalidNumberString = string.Join(",", invalidNumbers);
+                throw new ArgumentException($"Error: Negatives not allowed. {invalidNumberString}");
+            }
+            
             return result;
         }
     }
