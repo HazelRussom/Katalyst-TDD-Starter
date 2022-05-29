@@ -1,5 +1,6 @@
 ﻿using Katalyst_TDD_Starter.StringCalculation;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
 namespace Katalyst_TDD_Starter.Test.StringCalculation
 {
@@ -67,11 +68,22 @@ namespace Katalyst_TDD_Starter.Test.StringCalculation
 
         [TestMethod]
         [DataRow ("//;\n1;2", 3)]
+        [DataRow ("//@\n1@2", 3)]
+        [DataRow ("//@\n1,2@3", 6)]
         public void Custom_separator_should_split_strings_and_return_summed_value(string input, int expected)
         {
             var actual = ToTest.Add(input);
 
             Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException), "Error: Negatives not allowed.")]
+        public void Negative_1_should_return_an_exception()
+        {
+            var input = "-1";
+
+            ToTest.Add(input);
         }
     }
 }

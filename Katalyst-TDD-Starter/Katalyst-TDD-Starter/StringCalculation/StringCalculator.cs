@@ -22,6 +22,11 @@
 
             foreach (var number in numbers)
             {
+                if(int.Parse(number) < 0)
+                {
+                    throw new ArgumentException("Error: Negatives not allowed.");
+                }
+
                 result += int.Parse(number);
             }
 
