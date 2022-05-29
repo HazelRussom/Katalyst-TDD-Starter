@@ -81,14 +81,27 @@ namespace Katalyst_TDD_Starter.Test.StringCalculation
         [DataRow("-1", "-1")]
         [DataRow("-3", "-3")]
         [DataRow("1,-4", "-4")]
-        [DataRow("-1,-4", "-1,-4")]
-        [DataRow("2,-1,4,-4,-5", "-1,-4,-5")]
+        [DataRow("-1,-4", "-1 -4")]
+        [DataRow("1,-2,-3", "-2 -3")]
+        [DataRow("2,-1,4,-4,-5", "-1 -4 -5")]
         public void Negative_1_should_return_an_exception(string input, string expectedErrorNumbers)
         {
-            var expectedMessage = $"Error: Negatives not allowed. {expectedErrorNumbers}";
+            var expectedMessage = $"Error: Negatives not allowed: {expectedErrorNumbers}";
             var exception = Assert.ThrowsException<ArgumentException>(() => ToTest.Add(input));
 
             Assert.AreEqual(exception.Message, expectedMessage);
+        }
+
+        [TestMethod]
+        [DataRow("1000,1", 1001)]
+        [DataRow("1001,2", 2)]
+        [DataRow("1001,1002", 0)]
+        public void Numbers_over_1000_should_be_ignored(string input, int expected)
+        {
+            var actual = ToTest.Add(input);
+
+            Assert.AreEqual(expected, actual);
+
         }
     }
 }
