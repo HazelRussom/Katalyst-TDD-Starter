@@ -10,8 +10,15 @@
             }
 
             var result = 0;
-            var delimiters = new char[] { ',', '\n' };
-            var numbers = input.Split(delimiters);
+            var delimiters = new List<char> { ',', '\n'};
+            
+            if (input.StartsWith("//"))
+            {
+                delimiters.Add(input[2]);
+                input = input.Substring(4);
+            }
+
+            var numbers = input.Split(delimiters.ToArray());
 
             foreach (var number in numbers)
             {

@@ -64,5 +64,14 @@ namespace Katalyst_TDD_Starter.Test.StringCalculation
 
             Assert.AreEqual(expected, actual);
         }
+
+        [TestMethod]
+        [DataRow ("//;\n1;2", 3)]
+        public void Custom_separator_should_split_strings_and_return_summed_value(string input, int expected)
+        {
+            var actual = ToTest.Add(input);
+
+            Assert.AreEqual (expected, actual);
+        }
     }
 }
