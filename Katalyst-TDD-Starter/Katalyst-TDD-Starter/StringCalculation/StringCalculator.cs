@@ -13,19 +13,21 @@
             var invalidNumbers = new List<string>();
             var delimiters = new List<string> {",", "\n"};
 
-
-            if (input.StartsWith("//["))
-            {
-                var delimiterLength = input.IndexOf(']');
-                var newDelimiter = input.Substring(3, delimiterLength - 3);
-                delimiters.Add(newDelimiter);
-                input = input.Substring(delimiterLength + 2);
-            }
-
             if (input.StartsWith("//"))
             {
-                delimiters.Add(input[2].ToString());
-                input = input.Substring(4);
+                var endOfDelimitersPosition = input.IndexOf('\n');
+                var delimiterConfig = input.Substring(2, endOfDelimitersPosition - 2);
+                
+                input = input.Substring(endOfDelimitersPosition + 1);
+             
+                if (delimiterConfig.StartsWith('[') && delimiterConfig.EndsWith(']'))
+                {
+                    delimiterConfig = delimiterConfig.Substring(1, delimiterConfig.Length - 2);
+                }
+
+                var customDelimiters = delimiterConfig.Split("][");
+
+                delimiters.AddRange(customDelimiters);
             }
 
             var numbers = input.Split(delimiters.ToArray(), StringSplitOptions.None);
