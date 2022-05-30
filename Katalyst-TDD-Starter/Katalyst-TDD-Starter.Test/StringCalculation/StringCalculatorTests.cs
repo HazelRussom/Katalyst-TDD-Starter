@@ -103,5 +103,17 @@ namespace Katalyst_TDD_Starter.Test.StringCalculation
             Assert.AreEqual(expected, actual);
 
         }
+
+        
+        [TestMethod]
+        [DataRow("//[*]\n1*2", 3)]
+        [DataRow("//[**]\n1**2", 3)]
+        [DataRow("//[*%*]\n1*%*2,3\n4*%*5", 15)]
+        public void Custom_separators_of_any_length_between_square_brackets_should_be_accepted(string input, int expected)
+        {
+            var actual = ToTest.Add(input);
+
+            Assert.AreEqual(expected, actual);
+        }
     }
 }

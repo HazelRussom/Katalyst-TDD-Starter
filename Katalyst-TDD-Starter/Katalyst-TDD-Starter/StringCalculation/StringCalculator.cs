@@ -11,15 +11,24 @@
 
             var result = 0;
             var invalidNumbers = new List<string>();
-            var delimiters = new List<char> {',', '\n'};
-            
+            var delimiters = new List<string> {",", "\n"};
+
+
+            if (input.StartsWith("//["))
+            {
+                var delimiterLength = input.IndexOf(']');
+                var newDelimiter = input.Substring(3, delimiterLength - 3);
+                delimiters.Add(newDelimiter);
+                input = input.Substring(delimiterLength + 2);
+            }
+
             if (input.StartsWith("//"))
             {
-                delimiters.Add(input[2]);
+                delimiters.Add(input[2].ToString());
                 input = input.Substring(4);
             }
 
-            var numbers = input.Split(delimiters.ToArray());
+            var numbers = input.Split(delimiters.ToArray(), StringSplitOptions.None);
 
             foreach (var number in numbers)
             {
