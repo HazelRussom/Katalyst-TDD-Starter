@@ -125,5 +125,15 @@ namespace Katalyst_TDD_Starter.Test.StringCalculation
 
             Assert.AreEqual(expected, actual);
         }
+
+        [TestMethod]
+        [DataRow("//[foo][bar]\n1foo2bar3", 6)]
+        [DataRow("//[***][?]\n1***5?10,1", 17)]
+        public void Multiple_delimeters_of_any_length_should_be_supported(string input, int expected)
+        {
+            var actual = ToTest.Add(input);
+
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
