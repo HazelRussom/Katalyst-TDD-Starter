@@ -2,6 +2,9 @@
 {
     public class StringCalculator
     {
+        private const string CustomDelimeterFlag = "//";
+        private const char EndOfConfigFlag = '\n';
+
         public int Add(string input)
         {
             if (input.Equals(string.Empty))
@@ -13,12 +16,12 @@
             var invalidNumbers = new List<string>();
             var delimiters = new List<string> {",", "\n"};
 
-            if (input.StartsWith("//"))
+            if (input.StartsWith(CustomDelimeterFlag))
             {
-                var endOfDelimitersPosition = input.IndexOf('\n');
-                var delimiterConfig = input.Substring(2, endOfDelimitersPosition - 2);
-                
-                input = input.Substring(endOfDelimitersPosition + 1);
+                var endOfConfigIndex = input.IndexOf(EndOfConfigFlag);
+
+                var delimiterConfig = input.Substring(CustomDelimeterFlag.Length, endOfConfigIndex - CustomDelimeterFlag.Length);
+                input = input.Substring(endOfConfigIndex + 1);
              
                 if (delimiterConfig.StartsWith('[') && delimiterConfig.EndsWith(']'))
                 {
@@ -26,7 +29,6 @@
                 }
 
                 var customDelimiters = delimiterConfig.Split("][");
-
                 delimiters.AddRange(customDelimiters);
             }
 

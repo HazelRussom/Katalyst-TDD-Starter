@@ -84,6 +84,7 @@ namespace Katalyst_TDD_Starter.Test.StringCalculation
         [DataRow("-1,-4", "-1 -4")]
         [DataRow("1,-2,-3", "-2 -3")]
         [DataRow("2,-1,4,-4,-5", "-1 -4 -5")]
+        [DataRow("//[*][%]\n1*-2%3", "-2")]
         public void Negative_1_should_return_an_exception(string input, string expectedErrorNumbers)
         {
             var expectedMessage = $"Error: Negatives not allowed: {expectedErrorNumbers}";
@@ -117,6 +118,7 @@ namespace Katalyst_TDD_Starter.Test.StringCalculation
 
         [TestMethod]
         [DataRow("//[*][%]\n1*2%3", 6)]
+        [DataRow("//[*][a]\n1*2a3,4", 10)]
         public void Multiple_single_character_delimeters_should_be_supported(string input, int expected)
         {
             var actual = ToTest.Add(input);
