@@ -4,7 +4,11 @@
     {
         public string Process(string input)
         {
-            return "This text has 0 words in total";
+            var words = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+            var wordCount = words.Count();
+
+            return $"This text has {wordCount} words in total";
         }
     }
 }
