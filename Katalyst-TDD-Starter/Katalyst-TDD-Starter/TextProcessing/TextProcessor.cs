@@ -6,7 +6,7 @@
         {
             var words = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
 
-            var wordCount = words.Count();
+            var wordCount = words.Length;
 
             return $"This text has {wordCount} words in total";
         }

@@ -18,6 +18,7 @@ namespace Katalyst_TDD_Starter.Test.TextProcessing
         [DataRow ("Hello", 1)]
         [DataRow ("Hello, this is an example", 5)]
         [DataRow ("Hello, this is an example for you to practice.", 9)]
+        [DataRow ("Hello, this is an example for you to practice. You should grab this text and make it as your test case.", 21)]
         public void The_output_should_contain_the_total_word_count(string input, int expectedCount)
         {
             var expected = $"This text has {expectedCount} words in total";
