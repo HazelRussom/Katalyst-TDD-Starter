@@ -5,10 +5,14 @@
         public string Process(string input)
         {
             var words = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
-
             var wordCount = words.Length;
 
-            return $"This text has {wordCount} words in total";
+            var topWordCount = (wordCount < 10) ? wordCount : 10;
+
+            var output = $"These are the top {topWordCount} words used:";
+
+            output += $"\nThis text has {wordCount} words in total";
+            return output;
         }
     }
 }
