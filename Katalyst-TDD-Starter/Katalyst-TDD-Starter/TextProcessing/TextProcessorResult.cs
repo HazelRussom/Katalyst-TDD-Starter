@@ -4,6 +4,6 @@
     {
         public int TotalWordCount { get; set; }
 
-        public string[] MostUsedWords { get; set; } = new string[10];
+        public List<string> MostUsedWords { get; set; } = new();
     }
 }

@@ -16,6 +16,12 @@ namespace Katalyst_TDD_Starter.TextProcessing
 
             var distinctWordCount = words.Select(x => x.ToLower()).Distinct().Count();
             var topWordCount = (distinctWordCount < 10) ? distinctWordCount : 10;
+            var wordOutput = new List<string>();
+
+            for(int i = 0; i < topWordCount; i++)
+            {
+                wordOutput.Add(groupedWords.ElementAt(i).Key);
+            }
 
             var output = $"These are the top {topWordCount} words used:";
 
@@ -23,7 +29,7 @@ namespace Katalyst_TDD_Starter.TextProcessing
 
             var result = new TextProcessorResult
             {
-                MostUsedWords = words,
+                MostUsedWords = wordOutput,
                 TotalWordCount = totalWordCount
             };
 

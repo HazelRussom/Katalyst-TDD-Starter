@@ -19,7 +19,7 @@ namespace Katalyst_TDD_Starter.Test.TextProcessing
         [DataRow ("Hello, this is an example", 5)]
         [DataRow ("Hello, this is an example for you to practice.", 9)]
         [DataRow ("Hello, this is an example for you to practice. You should grab this text and make it as your test case.", 21)]
-        public void The_output_should_contain_the_total_word_count(string input, int expected)
+        public void The_total_word_count_should_be_set_to_the_total_number_of_words(string input, int expected)
         {
             var actual = ToTest.Process(input); 
 
@@ -27,20 +27,18 @@ namespace Katalyst_TDD_Starter.Test.TextProcessing
         }
 
         [TestMethod]
-        [Ignore]
         [DataRow("Hello", 1)]
         [DataRow("Hello, this is an example", 5)]
         [DataRow("Hello, this is an example for you to practice with.", 10)]
         [DataRow("Hello, this is an example for you to practice test driven development with.", 10)]
-        public void The_top_words_message_should_not_count_more_than_10_words (string input, int expectedTopWordCount)
+        public void The_most_used_words_not_contain_more_than_10_entries (string input, int expectedTopWordCount)
         {
             var actual = ToTest.Process(input);
 
-            Assert.IsTrue(actual.MostUsedWords.Length == expectedTopWordCount);
+            Assert.IsTrue(actual.MostUsedWords.Count == expectedTopWordCount);
         }
 
         [TestMethod]
-        [Ignore]
         [DataRow("Hello Hello", 1)]
         [DataRow("Hello hello world", 2)]
         [DataRow("Hello hello, this is an example.", 5)]
@@ -49,7 +47,7 @@ namespace Katalyst_TDD_Starter.Test.TextProcessing
         {
             var actual = ToTest.Process(input);
 
-            Assert.IsTrue(actual.MostUsedWords.Length == expectedTopWordCount);
+            Assert.IsTrue(actual.MostUsedWords.Count == expectedTopWordCount);
         }
     }
 }
