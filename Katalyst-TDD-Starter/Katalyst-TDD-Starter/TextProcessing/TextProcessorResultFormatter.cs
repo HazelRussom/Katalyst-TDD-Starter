@@ -6,7 +6,7 @@ namespace Katalyst_TDD_Starter.Test.TextProcessing
     {
         public string Format(TextProcessorResult input)
         {
-            throw new NotImplementedException();
+            return $"These are the top {input.MostUsedWords.Count} words used:";
         }
     }
 }
