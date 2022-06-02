@@ -6,7 +6,7 @@ namespace Katalyst_TDD_Starter.Test.TextProcessing
     {
         public string Format(TextProcessorResult input)
         {
-            return $"These are the top {input.MostUsedWords.Count} words used:";
+            return $"These are the top {input.MostUsedWords.Count} words used:\nThe text has {input.TotalWordCount} words in total.";
         }
     }
 }
