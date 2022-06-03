@@ -1,5 +1,6 @@
 ﻿using Autofac.Extras.Moq;
 using Katalyst_TDD_Starter.LeapYear;
+using Katalyst_TDD_Starter.Test.Utilities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
@@ -28,6 +29,7 @@ namespace Katalyst_TDD_Starter.Test.LeapYear
 
                 mock.Mock<ILeapYearValidator>().Verify(x => x.Validate(input), Times.Exactly(1));
                 mock.Mock<ILeapYearValidator>().Verify(x => x.Validate(It.IsAny<int>()), Times.Exactly(1));
+                mock.Mock<IConsoleWriter>().Verify(x => x.Write(It.IsAny<string>()), Times.Exactly(1));
             }
         }
     }
