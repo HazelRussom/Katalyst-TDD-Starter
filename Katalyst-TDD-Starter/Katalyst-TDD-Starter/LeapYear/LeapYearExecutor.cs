@@ -17,7 +17,14 @@ namespace Katalyst_TDD_Starter.LeapYear
         {
             var result = Validator.Validate(year);
 
-            Logger.Write(result.ToString());
+            var output = $"{year} is a valid leap year.";
+
+            if (!result)
+            {
+                output = $"{year} is not a valid leap year.";
+            }
+
+            Logger.Write(output);
         }
     }
 }
