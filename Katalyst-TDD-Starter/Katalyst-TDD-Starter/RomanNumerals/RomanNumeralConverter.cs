@@ -17,7 +17,12 @@
         M = 1000,
     }
 
-    public class RomanNumeralConverter
+    public interface IRomanNumeralConverter
+    {
+        public string Convert(int input);
+    }
+
+    public class RomanNumeralConverter : IRomanNumeralConverter
     {
         public string Convert(int input)
         {
