@@ -7,14 +7,33 @@ namespace Katalyst_TDD_Starter.Test.Bags
     public class StorageBagTests
     {
         [TestMethod]
-        public void Leather_should_be_added_to_bag()
+        [DataRow("Leather")]
+        [DataRow("Silk")]
+        [DataRow("Copper")]
+        public void Single_items_should_be_added_to_bag(string input)
         {
             var bag = new StorageBag();
-            var input = "Leather";
 
             bag.Add(input);
 
             Assert.IsTrue(bag.Items.Contains(input));
-        }        
+        }
+
+        [TestMethod]
+        public void Bag_should_retain_previously_added_items()
+        {
+            var bag = new StorageBag();
+            var item1 = "Leather";
+            var item2 = "Silk";
+            var item3 = "Copper";
+
+            bag.Add(item1);
+            bag.Add(item2);
+            bag.Add(item3);
+
+            Assert.IsTrue(bag.Items.Contains(item1));
+            Assert.IsTrue(bag.Items.Contains(item2));
+            Assert.IsTrue(bag.Items.Contains(item3));
+        }
     }
 }
