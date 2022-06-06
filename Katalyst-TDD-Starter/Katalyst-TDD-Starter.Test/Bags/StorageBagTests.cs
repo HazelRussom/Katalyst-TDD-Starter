@@ -1,5 +1,6 @@
 ﻿using Katalyst_TDD_Starter.Bags;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
 
 namespace Katalyst_TDD_Starter.Test.Bags
 {
@@ -30,6 +31,21 @@ namespace Katalyst_TDD_Starter.Test.Bags
             bag.Add(item1);
             bag.Add(item2);
             bag.Add(item3);
+
+            Assert.IsTrue(bag.Items.Contains(item1));
+            Assert.IsTrue(bag.Items.Contains(item2));
+            Assert.IsTrue(bag.Items.Contains(item3));
+        }
+
+        [TestMethod]
+        public void Bag_should_be_able_to_add_multiple_items_at_once()
+        {
+            var bag = new StorageBag();
+            var item1 = "Leather";
+            var item2 = "Silk";
+            var item3 = "Copper";
+
+            bag.Add(new List<string> { item1, item2, item3 });
 
             Assert.IsTrue(bag.Items.Contains(item1));
             Assert.IsTrue(bag.Items.Contains(item2));

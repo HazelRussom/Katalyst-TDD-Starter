@@ -10,7 +10,11 @@
 
         public void Add(string input)
         {
-            Items.Add(input); 
+            Items.Add(input);
+        }
+        public void Add(IList<string> input)
+        {
+            Items.AddRange(input);
         }
     }
 }
