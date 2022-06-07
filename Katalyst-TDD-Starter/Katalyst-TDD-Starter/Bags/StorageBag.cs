@@ -2,11 +2,14 @@
 {
     public class StorageBag
     {
-        public StorageBag()
+        public StorageBag(int sizeLimt)
         {
+            SizeLimt = sizeLimt;
         }
 
         public List<string> Items { get; internal set; } = new();
+
+        public int SizeLimt { get; }
 
         public void Add(string input)
         {

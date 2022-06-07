@@ -21,7 +21,7 @@ namespace Katalyst_TDD_Starter.Test.Bags
         {
             for (int i = 0; i < numberOfBags; i++)
             {
-                ToTest.AddBag(new StorageBag());
+                ToTest.AddBag(new StorageBag(1));
             }
 
             Assert.IsTrue(ToTest.Bags.Count == numberOfBags);

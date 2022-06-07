@@ -13,7 +13,7 @@ namespace Katalyst_TDD_Starter.Test.Bags
         [DataRow("Copper")]
         public void Single_items_should_be_added_to_bag(string input)
         {
-            var bag = new StorageBag();
+            var bag = new StorageBag(1);
 
             bag.Add(input);
 
@@ -23,7 +23,7 @@ namespace Katalyst_TDD_Starter.Test.Bags
         [TestMethod]
         public void Bag_should_retain_previously_added_items()
         {
-            var bag = new StorageBag();
+            var bag = new StorageBag(4);
             var item1 = "Leather";
             var item2 = "Silk";
             var item3 = "Copper";
@@ -40,7 +40,7 @@ namespace Katalyst_TDD_Starter.Test.Bags
         [TestMethod]
         public void Bag_should_be_able_to_add_multiple_items_at_once()
         {
-            var bag = new StorageBag();
+            var bag = new StorageBag(4);
             var item1 = "Leather";
             var item2 = "Silk";
             var item3 = "Copper";
@@ -50,6 +50,20 @@ namespace Katalyst_TDD_Starter.Test.Bags
             Assert.IsTrue(bag.Items.Contains(item1));
             Assert.IsTrue(bag.Items.Contains(item2));
             Assert.IsTrue(bag.Items.Contains(item3));
+        }
+
+        [TestMethod]
+        public void Bags_should_be_able_to_hold_as_many_items_as_their_storage_limit()
+        {
+            var limit = 4;
+            var bag = new StorageBag(limit);
+
+            for(int i = 0; i < limit; i++)
+            {
+                bag.Add("Leather");
+            }
+
+            Assert.IsTrue(bag.Items.Count == limit);
         }
     }
 }
