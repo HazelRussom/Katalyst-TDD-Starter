@@ -38,5 +38,24 @@ namespace Katalyst_TDD_Starter.Test.Bags
             Assert.AreEqual(firstBag.Items.Count, 1);
             Assert.IsTrue(firstBag.Items.Contains("Leather"));
         }
+
+        [TestMethod]
+        public void Adding_items_should_not_exceed_any_held_bag_size_limits()
+        {
+            ToTest.AddBag(new StorageBag(1));
+            ToTest.AddBag(new StorageBag(1));
+
+            ToTest.AddItem("Leather");
+            ToTest.AddItem("Copper");
+
+            var firstBag = ToTest.Bags[0];
+            Assert.AreEqual(firstBag.Items.Count, 1);
+            Assert.IsTrue(firstBag.Items.Contains("Leather"));
+
+            var secondBag = ToTest.Bags[1];
+            Assert.AreEqual(secondBag.Items.Count, 1);
+            Assert.IsTrue(secondBag.Items.Contains("Copper"));
+
+        }
     }
 }

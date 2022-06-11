@@ -11,7 +11,13 @@
 
         public void AddItem(string item)
         {
-            Bags[0].Add(item);
+            if (Bags[0].Items.Count < Bags[0].SizeLimt)
+            {
+                Bags[0].Add(item);
+                return;
+            }
+
+            Bags[1].Add(item);
         }
     }
 }
