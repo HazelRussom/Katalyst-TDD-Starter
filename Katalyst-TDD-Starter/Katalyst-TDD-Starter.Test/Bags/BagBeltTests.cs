@@ -26,5 +26,17 @@ namespace Katalyst_TDD_Starter.Test.Bags
 
             Assert.IsTrue(ToTest.Bags.Count == numberOfBags);
         }
+
+        [TestMethod]
+        public void Bag_belt_can_add_items_to_held_bags()
+        {
+            ToTest.AddBag(new StorageBag(4));
+
+            ToTest.AddItem("Leather");
+
+            var firstBag = ToTest.Bags[0];
+            Assert.AreEqual(firstBag.Items.Count, 1);
+            Assert.IsTrue(firstBag.Items.Contains("Leather"));
+        }
     }
 }

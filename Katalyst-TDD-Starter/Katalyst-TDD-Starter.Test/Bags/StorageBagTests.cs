@@ -78,9 +78,9 @@ namespace Katalyst_TDD_Starter.Test.Bags
 
             bag.Organise();
 
-            Assert.Equals(bag.Items[0], item3);
-            Assert.Equals(bag.Items[1], item1);
-            Assert.Equals(bag.Items[2], item2);
+            Assert.AreEqual(bag.Items[0], item3);
+            Assert.AreEqual(bag.Items[1], item1);
+            Assert.AreEqual(bag.Items[2], item2);
         }
     }
 }
