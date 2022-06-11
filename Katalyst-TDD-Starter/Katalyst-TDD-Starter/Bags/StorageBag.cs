@@ -19,5 +19,10 @@
         {
             Items.AddRange(input);
         }
+
+        public void Organise()
+        {
+            Items = Items.OrderBy(x => x).ToList();
+        }
     }
 }

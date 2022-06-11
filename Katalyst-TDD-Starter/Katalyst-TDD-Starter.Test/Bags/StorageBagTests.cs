@@ -65,5 +65,22 @@ namespace Katalyst_TDD_Starter.Test.Bags
 
             Assert.IsTrue(bag.Items.Count == limit);
         }
+
+        [TestMethod]
+        public void Bag_contents_should_be_alphebatised_after_ordering()
+        {
+            var bag = new StorageBag(4);
+            var item1 = "Leather";
+            var item2 = "Silk";
+            var item3 = "Copper";
+
+            bag.Add(new List<string> { item1, item2, item3 });
+
+            bag.Organise();
+
+            Assert.Equals(bag.Items[0], item3);
+            Assert.Equals(bag.Items[1], item1);
+            Assert.Equals(bag.Items[2], item2);
+        }
     }
 }
