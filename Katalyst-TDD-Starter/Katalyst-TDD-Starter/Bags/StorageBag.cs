@@ -37,7 +37,7 @@ namespace Katalyst_TDD_Starter.Bags
 
         public void Organise()
         {
-            Items = Items.OrderBy(x => x).ToList();
+            Items = Items.OrderBy(x => x.Name).ToList();
         }
     }
 }

@@ -3,6 +3,7 @@
     public enum ItemCategory
     {
         NotSpecified = 0,
-        Cloth
+        Cloth,
+        Metal
     }
 }

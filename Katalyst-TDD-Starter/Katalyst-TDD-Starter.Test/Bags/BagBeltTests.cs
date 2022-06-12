@@ -28,35 +28,38 @@ namespace Katalyst_TDD_Starter.Test.Bags
         }
 
         [TestMethod]
-        [Ignore]
         public void Bag_belt_can_add_items_to_held_bags()
         {
             ToTest.AddBag(new StorageBag(4));
 
-            //ToTest.AddItem(new Item("Leather", ItemCategory.Cloth);
+            var leatherItem = new Item("Leather", ItemCategory.Cloth);
 
-            //var firstBag = ToTest.Bags[0];
-            //Assert.AreEqual(firstBag.Items.Count, 1);
-            //Assert.IsTrue(firstBag.Items.Contains("Leather"));
+            ToTest.AddItem(leatherItem);
+
+            var firstBag = ToTest.Bags[0];
+            Assert.AreEqual(firstBag.Items.Count, 1);
+            Assert.IsTrue(firstBag.Items.Contains(leatherItem));
         }
 
         [TestMethod]
-        [Ignore]
         public void Adding_items_should_not_exceed_any_held_bag_size_limits()
         {
             ToTest.AddBag(new StorageBag(1));
             ToTest.AddBag(new StorageBag(1));
 
-            ToTest.AddItem(new Item("Leather", ItemCategory.Cloth));
-            //ToTest.AddItem("Copper");
+            var leatherItem = new Item("Leather", ItemCategory.Cloth);
+            var copperItem = new Item("Copper", ItemCategory.Metal);
 
-            //var firstBag = ToTest.Bags[0];
-            //Assert.AreEqual(firstBag.Items.Count, 1);
-            //Assert.IsTrue(firstBag.Items.Contains("Leather"));
+            ToTest.AddItem(leatherItem);
+            ToTest.AddItem(copperItem);
 
-            //var secondBag = ToTest.Bags[1];
-            //Assert.AreEqual(secondBag.Items.Count, 1);
-            //Assert.IsTrue(secondBag.Items.Contains("Copper"));
+            var firstBag = ToTest.Bags[0];
+            Assert.AreEqual(firstBag.Items.Count, 1);
+            Assert.IsTrue(firstBag.Items.Contains(leatherItem));
+
+            var secondBag = ToTest.Bags[1];
+            Assert.AreEqual(secondBag.Items.Count, 1);
+            Assert.IsTrue(secondBag.Items.Contains(copperItem));
         }
 
         [TestMethod]
