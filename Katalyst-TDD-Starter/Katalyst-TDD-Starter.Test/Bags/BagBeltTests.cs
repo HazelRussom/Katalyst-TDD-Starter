@@ -28,34 +28,53 @@ namespace Katalyst_TDD_Starter.Test.Bags
         }
 
         [TestMethod]
+        [Ignore]
         public void Bag_belt_can_add_items_to_held_bags()
         {
             ToTest.AddBag(new StorageBag(4));
 
-            ToTest.AddItem("Leather");
+            //ToTest.AddItem(new Item("Leather", ItemCategory.Cloth);
 
-            var firstBag = ToTest.Bags[0];
-            Assert.AreEqual(firstBag.Items.Count, 1);
-            Assert.IsTrue(firstBag.Items.Contains("Leather"));
+            //var firstBag = ToTest.Bags[0];
+            //Assert.AreEqual(firstBag.Items.Count, 1);
+            //Assert.IsTrue(firstBag.Items.Contains("Leather"));
         }
 
         [TestMethod]
+        [Ignore]
         public void Adding_items_should_not_exceed_any_held_bag_size_limits()
         {
             ToTest.AddBag(new StorageBag(1));
             ToTest.AddBag(new StorageBag(1));
 
-            ToTest.AddItem("Leather");
-            ToTest.AddItem("Copper");
+            ToTest.AddItem(new Item("Leather", ItemCategory.Cloth));
+            //ToTest.AddItem("Copper");
+
+            //var firstBag = ToTest.Bags[0];
+            //Assert.AreEqual(firstBag.Items.Count, 1);
+            //Assert.IsTrue(firstBag.Items.Contains("Leather"));
+
+            //var secondBag = ToTest.Bags[1];
+            //Assert.AreEqual(secondBag.Items.Count, 1);
+            //Assert.IsTrue(secondBag.Items.Contains("Copper"));
+        }
+
+        [TestMethod]
+        public void Items_should_be_put_into_open_bags_of_same_category()
+        {
+            ToTest.AddBag(new StorageBag(1));
+            ToTest.AddBag(new StorageBag(1, ItemCategory.Cloth));
+
+            var item = new Item("Leather", ItemCategory.Cloth);
+
+            ToTest.AddItem(item);
 
             var firstBag = ToTest.Bags[0];
-            Assert.AreEqual(firstBag.Items.Count, 1);
-            Assert.IsTrue(firstBag.Items.Contains("Leather"));
+            Assert.AreEqual(firstBag.Items.Count, 0);
 
             var secondBag = ToTest.Bags[1];
             Assert.AreEqual(secondBag.Items.Count, 1);
-            Assert.IsTrue(secondBag.Items.Contains("Copper"));
-
+            Assert.IsTrue(secondBag.Items.Contains(item));
         }
     }
 }
