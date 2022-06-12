@@ -1,4 +1,6 @@
-﻿namespace Katalyst_TDD_Starter.Bags
+﻿using Katalyst_TDD_Starter.Test.Bags;
+
+namespace Katalyst_TDD_Starter.Bags
 {
     public class StorageBag
     {
@@ -6,6 +8,13 @@
         {
             SizeLimt = sizeLimt;
         }
+
+        public StorageBag(int sizeLimt, ItemCategory category) : this(sizeLimt)
+        {
+            Category = category;
+        }
+
+        public ItemCategory Category { get; set; }
 
         public List<string> Items { get; internal set; } = new();
 
@@ -15,6 +24,7 @@
         {
             Items.Add(input);
         }
+
         public void Add(IList<string> input)
         {
             Items.AddRange(input);

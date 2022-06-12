@@ -82,5 +82,15 @@ namespace Katalyst_TDD_Starter.Test.Bags
             Assert.AreEqual(bag.Items[1], item1);
             Assert.AreEqual(bag.Items[2], item2);
         }
+
+        [TestMethod]
+        [DataRow (ItemCategory.NotSpecified)]
+        [DataRow (ItemCategory.Clothes)]
+        public void Bags_can_be_set_with_item_category(ItemCategory category)
+        {
+            var bag = new StorageBag(4, category);
+
+            Assert.AreEqual(bag.Category, category);
+        }
     }
 }
