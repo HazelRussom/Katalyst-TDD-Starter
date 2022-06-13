@@ -21,13 +21,8 @@ namespace Katalyst_TDD_Starter.Bags
                 return;
             }
 
-            if (Bags[0].HasSpace())
-            {
-                Bags[0].Add(item);
-                return;
-            }
-
-            Bags[1].Add(item);
+            var openBags = Bags.Where(x => x.HasSpace()).ToList();
+            openBags.First().Add(item);
         }
     }
 }

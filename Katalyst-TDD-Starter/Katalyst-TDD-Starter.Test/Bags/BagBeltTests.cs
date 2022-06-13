@@ -43,6 +43,8 @@ namespace Katalyst_TDD_Starter.Test.Bags
 
         [TestMethod]
         [DataRow(2)]
+        [DataRow(3)]
+        [DataRow(10)]
         public void Adding_items_should_not_exceed_any_held_bag_size_limits(int bagCount)
         {
             for(int i = 0; i < bagCount; i++)
