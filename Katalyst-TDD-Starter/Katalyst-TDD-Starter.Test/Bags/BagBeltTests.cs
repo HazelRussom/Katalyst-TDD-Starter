@@ -7,10 +7,12 @@ namespace Katalyst_TDD_Starter.Test.Bags
     public class BagBeltTests
     {
         public BagBelt ToTest { get; private set; }
+        public Item LeatherItem { get; }
 
         public BagBeltTests()
         {
             ToTest = new BagBelt();
+            LeatherItem = new Item("Leather", ItemCategory.Cloth);
         }
 
         [TestMethod]
@@ -32,13 +34,11 @@ namespace Katalyst_TDD_Starter.Test.Bags
         {
             ToTest.AddBag(new StorageBag(4));
 
-            var leatherItem = new Item("Leather", ItemCategory.Cloth);
-
-            ToTest.AddItem(leatherItem);
+            ToTest.AddItem(LeatherItem);
 
             var firstBag = ToTest.Bags[0];
             Assert.AreEqual(firstBag.Items.Count, 1);
-            Assert.IsTrue(firstBag.Items.Contains(leatherItem));
+            Assert.IsTrue(firstBag.Items.Contains(LeatherItem));
         }
 
         [TestMethod]
@@ -50,7 +50,7 @@ namespace Katalyst_TDD_Starter.Test.Bags
             for(int i = 0; i < bagCount; i++)
             {
                 ToTest.AddBag(new StorageBag(1));
-                ToTest.AddItem(new Item("Leather", ItemCategory.Cloth));
+                ToTest.AddItem(LeatherItem);
             }
 
             foreach(var bag in ToTest.Bags)
@@ -65,16 +65,14 @@ namespace Katalyst_TDD_Starter.Test.Bags
             ToTest.AddBag(new StorageBag(1));
             ToTest.AddBag(new StorageBag(1, ItemCategory.Cloth));
 
-            var item = new Item("Leather", ItemCategory.Cloth);
-
-            ToTest.AddItem(item);
+            ToTest.AddItem(LeatherItem);
 
             var firstBag = ToTest.Bags[0];
             Assert.AreEqual(firstBag.Items.Count, 0);
 
             var secondBag = ToTest.Bags[1];
             Assert.AreEqual(secondBag.Items.Count, 1);
-            Assert.IsTrue(secondBag.Items.Contains(item));
+            Assert.IsTrue(secondBag.Items.Contains(LeatherItem));
         }
 
         [TestMethod]
@@ -83,13 +81,11 @@ namespace Katalyst_TDD_Starter.Test.Bags
             ToTest.AddBag(new StorageBag(1));
             ToTest.AddBag(new StorageBag(0, ItemCategory.Cloth));
 
-            var item = new Item("Leather", ItemCategory.Cloth);
-
-            ToTest.AddItem(item);
+            ToTest.AddItem(LeatherItem);
 
             var firstBag = ToTest.Bags[0];
             Assert.AreEqual(firstBag.Items.Count, 1);
-            Assert.IsTrue(firstBag.Items.Contains(item));
+            Assert.IsTrue(firstBag.Items.Contains(LeatherItem));
 
             var secondBag = ToTest.Bags[1];
             Assert.AreEqual(secondBag.Items.Count, 0);
@@ -100,9 +96,7 @@ namespace Katalyst_TDD_Starter.Test.Bags
         {
             ToTest.AddBag(new StorageBag(0));
 
-            var item = new Item("Leather", ItemCategory.Cloth);
-
-            ToTest.AddItem(item);
+            ToTest.AddItem(LeatherItem);
 
             var firstBag = ToTest.Bags[0];
             Assert.AreEqual(firstBag.Items.Count, 0);
