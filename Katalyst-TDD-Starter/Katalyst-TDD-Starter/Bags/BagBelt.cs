@@ -22,7 +22,11 @@ namespace Katalyst_TDD_Starter.Bags
             }
 
             var openBags = Bags.Where(x => x.HasSpace()).ToList();
-            openBags.First().Add(item);
+            if (openBags.Any())
+            {
+                openBags.First().Add(item);
+                return;
+            }
         }
     }
 }

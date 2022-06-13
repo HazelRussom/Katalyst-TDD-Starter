@@ -94,5 +94,18 @@ namespace Katalyst_TDD_Starter.Test.Bags
             var secondBag = ToTest.Bags[1];
             Assert.AreEqual(secondBag.Items.Count, 0);
         }
+
+        [TestMethod]
+        public void Items_added_to_full_bags_should_not_be_stored()
+        {
+            ToTest.AddBag(new StorageBag(0));
+
+            var item = new Item("Leather", ItemCategory.Cloth);
+
+            ToTest.AddItem(item);
+
+            var firstBag = ToTest.Bags[0];
+            Assert.AreEqual(firstBag.Items.Count, 0);
+        }
     }
 }
