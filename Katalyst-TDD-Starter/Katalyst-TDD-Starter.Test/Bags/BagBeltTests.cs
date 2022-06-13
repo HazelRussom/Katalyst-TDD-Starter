@@ -42,24 +42,19 @@ namespace Katalyst_TDD_Starter.Test.Bags
         }
 
         [TestMethod]
-        public void Adding_items_should_not_exceed_any_held_bag_size_limits()
+        [DataRow(2)]
+        public void Adding_items_should_not_exceed_any_held_bag_size_limits(int bagCount)
         {
-            ToTest.AddBag(new StorageBag(1));
-            ToTest.AddBag(new StorageBag(1));
+            for(int i = 0; i < bagCount; i++)
+            {
+                ToTest.AddBag(new StorageBag(1));
+                ToTest.AddItem(new Item("Leather", ItemCategory.Cloth));
+            }
 
-            var leatherItem = new Item("Leather", ItemCategory.Cloth);
-            var copperItem = new Item("Copper", ItemCategory.Metal);
-
-            ToTest.AddItem(leatherItem);
-            ToTest.AddItem(copperItem);
-
-            var firstBag = ToTest.Bags[0];
-            Assert.AreEqual(firstBag.Items.Count, 1);
-            Assert.IsTrue(firstBag.Items.Contains(leatherItem));
-
-            var secondBag = ToTest.Bags[1];
-            Assert.AreEqual(secondBag.Items.Count, 1);
-            Assert.IsTrue(secondBag.Items.Contains(copperItem));
+            foreach(var bag in ToTest.Bags)
+            {
+                Assert.AreEqual(bag.Items.Count, 1);
+            }
         }
 
         [TestMethod]
@@ -78,6 +73,24 @@ namespace Katalyst_TDD_Starter.Test.Bags
             var secondBag = ToTest.Bags[1];
             Assert.AreEqual(secondBag.Items.Count, 1);
             Assert.IsTrue(secondBag.Items.Contains(item));
+        }
+
+        [TestMethod]
+        public void Items_should_be_put_into_first_bag_open_bag_when_no_open_category_bags_exist()
+        {
+            ToTest.AddBag(new StorageBag(1));
+            ToTest.AddBag(new StorageBag(0, ItemCategory.Cloth));
+
+            var item = new Item("Leather", ItemCategory.Cloth);
+
+            ToTest.AddItem(item);
+
+            var firstBag = ToTest.Bags[0];
+            Assert.AreEqual(firstBag.Items.Count, 1);
+            Assert.IsTrue(firstBag.Items.Contains(item));
+
+            var secondBag = ToTest.Bags[1];
+            Assert.AreEqual(secondBag.Items.Count, 0);
         }
     }
 }
