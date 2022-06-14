@@ -20,5 +20,14 @@ namespace Katalyst_TDD_Starter.Bags
                 return;
             }
         }
+
+        public void OrganiseBags()
+        {
+            // Identify items in incorrect bags
+            // Check for room in correct bags
+            // If room exists:
+            // - Remove from old bag
+            // - Add to new bag
+        }
     }
 }

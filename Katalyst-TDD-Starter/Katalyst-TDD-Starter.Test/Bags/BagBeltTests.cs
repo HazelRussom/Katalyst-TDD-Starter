@@ -76,7 +76,7 @@ namespace Katalyst_TDD_Starter.Test.Bags
         }
 
         [TestMethod]
-        public void Items_added_to_full_bags_should_not_be_stored()
+        public void When_all_bags_are_full_new_items_should_not_be_stored()
         {
             ToTest.AddBag(new StorageBag(0));
 
@@ -84,6 +84,21 @@ namespace Katalyst_TDD_Starter.Test.Bags
 
             var firstBag = ToTest.Bags[0];
             Assert.AreEqual(firstBag.Items.Count, 0);
+        }
+
+        [TestMethod]
+        [Ignore]
+        public void Organisating_should_put_cloth_items_in_cloth_bags()
+        {
+            ToTest.AddBag(new StorageBag(8));
+            ToTest.AddBag(new StorageBag(4, ItemCategory.Cloth));
+
+            ToTest.AddItem(LeatherItem);
+
+            ToTest.OrganiseBags();
+
+            var clothBag = ToTest.Bags[1];
+            Assert.AreEqual(clothBag.Items.Count, 1);
         }
     }
 }
