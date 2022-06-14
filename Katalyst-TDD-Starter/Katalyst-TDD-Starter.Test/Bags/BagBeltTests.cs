@@ -60,26 +60,10 @@ namespace Katalyst_TDD_Starter.Test.Bags
         }
 
         [TestMethod]
-        public void Items_should_be_put_into_open_bags_of_same_category()
+        public void Items_should_be_put_into_first_bag_open_bag()
         {
             ToTest.AddBag(new StorageBag(1));
             ToTest.AddBag(new StorageBag(1, ItemCategory.Cloth));
-
-            ToTest.AddItem(LeatherItem);
-
-            var firstBag = ToTest.Bags[0];
-            Assert.AreEqual(firstBag.Items.Count, 0);
-
-            var secondBag = ToTest.Bags[1];
-            Assert.AreEqual(secondBag.Items.Count, 1);
-            Assert.IsTrue(secondBag.Items.Contains(LeatherItem));
-        }
-
-        [TestMethod]
-        public void Items_should_be_put_into_first_bag_open_bag_when_no_open_category_bags_exist()
-        {
-            ToTest.AddBag(new StorageBag(1));
-            ToTest.AddBag(new StorageBag(0, ItemCategory.Cloth));
 
             ToTest.AddItem(LeatherItem);
 

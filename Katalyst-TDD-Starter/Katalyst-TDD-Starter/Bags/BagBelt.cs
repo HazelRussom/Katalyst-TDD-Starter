@@ -13,14 +13,6 @@ namespace Katalyst_TDD_Starter.Bags
 
         public void AddItem(Item item)
         {
-            var openCategoryBags = Bags.Where(x => x.Category == item.Category && x.HasSpace()).ToList();
-
-            if (openCategoryBags.Any())
-            {
-                openCategoryBags.First().Add(item);
-                return;
-            }
-
             var openBags = Bags.Where(x => x.HasSpace()).ToList();
             if (openBags.Any())
             {
