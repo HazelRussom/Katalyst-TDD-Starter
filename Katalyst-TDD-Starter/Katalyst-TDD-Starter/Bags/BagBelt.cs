@@ -23,11 +23,15 @@ namespace Katalyst_TDD_Starter.Bags
 
         public void OrganiseBags()
         {
-            // Identify items in incorrect bags
-            // Check for room in correct bags
-            // If room exists:
-            // - Remove from old bag
-            // - Add to new bag
+            var unsortedCloth = Bags[0].Items.Where(x => x.Category == ItemCategory.Cloth).ToList();
+            var clothBag = Bags.Where(x => x.Category == ItemCategory.Cloth).First();
+
+            foreach(var item in unsortedCloth)
+            {
+                clothBag.Items.Add(item);
+                Bags[0].Remove(item);
+            }
+
         }
     }
 }

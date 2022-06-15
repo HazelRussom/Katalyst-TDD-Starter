@@ -87,8 +87,7 @@ namespace Katalyst_TDD_Starter.Test.Bags
         }
 
         [TestMethod]
-        [Ignore]
-        public void Organisating_should_put_cloth_items_in_cloth_bags()
+        public void Organising_should_move_cloth_items_from_first_bag_into_cloth_bag()
         {
             ToTest.AddBag(new StorageBag(8));
             ToTest.AddBag(new StorageBag(4, ItemCategory.Cloth));
