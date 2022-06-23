@@ -40,9 +40,17 @@ namespace Katalyst_TDD_Starter.Bags
             Items = Items.OrderBy(x => x.Name).ToList();
         }
 
-        public void Remove(Item item)
+        public void Remove(Item itemToRemove)
         {
-            Items.Remove(item);
+            Items.Remove(itemToRemove);
+        }
+
+        public void Remove(List<Item> itemsToRemove)
+        {
+            foreach(var item in itemsToRemove)
+            {
+                Remove(item);
+            }
         }
     }
 }
