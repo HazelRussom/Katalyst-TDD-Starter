@@ -8,11 +8,13 @@ namespace Katalyst_TDD_Starter.Test.Bags
     {
         public BagBelt ToTest { get; private set; }
         public Item LeatherItem { get; }
+        public Item CopperItem { get; }
 
         public BagBeltTests()
         {
             ToTest = new BagBelt();
             LeatherItem = new Item("Leather", ItemCategory.Cloth);
+            CopperItem = new Item("Copper", ItemCategory.Metal);
         }
 
         [TestMethod]
@@ -87,7 +89,7 @@ namespace Katalyst_TDD_Starter.Test.Bags
         }
 
         [TestMethod]
-        public void Organising_should_move_cloth_items_from_first_bag_into_cloth_bag()
+        public void Organising_should_move_cloth_items_from_non_cloth_bag_into_cloth_bag()
         {
             ToTest.AddBag(new StorageBag(8));
             ToTest.AddBag(new StorageBag(4, ItemCategory.Cloth));
@@ -98,6 +100,22 @@ namespace Katalyst_TDD_Starter.Test.Bags
 
             var clothBag = ToTest.Bags[1];
             Assert.AreEqual(clothBag.Items.Count, 1);
+        }
+
+        [TestMethod]
+        public void Organising_should_move_metal_items_into_metal_bags()
+        {
+            var metalBag = new StorageBag(4, ItemCategory.Metal);
+
+            ToTest.AddBag(new StorageBag(8));
+            ToTest.AddBag(new StorageBag(4, ItemCategory.Cloth));
+            ToTest.AddBag(metalBag);
+
+            ToTest.AddItem(CopperItem);
+
+            ToTest.OrganiseBags();
+
+            Assert.AreEqual(metalBag.Items.Count, 1);
         }
     }
 }

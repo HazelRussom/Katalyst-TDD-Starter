@@ -32,6 +32,18 @@ namespace Katalyst_TDD_Starter.Bags
                 Bags[0].Remove(item);
             }
 
+            var unsortedMetal = Bags[0].Items.Where(x => x.Category == ItemCategory.Metal).ToList();
+            var metalBag = Bags.Where(x => x.Category == ItemCategory.Metal).FirstOrDefault();
+
+            if (metalBag != null)
+            {
+
+                foreach (var item in unsortedMetal)
+                {
+                    metalBag.Items.Add(item);
+                    Bags[0].Remove(item);
+                }
+            }
         }
     }
 }
