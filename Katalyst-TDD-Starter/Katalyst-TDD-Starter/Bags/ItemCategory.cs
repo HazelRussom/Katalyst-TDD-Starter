@@ -4,6 +4,8 @@
     {
         NotSpecified = 0,
         Cloth,
-        Metal
+        Metal,
+        Herb,
+        Weapon
     }
 }

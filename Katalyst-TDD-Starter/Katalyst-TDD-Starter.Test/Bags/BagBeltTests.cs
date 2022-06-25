@@ -92,11 +92,13 @@ namespace Katalyst_TDD_Starter.Test.Bags
         [TestMethod]
         [DataRow (ItemCategory.Cloth)]
         [DataRow (ItemCategory.Metal)]
+        [DataRow (ItemCategory.Herb)]
         public void Items_should_be_organised_into_their_category_bag(ItemCategory category)
         {
             ToTest.AddBag(new StorageBag(8));
             ToTest.AddBag(new StorageBag(4, ItemCategory.Cloth));
             ToTest.AddBag(new StorageBag(4, ItemCategory.Metal));
+            ToTest.AddBag(new StorageBag(4, ItemCategory.Herb));
 
             var testItem = new Item("Test", category);
 

@@ -60,10 +60,21 @@ namespace Katalyst_TDD_Starter.Bags
 
             if (metalBag != null)
             {
-
                 foreach (var item in unsortedMetal)
                 {
                     metalBag.Items.Add(item);
+                    Bags[0].Remove(item);
+                }
+            }
+
+            var unsortedHerbs = Bags[0].Items.Where(x => x.Category == ItemCategory.Herb).ToList();
+            var herbBag = Bags.Where(x => x.Category == ItemCategory.Herb).FirstOrDefault();
+
+            if (herbBag != null)
+            {
+                foreach (var item in unsortedHerbs)
+                {
+                    herbBag.Items.Add(item);
                     Bags[0].Remove(item);
                 }
             }
