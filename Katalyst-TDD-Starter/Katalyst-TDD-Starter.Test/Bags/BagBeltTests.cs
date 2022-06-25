@@ -1,5 +1,6 @@
 ﻿using Katalyst_TDD_Starter.Bags;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Linq;
 
 namespace Katalyst_TDD_Starter.Test.Bags
 {
@@ -89,17 +90,22 @@ namespace Katalyst_TDD_Starter.Test.Bags
         }
 
         [TestMethod]
-        public void Organising_should_move_cloth_items_from_non_cloth_bag_into_cloth_bag()
+        [DataRow (ItemCategory.Cloth)]
+        public void Items_should_be_organised_into_their_category_bag(ItemCategory category)
         {
             ToTest.AddBag(new StorageBag(8));
             ToTest.AddBag(new StorageBag(4, ItemCategory.Cloth));
+            ToTest.AddBag(new StorageBag(4, ItemCategory.Metal));
 
-            ToTest.AddItem(LeatherItem);
+            var testItem = new Item("Test", category);
+
+            ToTest.AddItem(testItem);
 
             ToTest.OrganiseBags();
 
-            var clothBag = ToTest.Bags[1];
-            Assert.AreEqual(clothBag.Items.Count, 1);
+            var categoryBag = ToTest.Bags.Where(x => x.Category == category).First();
+            Assert.AreEqual(categoryBag.Items.Count, 1);
+            Assert.IsTrue(categoryBag.Items.Contains(testItem));
         }
 
         [TestMethod]
