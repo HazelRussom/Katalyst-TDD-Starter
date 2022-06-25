@@ -91,6 +91,7 @@ namespace Katalyst_TDD_Starter.Test.Bags
 
         [TestMethod]
         [DataRow (ItemCategory.Cloth)]
+        [DataRow (ItemCategory.Metal)]
         public void Items_should_be_organised_into_their_category_bag(ItemCategory category)
         {
             ToTest.AddBag(new StorageBag(8));
@@ -106,22 +107,6 @@ namespace Katalyst_TDD_Starter.Test.Bags
             var categoryBag = ToTest.Bags.Where(x => x.Category == category).First();
             Assert.AreEqual(categoryBag.Items.Count, 1);
             Assert.IsTrue(categoryBag.Items.Contains(testItem));
-        }
-
-        [TestMethod]
-        public void Organising_should_move_metal_items_into_metal_bags()
-        {
-            var metalBag = new StorageBag(4, ItemCategory.Metal);
-
-            ToTest.AddBag(new StorageBag(8));
-            ToTest.AddBag(new StorageBag(4, ItemCategory.Cloth));
-            ToTest.AddBag(metalBag);
-
-            ToTest.AddItem(CopperItem);
-
-            ToTest.OrganiseBags();
-
-            Assert.AreEqual(metalBag.Items.Count, 1);
         }
     }
 }
