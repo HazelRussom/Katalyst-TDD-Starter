@@ -18,6 +18,16 @@ namespace Katalyst_TDD_Starter.Test.Bags
             CopperItem = new Item("Copper", ItemCategory.Metal);
         }
 
+        private void InitialiseBag(int size)
+        {
+            ToTest.AddBag(new StorageBag(size));
+        }
+
+        private void InitialiseBag(int size, ItemCategory category)
+        {
+            ToTest.AddBag(new StorageBag(size, category));
+        }
+
         [TestMethod]
         [DataRow (1)]
         [DataRow (2)]
@@ -26,7 +36,7 @@ namespace Katalyst_TDD_Starter.Test.Bags
         {
             for (int i = 0; i < numberOfBags; i++)
             {
-                ToTest.AddBag(new StorageBag(1));
+                InitialiseBag(1);
             }
 
             Assert.IsTrue(ToTest.Bags.Count == numberOfBags);
@@ -35,7 +45,7 @@ namespace Katalyst_TDD_Starter.Test.Bags
         [TestMethod]
         public void Bag_belt_can_add_items_to_held_bags()
         {
-            ToTest.AddBag(new StorageBag(4));
+            InitialiseBag(4);
 
             ToTest.AddItem(LeatherItem);
 
@@ -52,7 +62,7 @@ namespace Katalyst_TDD_Starter.Test.Bags
         {
             for(int i = 0; i < bagCount; i++)
             {
-                ToTest.AddBag(new StorageBag(1));
+                InitialiseBag(1);
                 ToTest.AddItem(LeatherItem);
             }
 
@@ -65,8 +75,8 @@ namespace Katalyst_TDD_Starter.Test.Bags
         [TestMethod]
         public void Items_should_be_put_into_first_bag_open_bag()
         {
-            ToTest.AddBag(new StorageBag(1));
-            ToTest.AddBag(new StorageBag(1, ItemCategory.Cloth));
+            InitialiseBag(1);
+            InitialiseBag(1, ItemCategory.Cloth);
 
             ToTest.AddItem(LeatherItem);
 
@@ -81,7 +91,7 @@ namespace Katalyst_TDD_Starter.Test.Bags
         [TestMethod]
         public void When_all_bags_are_full_new_items_should_not_be_stored()
         {
-            ToTest.AddBag(new StorageBag(0));
+            InitialiseBag(0);
 
             ToTest.AddItem(LeatherItem);
 
@@ -95,10 +105,10 @@ namespace Katalyst_TDD_Starter.Test.Bags
         [DataRow (ItemCategory.Herb)]
         public void Items_should_be_organised_into_their_category_bag(ItemCategory category)
         {
-            ToTest.AddBag(new StorageBag(8));
-            ToTest.AddBag(new StorageBag(4, ItemCategory.Cloth));
-            ToTest.AddBag(new StorageBag(4, ItemCategory.Metal));
-            ToTest.AddBag(new StorageBag(4, ItemCategory.Herb));
+            InitialiseBag(8);
+            InitialiseBag(4, ItemCategory.Cloth);
+            InitialiseBag(4, ItemCategory.Metal);
+            InitialiseBag(4, ItemCategory.Herb);
 
             var testItem = new Item("Test", category);
 
