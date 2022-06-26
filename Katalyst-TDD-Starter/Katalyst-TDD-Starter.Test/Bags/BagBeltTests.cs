@@ -132,7 +132,9 @@ namespace Katalyst_TDD_Starter.Test.Bags
         public void Items_should_not_overfill_their_category_bags(ItemCategory category)
         {
             InitialiseBag(8);
-            InitialiseBag(1, category);
+            InitialiseBag(1, ItemCategory.Cloth);
+            InitialiseBag(1, ItemCategory.Metal);
+            InitialiseBag(1, ItemCategory.Herb);
             InitialiseBag(4, category);
 
             ToTest.AddItem(new Item("Test", category));
