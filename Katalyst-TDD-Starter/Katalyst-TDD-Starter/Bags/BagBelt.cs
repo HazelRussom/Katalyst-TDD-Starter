@@ -25,19 +25,26 @@ namespace Katalyst_TDD_Starter.Bags
         {
             var itemCategories = Enum.GetValues(typeof(ItemCategory));
 
-            foreach(ItemCategory category in itemCategories)
+            foreach (ItemCategory category in itemCategories)
             {
-                var unsortedItems = Bags[0].Items.Where(x => x.Category == category).ToList();
-                var categoryBag = Bags.Where(x => x.Category == category).FirstOrDefault();
+                OrganiseCategoryItems(category);
+            }
+        }
 
-                if (categoryBag != null)
+        private void OrganiseCategoryItems(ItemCategory category)
+        {
+            var unsortedItems = Bags[0].Items.Where(x => x.Category == category).ToList();
+            foreach (var item in unsortedItems)
+            {
+                var categoryBag = Bags.Where(x => x.Category == category && x.HasSpace()).FirstOrDefault();
+
+                if (categoryBag == null)
                 {
-                    foreach (var item in unsortedItems)
-                    {
-                        categoryBag.Items.Add(item);
-                        Bags[0].Remove(item);
-                    }
+                    return;
                 }
+
+                categoryBag.Items.Add(item);
+                Bags[0].Remove(item);
             }
         }
     }

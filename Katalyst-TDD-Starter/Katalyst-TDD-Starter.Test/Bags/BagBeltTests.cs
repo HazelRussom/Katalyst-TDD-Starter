@@ -9,12 +9,16 @@ namespace Katalyst_TDD_Starter.Test.Bags
     {
         public BagBelt ToTest { get; private set; }
         public Item LeatherItem { get; }
+        public Item LinenItem { get; }
         public Item CopperItem { get; }
 
         public BagBeltTests()
         {
             ToTest = new BagBelt();
+            
             LeatherItem = new Item("Leather", ItemCategory.Cloth);
+            LinenItem = new Item("Linen", ItemCategory.Cloth);
+
             CopperItem = new Item("Copper", ItemCategory.Metal);
         }
 
@@ -119,6 +123,24 @@ namespace Katalyst_TDD_Starter.Test.Bags
             var categoryBag = ToTest.Bags.Where(x => x.Category == category).First();
             Assert.AreEqual(categoryBag.Items.Count, 1);
             Assert.IsTrue(categoryBag.Items.Contains(testItem));
+        }
+
+        [TestMethod]
+        public void Cloth_items_should_fill_second_cloth_bag_when_first_is_full()
+        {
+            InitialiseBag(8);
+            InitialiseBag(1, ItemCategory.Cloth);
+            InitialiseBag(4, ItemCategory.Cloth);
+
+            ToTest.AddItem(LeatherItem);
+            ToTest.AddItem(LinenItem);
+
+            ToTest.OrganiseBags();
+
+            var clothBags = ToTest.Bags.Where(x => x.Category == ItemCategory.Cloth).ToList();
+
+            Assert.IsFalse(clothBags[0].HasSpace());
+            Assert.AreEqual(clothBags[1].Items.Count, 1);
         }
     }
 }
