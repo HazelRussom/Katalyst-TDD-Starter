@@ -126,21 +126,24 @@ namespace Katalyst_TDD_Starter.Test.Bags
         }
 
         [TestMethod]
-        public void Cloth_items_should_fill_second_cloth_bag_when_first_is_full()
+        [DataRow(ItemCategory.Cloth)]
+        [DataRow(ItemCategory.Metal)]
+        [DataRow(ItemCategory.Herb)]
+        public void Items_should_not_overfill_their_category_bags(ItemCategory category)
         {
             InitialiseBag(8);
-            InitialiseBag(1, ItemCategory.Cloth);
-            InitialiseBag(4, ItemCategory.Cloth);
+            InitialiseBag(1, category);
+            InitialiseBag(4, category);
 
-            ToTest.AddItem(LeatherItem);
-            ToTest.AddItem(LinenItem);
+            ToTest.AddItem(new Item("Test", category));
+            ToTest.AddItem(new Item("Test2", category));
 
             ToTest.OrganiseBags();
 
-            var clothBags = ToTest.Bags.Where(x => x.Category == ItemCategory.Cloth).ToList();
+            var categoryBags = ToTest.Bags.Where(x => x.Category == category).ToList();
 
-            Assert.IsFalse(clothBags[0].HasSpace());
-            Assert.AreEqual(clothBags[1].Items.Count, 1);
+            Assert.IsFalse(categoryBags[0].HasSpace());
+            Assert.AreEqual(categoryBags[1].Items.Count, 1);
         }
     }
 }
