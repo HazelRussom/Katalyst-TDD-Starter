@@ -168,5 +168,35 @@ namespace Katalyst_TDD_Starter.Test.Bags
             Assert.IsFalse(ToTest.Bags[1].HasSpace());
             Assert.AreEqual(ToTest.Bags[0].Items.Count, 1);
         }
+
+        [TestMethod]
+        [Ignore]
+        public void Organisation_should_work_for_multiple_categories_at_once()
+        {
+            var unspecifiedBag = new StorageBag(2);
+            var clothBag = new StorageBag(1, ItemCategory.Cloth);
+            var metalBag = new StorageBag(4, ItemCategory.Metal);
+
+            ToTest.AddBag(unspecifiedBag);
+            ToTest.AddBag(clothBag);
+            ToTest.AddBag(metalBag);
+
+            ToTest.AddItem(CopperItem);
+            ToTest.AddItem(CopperItem);
+            ToTest.AddItem(CopperItem);
+            ToTest.AddItem(LeatherItem);
+            ToTest.AddItem(LeatherItem);
+
+            ToTest.OrganiseBags();
+
+            Assert.IsTrue(unspecifiedBag.Items.Count == 1);
+            Assert.IsTrue(unspecifiedBag.Items.All(x => x.Category == ItemCategory.Cloth));
+
+            Assert.IsFalse(clothBag.Items.Count == 1);
+            Assert.IsTrue(clothBag.Items.All(x => x.Category == ItemCategory.Cloth));
+
+            Assert.IsFalse(metalBag.Items.Count == 3);
+            Assert.IsTrue(metalBag.Items.All(x => x.Category == ItemCategory.Metal));
+        }
     }
 }
