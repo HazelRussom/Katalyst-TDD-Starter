@@ -146,6 +146,27 @@ namespace Katalyst_TDD_Starter.Test.Bags
 
             Assert.IsFalse(categoryBags[0].HasSpace());
             Assert.AreEqual(categoryBags[1].Items.Count, 1);
+
+            var nonCategoryBags = ToTest.Bags.Where(x => x.Category != category).ToList();
+            foreach(var bag in nonCategoryBags)
+            {
+                Assert.IsFalse(bag.Items.Any());
+            }
+        }
+
+        [TestMethod]
+        public void Items_should_enter_the_first_open_bag_when_category_bags_are_full()
+        {
+            InitialiseBag(8);
+            InitialiseBag(1, ItemCategory.Cloth);
+
+            ToTest.AddItem(new Item("Test", ItemCategory.Cloth));
+            ToTest.AddItem(new Item("Test2", ItemCategory.Cloth));
+
+            ToTest.OrganiseBags();
+
+            Assert.IsFalse(ToTest.Bags[1].HasSpace());
+            Assert.AreEqual(ToTest.Bags[0].Items.Count, 1);
         }
     }
 }
