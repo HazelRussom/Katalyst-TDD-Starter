@@ -6,21 +6,27 @@ namespace Katalyst_TDD_Starter.Test.PasswordValidation
     [TestClass]
     public class PasswordValidatorTests
     {
+        public PasswordValidator UnderTest { get; set; }
+
+        public PasswordValidatorTests()
+        {
+            UnderTest = new PasswordValidator();
+        }
+
         [TestMethod]
         [DataRow ("")]
         [DataRow ("test")]
         public void Input_should_return_false(string input)
         {
-            var validator = new PasswordValidator();
-            Assert.IsFalse(validator.Validate(input));
+            Assert.IsFalse(UnderTest.Validate(input));
         }
 
         [TestMethod]
-        public void Valid_input_should_return_true()
+        [DataRow ("Test_w0rd")]
+        [DataRow ("Test_w0rd2")]
+        public void Valid_input_should_return_true(string input)
         {
-            var input = "Test_w0rd";
-            var validator = new PasswordValidator();
-            Assert.IsTrue(validator.Validate(input));
+            Assert.IsTrue(UnderTest.Validate(input));
         }
     }
 }

@@ -8,7 +8,7 @@
 
         public bool Validate(string input)
         {
-            if(input == "Test_w0rd")
+            if(input.Length > 8)
             {
                 return true;
             }
