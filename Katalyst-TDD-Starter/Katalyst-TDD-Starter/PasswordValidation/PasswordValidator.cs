@@ -6,8 +6,13 @@
         {
         }
 
-        public bool Validate(string empty)
+        public bool Validate(string input)
         {
+            if(input == "Test_w0rd")
+            {
+                return true;
+            }
+
             return false;
         }
     }
