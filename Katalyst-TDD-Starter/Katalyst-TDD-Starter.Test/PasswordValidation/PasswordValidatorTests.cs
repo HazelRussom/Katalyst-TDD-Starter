@@ -20,6 +20,7 @@ namespace Katalyst_TDD_Starter.Test.PasswordValidation
         [DataRow ("test_w0rd", DisplayName = "Missing capital letter")]
         [DataRow ("TEST_W0RD", DisplayName = "Missing lowercase letter")]
         [DataRow ("Test_word", DisplayName = "Missing number")]
+        [DataRow ("Test-word", DisplayName = "Missing underscore")]
         public void Input_should_return_false(string input)
         {
             Assert.IsFalse(UnderTest.Validate(input));
