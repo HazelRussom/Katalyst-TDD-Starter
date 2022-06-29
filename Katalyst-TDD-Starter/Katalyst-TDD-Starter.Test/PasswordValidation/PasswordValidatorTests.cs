@@ -18,6 +18,7 @@ namespace Katalyst_TDD_Starter.Test.PasswordValidation
         [DataRow ("test", DisplayName = "Fail every check")]
         [DataRow ("Test_w0", DisplayName = "Less than 9 characters")]
         [DataRow ("test_w0rd", DisplayName = "Missing capital letter")]
+        [DataRow ("TEST_W0RD", DisplayName = "Missing lowercase letter")]
         public void Input_should_return_false(string input)
         {
             Assert.IsFalse(UnderTest.Validate(input));
