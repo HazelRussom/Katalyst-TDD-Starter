@@ -8,12 +8,12 @@
 
         public bool Validate(string input)
         {
-            if(input.Length > 8)
+            if (!input.Any(char.IsUpper) || input.Length <= 8)
             {
-                return true;
+                return false;
             }
 
-            return false;
+            return true;
         }
     }
 }
