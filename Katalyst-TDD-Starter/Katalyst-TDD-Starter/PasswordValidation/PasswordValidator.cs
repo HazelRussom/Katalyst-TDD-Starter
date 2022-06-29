@@ -8,7 +8,17 @@
 
         public bool Validate(string input)
         {
-            if (input.Length <= 8  || !input.Any(char.IsUpper)  || !input.Any(char.IsLower))
+            if (input.Length <= 8)
+            {
+                return false;
+            }
+
+            if (!input.Any(char.IsUpper) || !input.Any(char.IsLower))
+            {
+                return false;
+            }
+
+            if (!input.Any(char.IsDigit))
             {
                 return false;
             }
