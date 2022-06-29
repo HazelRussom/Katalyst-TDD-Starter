@@ -14,16 +14,16 @@ namespace Katalyst_TDD_Starter.Test.PasswordValidation
         }
 
         [TestMethod]
-        [DataRow ("")]
-        [DataRow ("test")]
+        [DataRow ("", DisplayName = "Empty Input")]
+        [DataRow ("test", DisplayName = "Fail every check")]
         public void Input_should_return_false(string input)
         {
             Assert.IsFalse(UnderTest.Validate(input));
         }
 
         [TestMethod]
-        [DataRow ("Test_w0rd")]
-        [DataRow ("Test_w0rd2")]
+        [DataRow ("Test_w0rd", DisplayName = "Passing input")]
+        [DataRow ("Test_w0rd2", DisplayName = "Passing input 2")]
         public void Valid_input_should_return_true(string input)
         {
             Assert.IsTrue(UnderTest.Validate(input));
