@@ -23,7 +23,7 @@
                 return false;
             }
 
-            if (!input.Contains("_"))
+            if (!input.Contains('_'))
             {
                 return false;
             }
