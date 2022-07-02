@@ -36,8 +36,10 @@ namespace Katalyst_TDD_Starter.Test.PasswordValidation
 
         [TestMethod ("Input length validation config")]
         [DataRow("Tw0_", 0, true, DisplayName = "Disable input check")]
-        [DataRow("Tw0_", 5, false, DisplayName = "Disable input check")]
-        [DataRow("Tw00_", 5, true, DisplayName = "Disable input check")]
+        [DataRow("Tw0_", 5, false, DisplayName = "Configure minimum limit to 5 fail")]
+        [DataRow("Tw00_", 5, true, DisplayName = "Configure minimum limit to 5 pass")]
+        [DataRow("Tw0_Tw0_Tw0_Tw0", 16, false, DisplayName = "Configure minimum limit to 16 fail")]
+        [DataRow("Tw0_Tw0_Tw0_Tw0_", 16, true, DisplayName = "Configure minimum limit to 16 fail")]
         public void Input_length_should_not_be_checked_when_config_is_disabled(string input, int length, bool expected)
         {
             UnderTest.SetInputLength(length);
