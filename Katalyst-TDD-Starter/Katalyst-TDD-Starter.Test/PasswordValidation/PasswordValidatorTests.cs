@@ -13,7 +13,7 @@ namespace Katalyst_TDD_Starter.Test.PasswordValidation
             UnderTest = new PasswordValidator();
         }
 
-        [TestMethod]
+        [TestMethod ("Default Validator fail cases")]
         [DataRow ("", DisplayName = "Empty Input")]
         [DataRow ("test", DisplayName = "Fail every check")]
         [DataRow ("Test_w0", DisplayName = "Less than 9 characters")]
@@ -26,19 +26,21 @@ namespace Katalyst_TDD_Starter.Test.PasswordValidation
             Assert.IsFalse(UnderTest.Validate(input));
         }
 
-        [TestMethod]
+        [TestMethod ("Default Validator pass cases")]
         [DataRow ("Test_w0rd", DisplayName = "Passing input")]
         [DataRow ("Test_w0rd2", DisplayName = "Passing input 2")]
         public void Valid_input_should_return_true(string input)
         {
             Assert.IsTrue(UnderTest.Validate(input));
         }
+
+        [TestMethod]
+        public void Input_length_should_not_be_checked_when_config_is_disabled()
+        {
+            UnderTest.SetInputLength(0);
+
+            Assert.IsTrue(UnderTest.Validate("Tw0_"));
+        }
     }
 }
 
-
-//Have more than 8 characters
-//Contains a capital letter
-//Contains a lowercase
-//Contains a number
-//Contains an underscore

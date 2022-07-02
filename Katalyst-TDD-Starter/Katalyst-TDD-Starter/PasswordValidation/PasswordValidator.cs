@@ -2,13 +2,16 @@
 {
     public class PasswordValidator
     {
+        public int InputLength { get; private set; }
+
         public PasswordValidator()
         {
+            InputLength = 8;
         }
 
         public bool Validate(string input)
         {
-            if (input.Length <= 8)
+            if (input.Length <= InputLength)
             {
                 return false;
             }
@@ -29,6 +32,11 @@
             }
 
             return true;
+        }
+
+        public void SetInputLength(int inputLength)
+        {
+            InputLength = inputLength;
         }
     }
 }
