@@ -34,12 +34,15 @@ namespace Katalyst_TDD_Starter.Test.PasswordValidation
             Assert.IsTrue(UnderTest.Validate(input));
         }
 
-        [TestMethod]
-        public void Input_length_should_not_be_checked_when_config_is_disabled()
+        [TestMethod ("Input length validation config")]
+        [DataRow("Tw0_", 0, true, DisplayName = "Disable input check")]
+        [DataRow("Tw0_", 5, false, DisplayName = "Disable input check")]
+        [DataRow("Tw00_", 5, true, DisplayName = "Disable input check")]
+        public void Input_length_should_not_be_checked_when_config_is_disabled(string input, int length, bool expected)
         {
-            UnderTest.SetInputLength(0);
+            UnderTest.SetInputLength(length);
 
-            Assert.IsTrue(UnderTest.Validate("Tw0_"));
+            Assert.AreEqual(UnderTest.Validate(input), expected);
         }
     }
 }

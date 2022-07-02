@@ -6,12 +6,12 @@
 
         public PasswordValidator()
         {
-            InputLength = 8;
+            InputLength = 9;
         }
 
         public bool Validate(string input)
         {
-            if (input.Length <= InputLength)
+            if (input.Length < InputLength)
             {
                 return false;
             }
