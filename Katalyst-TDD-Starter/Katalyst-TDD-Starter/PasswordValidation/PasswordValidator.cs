@@ -5,12 +5,16 @@
         public int InputLength { get; private set; }
         public bool RequireCapitalLetter { get; private set; }
         public bool RequireLowercaseLetter { get; private set; }
+        public bool RequireNumericCharacter { get; private set; }
+        public bool RequireUnderscore { get; private set; }
 
         public PasswordValidator()
         {
             InputLength = 9;
             RequireCapitalLetter = true;
-            RequireLowercaseLetter = true; 
+            RequireLowercaseLetter = true;
+            RequireNumericCharacter = true;
+            RequireUnderscore = true;
         }
 
         public bool Validate(string input)
@@ -30,12 +34,12 @@
                 return false;
             }
 
-            if (!input.Any(char.IsDigit))
+            if (RequireNumericCharacter && !NumericCharacterExists(input))
             {
                 return false;
             }
 
-            if (!input.Contains('_'))
+            if (RequireUnderscore && !UnderscoreExists(input))
             {
                 return false;
             }
@@ -43,29 +47,54 @@
             return true;
         }
 
-        private bool CapitalLetterExists(string input)
+        private static bool UnderscoreExists(string input)
+        {
+            return input.Contains('_');
+        }
+
+        private static bool NumericCharacterExists(string input)
+        {
+            return input.Any(char.IsDigit);
+        }
+
+        private static bool CapitalLetterExists(string input)
         {
             return input.Any(char.IsUpper);
         }
 
-        private bool LowercaseLetterExists(string input)
+        private static bool LowercaseLetterExists(string input)
         {
             return input.Any(char.IsLower);
         }
 
-        public void SetInputLength(int inputLength)
+        public PasswordValidator SetInputLength(int inputLength)
         {
             InputLength = inputLength;
+            return this;
         }
 
-        public void SetCapitalsConfig(bool configSetting)
+        public PasswordValidator SetCapitalsConfig(bool configSetting)
         {
             RequireCapitalLetter = configSetting;
+            return this;
         }
 
-        public void SetLowercaseConfig(bool configSetting)
+        public PasswordValidator SetLowercaseConfig(bool configSetting)
         {
             RequireLowercaseLetter = configSetting;
+            return this;
+        }
+
+        public PasswordValidator SetNumericConfig(bool configSetting)
+        {
+            RequireNumericCharacter = configSetting;
+            return this;
+        }
+
+        public PasswordValidator SetUnderscoreConfig(bool configSetting)
+        {
+            RequireUnderscore = configSetting;
+            return this;
         }
     }
 }

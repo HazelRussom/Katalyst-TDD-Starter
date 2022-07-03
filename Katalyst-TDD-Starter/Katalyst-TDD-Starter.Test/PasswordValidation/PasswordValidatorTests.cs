@@ -20,7 +20,7 @@ namespace Katalyst_TDD_Starter.Test.PasswordValidation
         [DataRow ("test_w0rd", DisplayName = "Missing capital letter")]
         [DataRow ("TEST_W0RD", DisplayName = "Missing lowercase letter")]
         [DataRow ("Test_word", DisplayName = "Missing number")]
-        [DataRow ("Test-word", DisplayName = "Missing underscore")]
+        [DataRow ("Test-w0rd", DisplayName = "Missing underscore")]
         public void Input_should_return_false(string input)
         {
             Assert.IsFalse(UnderTest.Validate(input));
@@ -48,25 +48,47 @@ namespace Katalyst_TDD_Starter.Test.PasswordValidation
         }
 
         [TestMethod("Capital letter validation config")]
-        [DataRow("test_w0rd", false, true, DisplayName = "Disable capital letter check")]
-        [DataRow("test_w0rd", true, false, DisplayName = "Enable capital letter check")]
-        public void Setting_capital_letter_requirement_should_affect_validation(string input, bool configSetting, bool expected)
+        [DataRow(false, true, DisplayName = "Disable capital letter check")]
+        [DataRow(true, false, DisplayName = "Enable capital letter check")]
+        public void Setting_capital_letter_requirement_should_affect_validation(bool configSetting, bool expected)
         {
+            var input = "test_w0rd";
             UnderTest.SetCapitalsConfig(configSetting);
 
             Assert.AreEqual(UnderTest.Validate(input), expected);
-
         }
 
         [TestMethod("Lowercase letter validation config")]
-        [DataRow("TEST_W0RD", false, true, DisplayName = "Disable lowercase letter check")]
-        [DataRow("TEST_W0RD", true, false, DisplayName = "Enable lowercase letter check")]
-        public void Setting_lowercase_letter_requirement_should_affect_validation(string input, bool configSetting, bool expected)
+        [DataRow(false, true, DisplayName = "Disable lowercase letter check")]
+        [DataRow(true, false, DisplayName = "Enable lowercase letter check")]
+        public void Setting_lowercase_letter_requirement_should_affect_validation(bool configSetting, bool expected)
         {
+            var input = "TEST_W0RD";
             UnderTest.SetLowercaseConfig(configSetting);
 
             Assert.AreEqual(UnderTest.Validate(input), expected);
+        }
 
+        [TestMethod("Numeric validation config")]
+        [DataRow(false, true, DisplayName = "Disable numeric character check")]
+        [DataRow(true, false, DisplayName = "Enable numeric character check")]
+        public void Setting_numeric_character_requirement_should_affect_validation(bool configSetting, bool expected)
+        {
+            var input = "Test_word";
+            UnderTest.SetNumericConfig(configSetting);
+
+            Assert.AreEqual(UnderTest.Validate(input), expected);
+        }
+
+        [TestMethod("Underscore validation config")]
+        [DataRow(false, true, DisplayName = "Disable underscore check")]
+        [DataRow(true, false, DisplayName = "Enable underscore check")]
+        public void Setting_underscore_requirement_should_affect_validation(bool configSetting, bool expected)
+        {
+            var input = "Test-w0rd";
+            UnderTest.SetUnderscoreConfig(configSetting);
+
+            Assert.AreEqual(UnderTest.Validate(input), expected);
         }
     }
 }
