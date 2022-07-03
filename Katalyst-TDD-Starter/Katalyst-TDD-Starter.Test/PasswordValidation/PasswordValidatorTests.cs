@@ -48,11 +48,13 @@ namespace Katalyst_TDD_Starter.Test.PasswordValidation
         }
 
         [TestMethod("Capital letter validation config")]
-        public void Disabling_capital_letter_requirement_should_not_check_for_capital_letters()
+        [DataRow("test_w0rd", false, true, DisplayName = "Disable capital letter check")]
+        [DataRow("test_w0rd", true, false, DisplayName = "Enable capital letter check")]
+        public void Disabling_capital_letter_requirement_should_not_check_for_capital_letters(string input, bool configSetting, bool expected)
         {
-            UnderTest.SetCapitalsConfig(false);
+            UnderTest.SetCapitalsConfig(configSetting);
 
-            Assert.IsTrue(UnderTest.Validate("test_w0rd"));
+            Assert.AreEqual(UnderTest.Validate(input), expected);
 
         }
     }
