@@ -50,9 +50,20 @@ namespace Katalyst_TDD_Starter.Test.PasswordValidation
         [TestMethod("Capital letter validation config")]
         [DataRow("test_w0rd", false, true, DisplayName = "Disable capital letter check")]
         [DataRow("test_w0rd", true, false, DisplayName = "Enable capital letter check")]
-        public void Disabling_capital_letter_requirement_should_not_check_for_capital_letters(string input, bool configSetting, bool expected)
+        public void Setting_capital_letter_requirement_should_affect_validation(string input, bool configSetting, bool expected)
         {
             UnderTest.SetCapitalsConfig(configSetting);
+
+            Assert.AreEqual(UnderTest.Validate(input), expected);
+
+        }
+
+        [TestMethod("Lowercase letter validation config")]
+        [DataRow("TEST_W0RD", false, true, DisplayName = "Disable lowercase letter check")]
+        [DataRow("TEST_W0RD", true, false, DisplayName = "Enable lowercase letter check")]
+        public void Setting_lowercase_letter_requirement_should_affect_validation(string input, bool configSetting, bool expected)
+        {
+            UnderTest.SetLowercaseConfig(configSetting);
 
             Assert.AreEqual(UnderTest.Validate(input), expected);
 
