@@ -40,11 +40,20 @@ namespace Katalyst_TDD_Starter.Test.PasswordValidation
         [DataRow("Tw00_", 5, true, DisplayName = "Configure minimum limit to 5 pass")]
         [DataRow("Tw0_Tw0_Tw0_Tw0", 16, false, DisplayName = "Configure minimum limit to 16 fail")]
         [DataRow("Tw0_Tw0_Tw0_Tw0_", 16, true, DisplayName = "Configure minimum limit to 16 fail")]
-        public void Input_length_should_not_be_checked_when_config_is_disabled(string input, int length, bool expected)
+        public void Input_length_configuration_changes_should_affect_validation(string input, int length, bool expected)
         {
             UnderTest.SetInputLength(length);
 
             Assert.AreEqual(UnderTest.Validate(input), expected);
+        }
+
+        [TestMethod("Capital letter validation config")]
+        public void Disabling_capital_letter_requirement_should_not_check_for_capital_letters()
+        {
+            UnderTest.SetCapitalsConfig(false);
+
+            Assert.IsTrue(UnderTest.Validate("test_w0rd"));
+
         }
     }
 }
