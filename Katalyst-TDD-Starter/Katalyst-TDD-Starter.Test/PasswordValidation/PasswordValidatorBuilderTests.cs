@@ -34,5 +34,14 @@ namespace Katalyst_TDD_Starter.Test.PasswordValidation
 
             Assert.AreEqual(inputLength, result.InputLength);
         }
+
+        [TestMethod("Configured Capital Letter check tests")]
+        public void Building_with_capital_setting_should_have_value_set()
+        {
+            var input = false;
+            var result = UnderTest.WithRequiredCapital(input).Build();
+
+            Assert.AreEqual(input, result.RequireCapitalLetter);
+        }
     }
 }
