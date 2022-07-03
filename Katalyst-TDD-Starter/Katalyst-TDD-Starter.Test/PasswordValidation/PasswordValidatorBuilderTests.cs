@@ -13,18 +13,23 @@ namespace Katalyst_TDD_Starter.Test.PasswordValidation
             UnderTest = new PasswordValidatorBuilder();
         }
 
-        [TestMethod]
-        public void Building_the_validator_should_return_a_validator_object()
+        [TestMethod ("Builder without any config set")]
+        public void Building_the_validator_should_return_a_validator_object_with_default_settings()
         {
             var result = UnderTest.Build();
 
-            Assert.IsNotNull(result);
+            Assert.AreEqual(result.InputLength, 9);
+            Assert.IsTrue(result.RequireCapitalLetter);
+            Assert.IsTrue(result.RequireLowercaseLetter);
+            Assert.IsTrue(result.RequireUnderscore);
+            Assert.IsTrue(result.RequireNumericCharacter);
         }
 
-        [TestMethod]
-        public void Validator_with_input_length_should_have_value_set()
+        [TestMethod ("Configured Input Length tests")]
+        [DataRow (5, DisplayName = "Set InputLength to 5")]
+        [DataRow (16, DisplayName = "Set InputLength to 16")]
+        public void Building_with_input_length_should_have_value_set(int inputLength)
         {
-            var inputLength = 5;
             var result = UnderTest.WithInputLength(inputLength).Build();
 
             Assert.AreEqual(inputLength, result.InputLength);
