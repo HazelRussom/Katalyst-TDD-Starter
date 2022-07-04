@@ -12,7 +12,7 @@ TDD Starter Exercises from Katalyst
 | String Calculator | Complete | https://katalyst.codurance.com/string-calculator
 | Text Processing | Complete | https://katalyst.codurance.com/text-processing
 | Bag Organisation | On-Hold | https://katalyst.codurance.com/bags
-| Password Validator | In Progress | https://katalyst.codurance.com/password-validation
+| Password Validator | Complete | https://katalyst.codurance.com/password-validation
 
 
 ### Bags Note - 2022-06-28

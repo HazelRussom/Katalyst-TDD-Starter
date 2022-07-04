@@ -6,6 +6,7 @@
         private bool _requireCapitalLetter = true;
         private bool _requireLowercaseLetter = true;
         private bool _requireNumericCharacter = true;
+        private bool _requireUnderscore = true;
 
         public PasswordValidatorBuilder()
         {
@@ -14,7 +15,7 @@
         public PasswordValidator Build()
         {
             return new PasswordValidator(_inputLength, _requireCapitalLetter, 
-                _requireLowercaseLetter, _requireNumericCharacter, true);
+                _requireLowercaseLetter, _requireNumericCharacter, _requireUnderscore);
         }
 
         public PasswordValidatorBuilder WithInputLength(int inputLength)
@@ -38,6 +39,12 @@
         public PasswordValidatorBuilder WithRequiredNumericCharacter(bool input)
         {
             _requireNumericCharacter = input;
+            return this;
+        }
+
+        public PasswordValidatorBuilder WithRequiredUnderscore(bool input)
+        {
+            _requireUnderscore = input;
             return this;
         }
     }

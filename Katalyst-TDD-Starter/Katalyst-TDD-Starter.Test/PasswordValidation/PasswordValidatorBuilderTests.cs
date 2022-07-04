@@ -64,5 +64,15 @@ namespace Katalyst_TDD_Starter.Test.PasswordValidation
 
             Assert.AreEqual(input, result.RequireNumericCharacter);
         }
+
+        [TestMethod("Configured Underscore check tests")]
+        [DataRow(false, DisplayName = "Disable underscore character checks")]
+        [DataRow(true, DisplayName = "Enable underscore character checks")]
+        public void Building_with_underscore_setting_should_have_value_set(bool input)
+        {
+            var result = UnderTest.WithRequiredUnderscore(input).Build();
+
+            Assert.AreEqual(input, result.RequireUnderscore);
+        }
     }
 }
