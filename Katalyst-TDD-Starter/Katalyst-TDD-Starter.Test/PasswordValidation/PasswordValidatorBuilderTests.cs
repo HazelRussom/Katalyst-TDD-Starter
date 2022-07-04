@@ -54,5 +54,15 @@ namespace Katalyst_TDD_Starter.Test.PasswordValidation
 
             Assert.AreEqual(input, result.RequireLowercaseLetter);
         }
+
+        [TestMethod("Configured Numeric Character check tests")]
+        [DataRow(false, DisplayName = "Disable numeric character checks")]
+        [DataRow(true, DisplayName = "Enable numeric character checks")]
+        public void Building_with_numeric_setting_should_have_value_set(bool input)
+        {
+            var result = UnderTest.WithRequiredNumericCharacter(input).Build();
+
+            Assert.AreEqual(input, result.RequireNumericCharacter);
+        }
     }
 }
