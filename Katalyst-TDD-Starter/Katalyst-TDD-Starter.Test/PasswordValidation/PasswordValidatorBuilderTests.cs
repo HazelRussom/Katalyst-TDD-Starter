@@ -36,12 +36,23 @@ namespace Katalyst_TDD_Starter.Test.PasswordValidation
         }
 
         [TestMethod("Configured Capital Letter check tests")]
-        public void Building_with_capital_setting_should_have_value_set()
+        [DataRow(false, DisplayName = "Disable capital letter checks")]
+        [DataRow(true, DisplayName = "Enable capital letter checks")]
+        public void Building_with_capital_setting_should_have_value_set(bool input)
         {
-            var input = false;
             var result = UnderTest.WithRequiredCapital(input).Build();
 
             Assert.AreEqual(input, result.RequireCapitalLetter);
+        }
+
+        [TestMethod("Configured Lowercase Letter check tests")]
+        [DataRow(false, DisplayName = "Disable lowercase letter checks")]
+        [DataRow(true, DisplayName = "Enable lowercase letter checks")]
+        public void Building_with_lowercase_setting_should_have_value_set(bool input)
+        {
+            var result = UnderTest.WithRequiredLowercase(input).Build();
+
+            Assert.AreEqual(input, result.RequireLowercaseLetter);
         }
     }
 }

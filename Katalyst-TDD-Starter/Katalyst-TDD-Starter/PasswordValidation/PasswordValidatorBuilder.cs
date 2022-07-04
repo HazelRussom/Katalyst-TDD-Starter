@@ -4,6 +4,7 @@
     {
         private int _inputLength = 9;
         private bool _requireCapitalLetter = true;
+        private bool _requireLowercaseLetter = true;
 
         public PasswordValidatorBuilder()
         {
@@ -11,7 +12,7 @@
 
         public PasswordValidator Build()
         {
-            return new PasswordValidator(_inputLength, _requireCapitalLetter, true, true, true);
+            return new PasswordValidator(_inputLength, _requireCapitalLetter, _requireLowercaseLetter, true, true);
         }
 
         public PasswordValidatorBuilder WithInputLength(int inputLength)
@@ -23,6 +24,12 @@
         public PasswordValidatorBuilder WithRequiredCapital(bool input)
         {
             _requireCapitalLetter = input;
+            return this;
+        }
+
+        public PasswordValidatorBuilder WithRequiredLowercase(bool input)
+        {
+            _requireLowercaseLetter = input;
             return this;
         }
     }
