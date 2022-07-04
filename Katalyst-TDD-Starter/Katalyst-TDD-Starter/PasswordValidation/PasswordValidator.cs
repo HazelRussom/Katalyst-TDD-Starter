@@ -8,13 +8,14 @@
         public bool RequireNumericCharacter { get; private set; }
         public bool RequireUnderscore { get; private set; }
 
-        public PasswordValidator()
+        public PasswordValidator(int _inputLength, bool _requireCapitalLetter, 
+            bool _requiresLowercaseLetter, bool _requiresNumericCharacter, bool _requiresUnderscore)
         {
-            InputLength = 9;
-            RequireCapitalLetter = true;
-            RequireLowercaseLetter = true;
-            RequireNumericCharacter = true;
-            RequireUnderscore = true;
+            InputLength = _inputLength;
+            RequireCapitalLetter = _requireCapitalLetter;
+            RequireLowercaseLetter = _requiresLowercaseLetter;
+            RequireNumericCharacter = _requiresNumericCharacter;
+            RequireUnderscore = _requiresUnderscore;
         }
 
         public bool Validate(string input)
@@ -65,36 +66,6 @@
         private static bool LowercaseLetterExists(string input)
         {
             return input.Any(char.IsLower);
-        }
-
-        public PasswordValidator SetInputLength(int inputLength)
-        {
-            InputLength = inputLength;
-            return this;
-        }
-
-        public PasswordValidator SetCapitalsConfig(bool configSetting)
-        {
-            RequireCapitalLetter = configSetting;
-            return this;
-        }
-
-        public PasswordValidator SetLowercaseConfig(bool configSetting)
-        {
-            RequireLowercaseLetter = configSetting;
-            return this;
-        }
-
-        public PasswordValidator SetNumericConfig(bool configSetting)
-        {
-            RequireNumericCharacter = configSetting;
-            return this;
-        }
-
-        public PasswordValidator SetUnderscoreConfig(bool configSetting)
-        {
-            RequireUnderscore = configSetting;
-            return this;
         }
     }
 }

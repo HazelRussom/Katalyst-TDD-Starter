@@ -11,7 +11,7 @@
 
         public PasswordValidator Build()
         {
-            return new PasswordValidator().SetInputLength(_inputLength).SetCapitalsConfig(_requireCapitalLetter);
+            return new PasswordValidator(_inputLength, _requireCapitalLetter, true, true, true);
         }
 
         public PasswordValidatorBuilder WithInputLength(int inputLength)
