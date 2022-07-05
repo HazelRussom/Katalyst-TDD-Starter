@@ -13,6 +13,7 @@ TDD Starter Exercises from Katalyst
 | Text Processing | Complete | https://katalyst.codurance.com/text-processing
 | Bag Organisation | On-Hold | https://katalyst.codurance.com/bags
 | Password Validator | Complete | https://katalyst.codurance.com/password-validation
+Mars Rover | In-Progress | https://katalyst.codurance.com/simple-mars-rover
 
 
 ### Bags Note - 2022-06-28
