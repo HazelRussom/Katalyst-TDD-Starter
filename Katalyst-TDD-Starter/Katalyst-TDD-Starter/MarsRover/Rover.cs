@@ -2,18 +2,45 @@
 {
     public class Rover
     {
+        public string Direction { get; set; } = "N";
+
         public Rover()
         {
         }
 
         public string Move(string input)
         {
-            if (input.Equals("RR"))
+            foreach (var command in input)
             {
-                return "0:0:S";
+                if (command == 'R')
+                {
+                    if (Direction == "W")
+                    {
+                        Direction = "N";
+                        continue;
+                    }
+
+                    if (Direction == "S")
+                    {
+                        Direction = "W";
+                        continue;
+                    }
+
+                    if (Direction == "E")
+                    {
+                        Direction = "S";
+                        continue;
+                    }
+
+                    if (Direction == "N")
+                    {
+                        Direction = "E";
+                        continue;
+                    }
+                }
             }
 
-            return "0:0:E";
+            return $"0:0:{Direction}";
         }
     }
 }
