@@ -42,3 +42,11 @@ Arguably, a Factory could be used in this way, where the properties are extracte
 but then this raises issues on how to build the config class, and whether a class that only holds data is a code-smell or not...
 
 Currently, my choice is to use a ValidatorBuilder.
+
+
+### Builder Tests Removal : 2022-07-06
+Following more investigation, I've been sold on the case that functionality that doesn't affect behaviour doesn't necessarily need tested, such as in the case of the PasswordValidatorBuilder.
+
+This has lead to cleaning up another mistake made during this build, of making code specifically for making tests easier - in this case, using properties with public getters just for the purpose of validating values in the PasswordValidatorBuilderTests.
+
+Refactoring in this change has also set the PasswordValidator constructor to internal, then replacing its initialisation with a call to the Builder instead.
