@@ -2,7 +2,7 @@
 {
     public class Rover
     {
-        public Direction Direction { get; set; } = Direction.N;
+        private Direction Direction = Direction.N;
 
         public Rover()
         {
@@ -15,6 +15,11 @@
                 if (command == 'R')
                 {
                     TurnRight();
+                }
+
+                if(command == 'L')
+                {
+                    TurnLeft();
                 }
             }
 
@@ -30,6 +35,17 @@
             }
 
             Direction += 1;
+        }
+
+        private void TurnLeft()
+        {
+            if (Direction == Direction.N)
+            {
+                Direction = Direction.W;
+                return;
+            }
+
+            Direction -= 1;
         }
     }
 }
