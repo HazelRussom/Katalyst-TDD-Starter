@@ -26,6 +26,11 @@
                 if (command == 'M')
                 {
                     YPosition += 1;
+
+                    if(YPosition == 10)
+                    {
+                        YPosition = 0;
+                    }
                 }
             }
 
