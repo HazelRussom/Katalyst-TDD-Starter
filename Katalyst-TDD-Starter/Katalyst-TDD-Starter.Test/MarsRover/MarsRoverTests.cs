@@ -13,6 +13,9 @@ namespace Katalyst_TDD_Starter.Test.MarsRover
         [DataRow ("RRR", "0:0:W", DisplayName = "Turn right 3x")]
         [DataRow ("RRRR", "0:0:N", DisplayName = "Turn right 4x")]
         [DataRow ("L", "0:0:W", DisplayName = "Turn left")]
+        [DataRow ("LL", "0:0:S", DisplayName = "Turn left 2x")]
+        [DataRow ("LLL", "0:0:E", DisplayName = "Turn left 3x")]
+        [DataRow ("LLLL", "0:0:N", DisplayName = "Turn left 4x")]
         public void Rover_should_turn(string input, string expected)
         {
             var UnderTest = new Rover();
