@@ -6,7 +6,7 @@ namespace Katalyst_TDD_Starter.Test.MarsRover
     [TestClass]
     public class MarsRoverTests
     {
-        [TestMethod ("Turning Tests")]
+        [TestMethod ("Movement Tests")]
         [DataRow ("", "0:0:N", DisplayName = "No movement")]
         [DataRow ("R", "0:0:E", DisplayName = "Turn right")]
         [DataRow ("RR", "0:0:S", DisplayName = "Turn right 2x")]
@@ -16,6 +16,8 @@ namespace Katalyst_TDD_Starter.Test.MarsRover
         [DataRow ("LL", "0:0:S", DisplayName = "Turn left 2x")]
         [DataRow ("LLL", "0:0:E", DisplayName = "Turn left 3x")]
         [DataRow ("LLLL", "0:0:N", DisplayName = "Turn left 4x")]
+        [DataRow ("M", "0:1:N", DisplayName = "Move once")]
+
         public void Rover_should_turn(string input, string expected)
         {
             var UnderTest = new Rover();
