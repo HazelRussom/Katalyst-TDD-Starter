@@ -19,6 +19,7 @@ namespace Katalyst_TDD_Starter.Test.MarsRover
         [DataRow ("M", "0:1:N", DisplayName = "Move once")]
         [DataRow ("MMMMMMMMM", "0:9:N", DisplayName = "Move to the top")]
         [DataRow ("MMMMMMMMMM", "0:0:N", DisplayName = "Loop over the top")]
+        [DataRow ("RRM", "0:9:S", DisplayName = "Loop over the bottom")]
 
         public void Rover_should_turn(string input, string expected)
         {
