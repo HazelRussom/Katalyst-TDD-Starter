@@ -2,13 +2,13 @@
 {
     public class PasswordValidator
     {
-        public int InputLength { get; private set; }
-        public bool RequireCapitalLetter { get; private set; }
-        public bool RequireLowercaseLetter { get; private set; }
-        public bool RequireNumericCharacter { get; private set; }
-        public bool RequireUnderscore { get; private set; }
+        private readonly int InputLength;
+        private readonly bool RequireCapitalLetter;
+        private readonly bool RequireLowercaseLetter;
+        private readonly bool RequireNumericCharacter;
+        private readonly bool RequireUnderscore;
 
-        public PasswordValidator(int _inputLength, bool _requireCapitalLetter, 
+        internal PasswordValidator(int _inputLength, bool _requireCapitalLetter, 
             bool _requiresLowercaseLetter, bool _requiresNumericCharacter, bool _requiresUnderscore)
         {
             InputLength = _inputLength;

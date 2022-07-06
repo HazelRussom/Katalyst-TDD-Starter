@@ -8,21 +8,9 @@ namespace Katalyst_TDD_Starter.Test.PasswordValidation
     {
         public PasswordValidator UnderTest { get; set; }
 
-        private int _inputLimit = 9;
-        private bool _requireCapitalLetter = true;
-        private bool _requireLowercaseLetter = true;
-        private bool _requireNumericCharacter = true;
-        private bool _requireUnderscore = true;
-
         public PasswordValidatorTests()
         {
-            InitialiseUnderTest();
-        }
-
-        public void InitialiseUnderTest()
-        {
-            UnderTest = new PasswordValidator(_inputLimit, _requireCapitalLetter, 
-                _requireLowercaseLetter, _requireNumericCharacter, _requireUnderscore);
+            UnderTest = new PasswordValidatorBuilder().Build();
         }
 
         [TestMethod ("Default Validator fail cases")]
@@ -54,8 +42,7 @@ namespace Katalyst_TDD_Starter.Test.PasswordValidation
         [DataRow("Tw0_Tw0_Tw0_Tw0_", 16, true, DisplayName = "Configure minimum limit to 16 fail")]
         public void Input_length_configuration_changes_should_affect_validation(string input, int length, bool expected)
         {
-            _inputLimit = length;
-            InitialiseUnderTest();
+            UnderTest = new PasswordValidatorBuilder().WithInputLength(length).Build();
 
             Assert.AreEqual(UnderTest.Validate(input), expected);
         }
@@ -65,9 +52,8 @@ namespace Katalyst_TDD_Starter.Test.PasswordValidation
         [DataRow(true, false, DisplayName = "Enable capital letter check")]
         public void Setting_capital_letter_requirement_should_affect_validation(bool configSetting, bool expected)
         {
-            _requireCapitalLetter = configSetting;
-            InitialiseUnderTest();
-            
+            UnderTest = new PasswordValidatorBuilder().WithRequiredCapital(configSetting).Build();
+
             var input = "test_w0rd";
 
             Assert.AreEqual(UnderTest.Validate(input), expected);
@@ -78,8 +64,7 @@ namespace Katalyst_TDD_Starter.Test.PasswordValidation
         [DataRow(true, false, DisplayName = "Enable lowercase letter check")]
         public void Setting_lowercase_letter_requirement_should_affect_validation(bool configSetting, bool expected)
         {
-            _requireLowercaseLetter = configSetting;
-            InitialiseUnderTest();
+            UnderTest = new PasswordValidatorBuilder().WithRequiredLowercase(configSetting).Build();
 
             var input = "TEST_W0RD";
 
@@ -91,8 +76,7 @@ namespace Katalyst_TDD_Starter.Test.PasswordValidation
         [DataRow(true, false, DisplayName = "Enable numeric character check")]
         public void Setting_numeric_character_requirement_should_affect_validation(bool configSetting, bool expected)
         {
-            _requireNumericCharacter = configSetting;
-            InitialiseUnderTest();
+            UnderTest = new PasswordValidatorBuilder().WithRequiredNumericCharacter(configSetting).Build();
 
             var input = "Test_word";
 
@@ -104,8 +88,7 @@ namespace Katalyst_TDD_Starter.Test.PasswordValidation
         [DataRow(true, false, DisplayName = "Enable underscore check")]
         public void Setting_underscore_requirement_should_affect_validation(bool configSetting, bool expected)
         {
-            _requireUnderscore = configSetting;
-            InitialiseUnderTest();
+            UnderTest = new PasswordValidatorBuilder().WithRequiredUnderscore(configSetting).Build();
 
             var input = "Test-w0rd";
 
