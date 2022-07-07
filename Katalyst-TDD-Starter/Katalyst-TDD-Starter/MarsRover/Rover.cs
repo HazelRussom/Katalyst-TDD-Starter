@@ -6,11 +6,13 @@
         private int YPosition = 0;
         private int XPosition = 0;
 
+        private const int MOVEMENT_SPEED = 1;
+
         public Rover()
         {
         }
 
-        public string Move(string input)
+        public string Execute(string input)
         {
             foreach (var command in input)
             {
@@ -37,7 +39,7 @@
         {
             if(Direction == Direction.N)
             {
-                YPosition += 1;
+                YPosition += MOVEMENT_SPEED;
 
                 if (YPosition == 10)
                 {
@@ -47,7 +49,7 @@
 
             if(Direction == Direction.S)
             {
-                YPosition -= 1;
+                YPosition -= MOVEMENT_SPEED;
 
                 if (YPosition == -1)
                 {
@@ -57,11 +59,21 @@
 
             if (Direction == Direction.E)
             {
-                XPosition += 1;
+                XPosition += MOVEMENT_SPEED;
 
                 if (XPosition == 10)
                 {
                     XPosition = 0;
+                }
+            }
+
+            if (Direction == Direction.W)
+            {
+                XPosition -= MOVEMENT_SPEED;
+
+                if (XPosition == -1)
+                {
+                    XPosition = 9;
                 }
             }
         }
@@ -74,7 +86,7 @@
                 return;
             }
 
-            Direction += 1;
+            Direction += MOVEMENT_SPEED;
         }
 
         private void TurnLeft()
@@ -85,7 +97,7 @@
                 return;
             }
 
-            Direction -= 1;
+            Direction -= MOVEMENT_SPEED;
         }
     }
 }

@@ -22,12 +22,13 @@ namespace Katalyst_TDD_Starter.Test.MarsRover
         [DataRow ("RRM", "0:9:S", DisplayName = "Move south once")]
         [DataRow ("MMRRM", "0:1:S", DisplayName = "Move up, then down")]
         [DataRow ("RM", "1:0:E", DisplayName = "Move east once")]
+        [DataRow ("LM", "9:0:W", DisplayName = "Move west once")]
 
         public void Rover_should_turn(string input, string expected)
         {
             var UnderTest = new Rover();
 
-            var result = UnderTest.Move(input);
+            var result = UnderTest.Execute(input);
 
             Assert.AreEqual(expected, result);
         }
