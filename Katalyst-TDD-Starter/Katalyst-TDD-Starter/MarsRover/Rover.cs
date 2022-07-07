@@ -4,6 +4,7 @@
     {
         private Direction Direction = Direction.N;
         private int YPosition = 0;
+        private int XPosition = 0;
 
         public Rover()
         {
@@ -29,7 +30,7 @@
                 }
             }
 
-            return $"0:{YPosition}:{Direction}";
+            return $"{XPosition}:{YPosition}:{Direction}";
         }
 
         private void Move()
@@ -42,8 +43,6 @@
                 {
                     YPosition = 0;
                 }
-
-                return;
             }
 
             if(Direction == Direction.S)
@@ -53,6 +52,16 @@
                 if (YPosition == -1)
                 {
                     YPosition = 9;
+                }
+            }
+
+            if (Direction == Direction.E)
+            {
+                XPosition += 1;
+
+                if (XPosition == 10)
+                {
+                    XPosition = 0;
                 }
             }
         }
