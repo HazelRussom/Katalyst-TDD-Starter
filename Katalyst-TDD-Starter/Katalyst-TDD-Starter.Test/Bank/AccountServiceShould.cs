@@ -97,12 +97,30 @@ namespace Katalyst_TDD_Starter.Test.Bank
         }
 
         [TestMethod]
-        public void Print_single_statement_below_header()
+        public void Print_single_statement_below_header_of_500_value()
         {
             var expectedHeader = "Date || Amount || Balance";
             var expectedStatement = "14/01/2012 || 500 || 500";
+            var expected = new DateTime(2012, 01, 14);
+            TimeGetter.Setup(x => x.GetTime()).Returns(expected);
 
             UnderTest.Deposit(500);
+            UnderTest.PrintStatement();
+
+            StatementPrinter.Verify(x => x.Print(expectedHeader), Times.Exactly(1));
+            StatementPrinter.Verify(x => x.Print(expectedStatement), Times.Exactly(1));
+            StatementPrinter.Verify(x => x.Print(It.IsAny<string>()), Times.Exactly(2));
+        }
+
+        [TestMethod]
+        public void Print_single_statement_below_header_of_1000_value()
+        {
+            var expected = new DateTime(2014, 02, 15);
+            TimeGetter.Setup(x => x.GetTime()).Returns(expected);
+            var expectedHeader = "Date || Amount || Balance";
+            var expectedStatement = "15/02/2014 || 1000 || 1000";
+
+            UnderTest.Deposit(1000);
             UnderTest.PrintStatement();
 
             StatementPrinter.Verify(x => x.Print(expectedHeader), Times.Exactly(1));

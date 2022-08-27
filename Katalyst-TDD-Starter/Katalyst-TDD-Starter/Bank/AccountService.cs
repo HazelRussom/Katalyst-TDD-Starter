@@ -1,4 +1,6 @@
-﻿namespace Katalyst_TDD_Starter.Bank
+﻿using System.Globalization;
+
+namespace Katalyst_TDD_Starter.Bank
 {
     public class AccountService : IAccountService
     {
@@ -30,7 +32,7 @@
             
             if (StatementLog.Any())
             {
-                statementPrinter.Print("14/01/2012 || 500 || 500");
+                statementPrinter.Print($"{StatementLog[0].Timestamp.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture)} || {StatementLog[0].Amount} || {StatementLog[0].Amount}");
             }
         }
 
