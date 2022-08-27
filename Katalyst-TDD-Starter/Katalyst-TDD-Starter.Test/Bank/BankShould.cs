@@ -1,4 +1,8 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Katalyst_TDD_Starter.Bank;
+using Katalyst_TDD_Starter.Test.Utilities;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
+using System;
 
 namespace Katalyst_TDD_Starter.Test.Bank
 {
@@ -6,9 +10,32 @@ namespace Katalyst_TDD_Starter.Test.Bank
     public class BankShould
     {
         [TestMethod]
-        public void MyTestMethod()
+        public void Print_statement_with_deposit_and_withdrawal_history()
         {
+            var statementPrinter = new Mock<IStatementPrinter>();
+            var timeGetter = new Mock<ITimeGetter>();
+            IAccountService UnderTest = new AccountService(statementPrinter.Object, timeGetter.Object);
+            //Given a client makes a deposit of 1000 on 10-01-2012
+            UnderTest.Deposit(1000);
 
+            //And a deposit of 2000 on 13-01-2012
+            UnderTest.Deposit(2000);
+
+            //And a withdrawal of 500 on 14-01-2012
+            UnderTest.Withdraw(500);
+
+            //When they print their bank statement
+            UnderTest.PrintStatement();
+
+            //Then they would see:
+            //Date       || Amount || Balance
+            //14/01/2012 || -500   || 2500
+            //13/01/2012 || 2000   || 3000
+            //10/01/2012 || 1000   || 1000
+            statementPrinter.Verify(x => x.Print(It.Is<string>(x => x.Contains("Date || Amount || Balance"))));
+            statementPrinter.Verify(x => x.Print(It.Is<string>(x => x.Contains("14/01/2012 || -500 || 2500"))));
+            statementPrinter.Verify(x => x.Print(It.Is<string>(x => x.Contains("13/01/2012 || 2000 || 3000"))));
+            statementPrinter.Verify(x => x.Print(It.Is<string>(x => x.Contains("10/01/2012 || 1000 || 1000"))));
         }
     }
 }
