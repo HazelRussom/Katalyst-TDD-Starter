@@ -94,5 +94,18 @@ namespace Katalyst_TDD_Starter.Test.Bank
 
             StatementPrinter.Verify(x => x.Print(expected), Times.Exactly(1));
         }
+
+        [TestMethod]
+        public void Print_single_statement_below_header()
+        {
+            var expectedHeader = "Date || Amount || Balance";
+            var expectedStatement = "14/01/2012 || 500 || 500";
+
+            UnderTest.Deposit(500);
+            UnderTest.PrintStatement();
+
+            StatementPrinter.Verify(x => x.Print(expectedHeader), Times.Exactly(1));
+            StatementPrinter.Verify(x => x.Print(expectedStatement), Times.Exactly(1));
+        }
     }
 }

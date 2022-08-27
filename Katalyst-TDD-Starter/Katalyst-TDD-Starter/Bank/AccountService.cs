@@ -27,6 +27,7 @@
         public void PrintStatement()
         {
             statementPrinter.Print("Date || Amount || Balance");
+            statementPrinter.Print("14/01/2012 || 500 || 500");
         }
 
         public void Withdraw(int amount)
