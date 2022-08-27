@@ -33,7 +33,7 @@
         {
             StatementLog.Add(new StatementEntry
             {
-                Amount = -500
+                Amount = -amount
             });
         }
     }

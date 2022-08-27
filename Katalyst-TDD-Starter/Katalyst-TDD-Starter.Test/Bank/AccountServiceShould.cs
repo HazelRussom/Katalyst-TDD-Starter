@@ -23,7 +23,7 @@ namespace Katalyst_TDD_Starter.Test.Bank
         {
             UnderTest.Deposit(1000);
 
-            Assert.IsTrue(UnderTest.StatementLog[0].Amount == 1000);
+            Assert.AreEqual(1000, UnderTest.StatementLog[0].Amount);
         }
 
         [TestMethod]
@@ -32,7 +32,7 @@ namespace Katalyst_TDD_Starter.Test.Bank
             UnderTest.Deposit(1000);
             UnderTest.Deposit(2000);
 
-            Assert.IsTrue(UnderTest.StatementLog[0].Amount == 1000);
+            Assert.AreEqual(1000, UnderTest.StatementLog[0].Amount);
             Assert.AreEqual(2000, UnderTest.StatementLog[1].Amount);
         }
 
@@ -53,6 +53,14 @@ namespace Katalyst_TDD_Starter.Test.Bank
             UnderTest.Withdraw(500);
 
             Assert.AreEqual(-500, UnderTest.StatementLog[0].Amount);
+        }
+
+        [TestMethod]
+        public void Log_withdrawal_statement_with_value_of_1000()
+        {
+            UnderTest.Withdraw(1000);
+
+            Assert.AreEqual(-1000, UnderTest.StatementLog[0].Amount);
         }
     }
 }

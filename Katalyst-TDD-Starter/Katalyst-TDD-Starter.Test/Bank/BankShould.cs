@@ -10,6 +10,7 @@ namespace Katalyst_TDD_Starter.Test.Bank
     public class BankShould
     {
         [TestMethod]
+        [Ignore]
         public void Print_statement_with_deposit_and_withdrawal_history()
         {
             var statementPrinter = new Mock<IStatementPrinter>();
