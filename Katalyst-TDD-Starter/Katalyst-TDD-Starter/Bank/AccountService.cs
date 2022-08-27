@@ -31,11 +31,13 @@
 
         public void Withdraw(int amount)
         {
-            StatementLog.Add(new StatementEntry
+            var statement = new StatementEntry
             {
                 Amount = -amount,
                 Timestamp = timeGetter.GetTime()
-            });
+            };
+
+            StatementLog.Add(statement);
         }
     }
 }
