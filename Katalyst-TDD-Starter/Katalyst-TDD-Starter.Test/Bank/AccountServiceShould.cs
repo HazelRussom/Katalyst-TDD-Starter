@@ -62,5 +62,15 @@ namespace Katalyst_TDD_Starter.Test.Bank
 
             Assert.AreEqual(-1000, UnderTest.StatementLog[0].Amount);
         }
+
+        [TestMethod]
+        public void Track_history_of_multiple_withdrawals()
+        {
+            UnderTest.Withdraw(100);
+            UnderTest.Withdraw(500);
+
+            Assert.AreEqual(-100, UnderTest.StatementLog[0].Amount);
+            Assert.AreEqual(-500, UnderTest.StatementLog[1].Amount);
+        }
     }
 }
