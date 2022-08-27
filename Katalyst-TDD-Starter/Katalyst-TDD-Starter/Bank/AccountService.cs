@@ -33,7 +33,8 @@
         {
             StatementLog.Add(new StatementEntry
             {
-                Amount = -amount
+                Amount = -amount,
+                Timestamp = timeGetter.GetTime()
             });
         }
     }

@@ -72,5 +72,16 @@ namespace Katalyst_TDD_Starter.Test.Bank
             Assert.AreEqual(-100, UnderTest.StatementLog[0].Amount);
             Assert.AreEqual(-500, UnderTest.StatementLog[1].Amount);
         }
+
+        [TestMethod]
+        public void Track_expected_timestamp_of_withdrawal()
+        {
+            var expected = new DateTime(2010, 01, 04);
+            TimeGetter.Setup(x => x.GetTime()).Returns(expected);
+
+            UnderTest.Withdraw(1);
+
+            Assert.AreEqual(expected, UnderTest.StatementLog[0].Timestamp);
+        }
     }
 }
