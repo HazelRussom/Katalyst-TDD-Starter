@@ -8,25 +8,27 @@ namespace Katalyst_TDD_Starter.Test.Bank
     [TestClass]
     public class AccountServiceShould
     {
-        [TestMethod]
-        public void Log_statement_with_value_of_1000()
+        private Mock<ITimeGetter> TimeGetter;
+        private AccountService UnderTest;
+
+        public AccountServiceShould()
         {
             var statementPrinter = new Mock<IStatementPrinter>();
-            var timeGetter = new Mock<ITimeGetter>();
-            var UnderTest = new AccountService(statementPrinter.Object, timeGetter.Object);
-
+            TimeGetter = new Mock<ITimeGetter>();
+            UnderTest = new AccountService(statementPrinter.Object, TimeGetter.Object);
+        }
+        
+        [TestMethod]
+        public void Log_deposited_statement_with_value_of_1000()
+        {
             UnderTest.Deposit(1000);
 
             Assert.IsTrue(UnderTest.StatementLog[0].Amount == 1000);
         }
 
         [TestMethod]
-        public void Track_statements_in_correct_order()
+        public void Track_deposited_statements_in_correct_order()
         {
-            var statementPrinter = new Mock<IStatementPrinter>();
-            var timeGetter = new Mock<ITimeGetter>();
-            var UnderTest = new AccountService(statementPrinter.Object, timeGetter.Object);
-
             UnderTest.Deposit(1000);
             UnderTest.Deposit(2000);
 
@@ -35,17 +37,22 @@ namespace Katalyst_TDD_Starter.Test.Bank
         }
 
         [TestMethod]
-        public void Track_expected_statement_timestamp()
+        public void Track_expected_deposit_statement_timestamp()
         {
-            var statementPrinter = new Mock<IStatementPrinter>();
-            var timeGetter = new Mock<ITimeGetter>();
             var expected = new DateTime(2012, 01, 14);
-
-            timeGetter.Setup(x => x.GetTime()).Returns(expected);
-            var UnderTest = new AccountService(statementPrinter.Object, timeGetter.Object);
+            TimeGetter.Setup(x => x.GetTime()).Returns(expected);
 
             UnderTest.Deposit(1000);
+            
             Assert.AreEqual(expected, UnderTest.StatementLog[0].Timestamp);
+        }
+
+        [TestMethod]
+        public void Log_withdrawal_statement_with_value_of_500()
+        {
+            UnderTest.Withdraw(500);
+
+            Assert.AreEqual(-500, UnderTest.StatementLog[0].Amount);
         }
     }
 }

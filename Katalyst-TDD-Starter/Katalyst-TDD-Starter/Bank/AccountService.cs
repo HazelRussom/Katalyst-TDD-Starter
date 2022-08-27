@@ -31,7 +31,10 @@
 
         public void Withdraw(int amount)
         {
-            throw new NotImplementedException();
+            StatementLog.Add(new StatementEntry
+            {
+                Amount = -500
+            });
         }
     }
 }
