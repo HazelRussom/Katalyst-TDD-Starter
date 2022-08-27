@@ -93,6 +93,7 @@ namespace Katalyst_TDD_Starter.Test.Bank
             UnderTest.PrintStatement();
 
             StatementPrinter.Verify(x => x.Print(expected), Times.Exactly(1));
+            StatementPrinter.Verify(x => x.Print(It.IsAny<string>()), Times.Exactly(1));
         }
 
         [TestMethod]
@@ -106,6 +107,7 @@ namespace Katalyst_TDD_Starter.Test.Bank
 
             StatementPrinter.Verify(x => x.Print(expectedHeader), Times.Exactly(1));
             StatementPrinter.Verify(x => x.Print(expectedStatement), Times.Exactly(1));
+            StatementPrinter.Verify(x => x.Print(It.IsAny<string>()), Times.Exactly(2));
         }
     }
 }
