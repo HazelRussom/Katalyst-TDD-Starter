@@ -8,14 +8,15 @@ namespace Katalyst_TDD_Starter.Test.Bank
     [TestClass]
     public class AccountServiceShould
     {
+        private Mock<IStatementPrinter> StatementPrinter;
         private Mock<ITimeGetter> TimeGetter;
         private AccountService UnderTest;
 
         public AccountServiceShould()
         {
-            var statementPrinter = new Mock<IStatementPrinter>();
+            StatementPrinter = new Mock<IStatementPrinter>();
             TimeGetter = new Mock<ITimeGetter>();
-            UnderTest = new AccountService(statementPrinter.Object, TimeGetter.Object);
+            UnderTest = new AccountService(StatementPrinter.Object, TimeGetter.Object);
         }
         
         [TestMethod]
@@ -82,6 +83,16 @@ namespace Katalyst_TDD_Starter.Test.Bank
             UnderTest.Withdraw(1);
 
             Assert.AreEqual(expected, UnderTest.StatementLog[0].Timestamp);
+        }
+
+        [TestMethod]
+        public void Print_expected_statement_header()
+        {
+            var expected = "Date || Amount || Balance";
+
+            UnderTest.PrintStatement();
+
+            StatementPrinter.Verify(x => x.Print(expected), Times.Exactly(1));
         }
     }
 }

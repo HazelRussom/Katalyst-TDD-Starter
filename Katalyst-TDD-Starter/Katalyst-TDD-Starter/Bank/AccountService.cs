@@ -26,7 +26,7 @@
 
         public void PrintStatement()
         {
-            throw new NotImplementedException();
+            statementPrinter.Print("Date || Amount || Balance");
         }
 
         public void Withdraw(int amount)

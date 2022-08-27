@@ -1,8 +1,6 @@
 ﻿using Katalyst_TDD_Starter.Bank;
-using Katalyst_TDD_Starter.Test.Utilities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using System;
 
 namespace Katalyst_TDD_Starter.Test.Bank
 {
