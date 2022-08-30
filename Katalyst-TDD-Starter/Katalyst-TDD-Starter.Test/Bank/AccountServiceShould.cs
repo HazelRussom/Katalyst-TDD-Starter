@@ -94,5 +94,20 @@ namespace Katalyst_TDD_Starter.Test.Bank
 
             StatementPrinter.Verify(x => x.PrintStatement(It.IsAny<List<StatementEntry>>()), Times.Exactly(1));
         }
+
+        [TestMethod]
+        public void Print_populated_statement_log()
+        {
+            List<StatementEntry> printedStatements = null;
+            StatementPrinter.Setup(x => x.PrintStatement(It.IsAny<List<StatementEntry>>())).Callback<List<StatementEntry>>(r => printedStatements = r);
+
+            UnderTest.Deposit(25);
+            UnderTest.Deposit(43);
+            UnderTest.PrintStatement();
+
+            Assert.AreEqual(2, printedStatements.Count);
+            Assert.AreEqual(25, printedStatements[0].Amount);
+            Assert.AreEqual(43, printedStatements[1].Amount);
+        }
     }
 }
