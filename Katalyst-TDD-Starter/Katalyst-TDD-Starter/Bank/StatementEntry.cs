@@ -4,5 +4,6 @@
     {
         public int Amount { get; set; }
         public DateTime Timestamp { get; set; }
+        public int Balance { get; set; }
     }
 }

@@ -16,10 +16,20 @@ namespace Katalyst_TDD_Starter.Bank
         {
             consoleLogger.Log("Date || Amount || Balance");
 
-            if (statementLog.Any())
+            foreach(var statement in statementLog)
             {
-                consoleLogger.Log($"{statementLog[0].Timestamp.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture)} || {statementLog[0].Amount} || {statementLog[0].Amount}");
+                consoleLogger.Log(BuildStatementMessage(statement));
             }
+        }
+
+        private static string BuildStatementMessage(StatementEntry statement)
+        {
+            return $"{FormatDateTime(statement.Timestamp)} || {statement.Amount} || {statement.Balance}";
+        }
+
+        private static string FormatDateTime(DateTime time)
+        {
+            return time.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
         }
     }
 }
