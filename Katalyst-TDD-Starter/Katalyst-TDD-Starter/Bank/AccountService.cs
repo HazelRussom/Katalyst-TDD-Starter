@@ -28,7 +28,7 @@ namespace Katalyst_TDD_Starter.Bank
 
         public void PrintStatement()
         {
-            throw new NotImplementedException();
+            statementPrinter.PrintStatement(StatementLog);
         }
 
         public void Withdraw(int amount)

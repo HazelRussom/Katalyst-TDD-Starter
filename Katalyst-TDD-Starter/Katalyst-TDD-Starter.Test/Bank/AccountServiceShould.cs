@@ -1,7 +1,9 @@
-﻿using Katalyst_TDD_Starter.Bank;
+﻿using Castle.Core.Logging;
+using Katalyst_TDD_Starter.Bank;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;
+using System.Collections.Generic;
 
 namespace Katalyst_TDD_Starter.Test.Bank
 {
@@ -83,6 +85,14 @@ namespace Katalyst_TDD_Starter.Test.Bank
             UnderTest.Withdraw(1);
 
             Assert.AreEqual(expected, UnderTest.StatementLog[0].Timestamp);
+        }
+
+        [TestMethod]
+        public void Print_empty_statement_log()
+        {
+            UnderTest.PrintStatement();
+
+            StatementPrinter.Verify(x => x.PrintStatement(It.IsAny<List<StatementEntry>>()), Times.Exactly(1));
         }
     }
 }
