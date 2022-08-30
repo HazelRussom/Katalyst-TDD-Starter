@@ -30,12 +30,12 @@ namespace Katalyst_TDD_Starter.Test.Bank
 
             //Then they would see:
             //Date       || Amount || Balance
-            //14/01/2012 || -500   || 2500
-            //13/01/2012 || 2000   || 3000
-            //10/01/2012 || 1000   || 1000
             consoleLogger.Verify(x => x.Log(It.Is<string>(x => x.Contains("Date || Amount || Balance"))));
+            //14/01/2012 || -500   || 2500
             consoleLogger.Verify(x => x.Log(It.Is<string>(x => x.Contains("14/01/2012 || -500 || 2500"))));
+            //13/01/2012 || 2000   || 3000
             consoleLogger.Verify(x => x.Log(It.Is<string>(x => x.Contains("13/01/2012 || 2000 || 3000"))));
+            //10/01/2012 || 1000   || 1000
             consoleLogger.Verify(x => x.Log(It.Is<string>(x => x.Contains("10/01/2012 || 1000 || 1000"))));
         }
     }
