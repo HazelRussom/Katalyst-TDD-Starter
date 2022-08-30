@@ -9,8 +9,8 @@ namespace Katalyst_TDD_Starter.Test.Bank
     [TestClass]
     public class StatementPrinterShould
     {
-        Mock<IConsoleLogger> ConsoleLogger;
-        StatementPrinter UnderTest;
+        readonly Mock<IConsoleLogger> ConsoleLogger;
+        readonly StatementPrinter UnderTest;
 
         public StatementPrinterShould()
         {
@@ -50,8 +50,6 @@ namespace Katalyst_TDD_Starter.Test.Bank
             UnderTest.PrintStatement(input);
 
 
-            ConsoleLogger.Verify(x => x.Log(expectedHeader), Times.Exactly(1));
-            ConsoleLogger.Verify(x => x.Log(expectedStatement), Times.Exactly(1));
             ConsoleLogger.Verify(x => x.Log(It.IsAny<string>()), Times.Exactly(2));
         }
 
@@ -74,8 +72,6 @@ namespace Katalyst_TDD_Starter.Test.Bank
             UnderTest.PrintStatement(input);
 
 
-            ConsoleLogger.Verify(x => x.Log(expectedHeader), Times.Exactly(1));
-            ConsoleLogger.Verify(x => x.Log(expectedStatement), Times.Exactly(1));
             ConsoleLogger.Verify(x => x.Log(It.IsAny<string>()), Times.Exactly(2));
         }
 
@@ -99,6 +95,7 @@ namespace Katalyst_TDD_Starter.Test.Bank
 
 
             UnderTest.PrintStatement(input);
+
 
             ConsoleLogger.Verify(x => x.Log(It.IsAny<string>()), Times.Exactly(3));
         }

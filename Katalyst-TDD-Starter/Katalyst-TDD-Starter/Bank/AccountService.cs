@@ -6,6 +6,7 @@ namespace Katalyst_TDD_Starter.Bank
     {
         private IStatementPrinter statementPrinter;
         private ITimeGetter timeGetter;
+        private int currentBalance = 0;
 
         public AccountService(IStatementPrinter statementPrinter, ITimeGetter timeGetter)
         {
@@ -17,9 +18,12 @@ namespace Katalyst_TDD_Starter.Bank
 
         public void Deposit(int amount)
         {
+            currentBalance += amount;
+
             var statement = new StatementEntry
             {
                 Amount = amount,
+                Balance = currentBalance,
                 Timestamp = timeGetter.GetTime()
             };
 
@@ -33,9 +37,12 @@ namespace Katalyst_TDD_Starter.Bank
 
         public void Withdraw(int amount)
         {
+            currentBalance -= amount;
+
             var statement = new StatementEntry
             {
                 Amount = -amount,
+                Balance = currentBalance,
                 Timestamp = timeGetter.GetTime()
             };
 

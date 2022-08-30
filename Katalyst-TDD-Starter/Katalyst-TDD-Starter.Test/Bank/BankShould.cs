@@ -8,7 +8,6 @@ namespace Katalyst_TDD_Starter.Test.Bank
     public class BankShould
     {
         [TestMethod]
-        [Ignore]
         public void Print_statement_with_deposit_and_withdrawal_history()
         {
             var consoleLogger = new Mock<IConsoleLogger>();
@@ -17,12 +16,15 @@ namespace Katalyst_TDD_Starter.Test.Bank
             IAccountService UnderTest = new AccountService(statementPrinter, timeGetter.Object);
 
             //Given a client makes a deposit of 1000 on 10-01-2012
+            timeGetter.Setup(x => x.GetTime()).Returns(new System.DateTime(2012, 01, 10));
             UnderTest.Deposit(1000);
 
             //And a deposit of 2000 on 13-01-2012
+            timeGetter.Setup(x => x.GetTime()).Returns(new System.DateTime(2012, 01, 13));
             UnderTest.Deposit(2000);
 
             //And a withdrawal of 500 on 14-01-2012
+            timeGetter.Setup(x => x.GetTime()).Returns(new System.DateTime(2012, 01, 14));
             UnderTest.Withdraw(500);
 
             //When they print their bank statement
