@@ -88,6 +88,18 @@ namespace Katalyst_TDD_Starter.Test.Bank
         }
 
         [TestMethod]
+        public void Track_total_balance()
+        {
+            UnderTest.Deposit(1000);
+            UnderTest.Withdraw(100);
+            UnderTest.Withdraw(500);
+
+            Assert.AreEqual(1000, UnderTest.StatementLog[0].Balance);
+            Assert.AreEqual(900, UnderTest.StatementLog[1].Balance);
+            Assert.AreEqual(400, UnderTest.StatementLog[2].Balance);
+        }
+
+        [TestMethod]
         public void Print_empty_statement_log()
         {
             UnderTest.PrintStatement();
