@@ -2,6 +2,6 @@
 {
     public interface IStatementPrinter
     {
-        void Print(string input);
+        void PrintStatement(List<StatementEntry> statementLog);
     }
 }

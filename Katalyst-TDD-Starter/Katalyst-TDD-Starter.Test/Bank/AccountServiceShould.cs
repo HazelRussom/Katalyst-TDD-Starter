@@ -18,7 +18,7 @@ namespace Katalyst_TDD_Starter.Test.Bank
             TimeGetter = new Mock<ITimeGetter>();
             UnderTest = new AccountService(StatementPrinter.Object, TimeGetter.Object);
         }
-        
+
         [TestMethod]
         public void Log_deposited_statement_with_value_of_1000()
         {
@@ -44,7 +44,7 @@ namespace Katalyst_TDD_Starter.Test.Bank
             TimeGetter.Setup(x => x.GetTime()).Returns(expected);
 
             UnderTest.Deposit(1000);
-            
+
             Assert.AreEqual(expected, UnderTest.StatementLog[0].Timestamp);
         }
 
@@ -83,49 +83,6 @@ namespace Katalyst_TDD_Starter.Test.Bank
             UnderTest.Withdraw(1);
 
             Assert.AreEqual(expected, UnderTest.StatementLog[0].Timestamp);
-        }
-
-        [TestMethod]
-        public void Print_expected_statement_header()
-        {
-            var expected = "Date || Amount || Balance";
-
-            UnderTest.PrintStatement();
-
-            StatementPrinter.Verify(x => x.Print(expected), Times.Exactly(1));
-            StatementPrinter.Verify(x => x.Print(It.IsAny<string>()), Times.Exactly(1));
-        }
-
-        [TestMethod]
-        public void Print_single_statement_below_header_of_500_value()
-        {
-            var expectedHeader = "Date || Amount || Balance";
-            var expectedStatement = "14/01/2012 || 500 || 500";
-            var expected = new DateTime(2012, 01, 14);
-            TimeGetter.Setup(x => x.GetTime()).Returns(expected);
-
-            UnderTest.Deposit(500);
-            UnderTest.PrintStatement();
-
-            StatementPrinter.Verify(x => x.Print(expectedHeader), Times.Exactly(1));
-            StatementPrinter.Verify(x => x.Print(expectedStatement), Times.Exactly(1));
-            StatementPrinter.Verify(x => x.Print(It.IsAny<string>()), Times.Exactly(2));
-        }
-
-        [TestMethod]
-        public void Print_single_statement_below_header_of_1000_value()
-        {
-            var expected = new DateTime(2014, 02, 15);
-            TimeGetter.Setup(x => x.GetTime()).Returns(expected);
-            var expectedHeader = "Date || Amount || Balance";
-            var expectedStatement = "15/02/2014 || 1000 || 1000";
-
-            UnderTest.Deposit(1000);
-            UnderTest.PrintStatement();
-
-            StatementPrinter.Verify(x => x.Print(expectedHeader), Times.Exactly(1));
-            StatementPrinter.Verify(x => x.Print(expectedStatement), Times.Exactly(1));
-            StatementPrinter.Verify(x => x.Print(It.IsAny<string>()), Times.Exactly(2));
         }
     }
 }

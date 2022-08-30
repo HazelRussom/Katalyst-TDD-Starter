@@ -28,12 +28,7 @@ namespace Katalyst_TDD_Starter.Bank
 
         public void PrintStatement()
         {
-            statementPrinter.Print("Date || Amount || Balance");
-            
-            if (StatementLog.Any())
-            {
-                statementPrinter.Print($"{StatementLog[0].Timestamp.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture)} || {StatementLog[0].Amount} || {StatementLog[0].Amount}");
-            }
+            throw new NotImplementedException();
         }
 
         public void Withdraw(int amount)
