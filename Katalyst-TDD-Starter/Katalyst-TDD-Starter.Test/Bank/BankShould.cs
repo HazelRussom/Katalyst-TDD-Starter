@@ -8,12 +8,13 @@ namespace Katalyst_TDD_Starter.Test.Bank
     public class BankShould
     {
         [TestMethod]
+        [Ignore]
         public void Print_statement_with_deposit_and_withdrawal_history()
         {
             var consoleLogger = new Mock<IConsoleLogger>(MockBehavior.Strict);
             var timeGetter = new Mock<ITimeGetter>();
             var statementPrinter = new StatementPrinter(consoleLogger.Object);
-            IAccountService UnderTest = new AccountService(statementPrinter, timeGetter.Object);
+            IAccountService UnderTest = null;// = new AccountService(statementPrinter, timeGetter.Object);
 
             //Given a client makes a deposit of 1000 on 10-01-2012
             timeGetter.Setup(x => x.GetTime()).Returns(new System.DateTime(2012, 01, 10));

@@ -1,33 +1,24 @@
-﻿using System.Globalization;
-
-namespace Katalyst_TDD_Starter.Bank
+﻿namespace Katalyst_TDD_Starter.Bank
 {
     public class AccountService : IAccountService
     {
-        private IStatementPrinter statementPrinter;
-        private ITimeGetter timeGetter;
+        private readonly IStatementPrinter statementPrinter;
+        private readonly ITimeGetter timeGetter;
+        private readonly IStatementLog statementLog;
         private int currentBalance = 0;
 
-        public AccountService(IStatementPrinter statementPrinter, ITimeGetter timeGetter)
+        public AccountService(IStatementPrinter statementPrinter, ITimeGetter timeGetter, IStatementLog statementLog)
         {
             this.statementPrinter = statementPrinter;
             this.timeGetter = timeGetter;
+            this.statementLog = statementLog;
         }
 
         public List<StatementEntry> StatementLog { get; set; } = new();
 
         public void Deposit(int amount)
         {
-            currentBalance += amount;
-
-            var statement = new StatementEntry
-            {
-                Amount = amount,
-                Balance = currentBalance,
-                Timestamp = timeGetter.GetTime()
-            };
-
-            StatementLog.Add(statement);
+            statementLog.AddEntry(amount);
         }
 
         public void PrintStatement()
