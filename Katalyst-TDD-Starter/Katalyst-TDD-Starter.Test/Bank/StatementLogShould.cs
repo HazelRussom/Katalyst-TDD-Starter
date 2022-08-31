@@ -8,12 +8,19 @@ namespace Katalyst_TDD_Starter.Test.Bank
     [TestClass]
     public class StatementLogShould
     {
+        private StatementLog UnderTest;
+        private Mock<ITimeGetter> TimeGetter;
+
+        public StatementLogShould()
+        {
+            TimeGetter = new Mock<ITimeGetter>();
+            UnderTest = new StatementLog(TimeGetter.Object);
+
+        }
+
         [TestMethod]
         public void Be_empty()
         {
-            var timeGetter = new Mock<ITimeGetter>();
-            var UnderTest = new StatementLog(timeGetter.Object);
-
             var entries = UnderTest.GetEntries();
 
             Assert.AreEqual(0, entries.Count);
@@ -22,8 +29,6 @@ namespace Katalyst_TDD_Starter.Test.Bank
         [TestMethod]
         public void Log_single_100_entry()
         {
-            var timeGetter = new Mock<ITimeGetter>();
-            var UnderTest = new StatementLog(timeGetter.Object);
             var amount = 100;
 
             UnderTest.AddEntry(amount);
@@ -37,16 +42,12 @@ namespace Katalyst_TDD_Starter.Test.Bank
         public void Log_single_entry_with_time()
         {
             var expectedDate = new DateTime(2012, 01, 14);
-            var timeGetter = new Mock<ITimeGetter>();
-            timeGetter.Setup(x => x.GetTime()).Returns(expectedDate);
-            var UnderTest = new StatementLog(timeGetter.Object);
-            var amount = 100;
+            TimeGetter.Setup(x => x.GetTime()).Returns(expectedDate);
 
-            UnderTest.AddEntry(amount);
+            UnderTest.AddEntry(100);
             var entries = UnderTest.GetEntries();
 
             Assert.AreEqual(1, entries.Count);
-            Assert.AreEqual(amount, entries[0].Amount);
             Assert.AreEqual(expectedDate, entries[0].Timestamp);
         }
     }
