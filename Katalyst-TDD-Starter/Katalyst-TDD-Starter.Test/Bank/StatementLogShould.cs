@@ -1,4 +1,7 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Katalyst_TDD_Starter.Bank;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
+using System;
 
 namespace Katalyst_TDD_Starter.Test.Bank
 {
@@ -8,7 +11,8 @@ namespace Katalyst_TDD_Starter.Test.Bank
         [TestMethod]
         public void Be_empty()
         {
-            var UnderTest = new StatementLog();
+            var timeGetter = new Mock<ITimeGetter>();
+            var UnderTest = new StatementLog(timeGetter.Object);
 
             var entries = UnderTest.GetEntries();
 
@@ -18,7 +22,8 @@ namespace Katalyst_TDD_Starter.Test.Bank
         [TestMethod]
         public void Log_single_100_entry()
         {
-            var UnderTest = new StatementLog();
+            var timeGetter = new Mock<ITimeGetter>();
+            var UnderTest = new StatementLog(timeGetter.Object);
             var amount = 100;
 
             UnderTest.AddEntry(amount);
@@ -26,6 +31,23 @@ namespace Katalyst_TDD_Starter.Test.Bank
 
             Assert.AreEqual(1, entries.Count);
             Assert.AreEqual(amount, entries[0].Amount);
+        }
+
+        [TestMethod]
+        public void Log_single_entry_with_time()
+        {
+            var expectedDate = new DateTime(2012, 01, 14);
+            var timeGetter = new Mock<ITimeGetter>();
+            timeGetter.Setup(x => x.GetTime()).Returns(expectedDate);
+            var UnderTest = new StatementLog(timeGetter.Object);
+            var amount = 100;
+
+            UnderTest.AddEntry(amount);
+            var entries = UnderTest.GetEntries();
+
+            Assert.AreEqual(1, entries.Count);
+            Assert.AreEqual(amount, entries[0].Amount);
+            Assert.AreEqual(expectedDate, entries[0].Timestamp);
         }
     }
 }

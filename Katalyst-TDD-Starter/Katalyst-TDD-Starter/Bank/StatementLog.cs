@@ -4,24 +4,27 @@ namespace Katalyst_TDD_Starter.Test.Bank
 {
     public class StatementLog : IStatementLog
     {
-        private List<StatementEntry> Entries;
+        private readonly ITimeGetter timeGetter;
+        private readonly List<StatementEntry> entries;
 
-        public StatementLog()
+        public StatementLog(ITimeGetter timeGetter)
         {
-            Entries = new List<StatementEntry>();
+            entries = new List<StatementEntry>();
+            this.timeGetter = timeGetter;
         }
 
         public void AddEntry(int amount)
         {
-            Entries.Add(new StatementEntry
+            entries.Add(new StatementEntry
             {
-                Amount = amount
+                Amount = amount,
+                Timestamp = timeGetter.GetTime()
             });
         }
 
         public List<StatementEntry> GetEntries()
         {
-            return Entries;
+            return entries;
         }
     }
 }
