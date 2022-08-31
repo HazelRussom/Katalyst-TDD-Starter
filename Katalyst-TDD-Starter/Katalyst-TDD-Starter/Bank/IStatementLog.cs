@@ -3,5 +3,7 @@
     public interface IStatementLog
     {
         void AddEntry(int amount);
+
+        List<StatementEntry> GetEntries();
     }
 }
