@@ -85,8 +85,9 @@ namespace Katalyst_TDD_Starter.Test.Bank
             };
 
             var expectedHeader = "Date || Amount || Balance";
-            var expectedNewStatement = "15/02/2014 || 1000 || 1000";
-            var expectedOldStatement = "16/02/2014 || 1000 || 2000";
+            var expectedNewStatement = "16/02/2014 || 1000 || 2000";
+            var expectedOldStatement = "15/02/2014 || 1000 || 1000";
+
 
             var sequence = new MockSequence();
             ConsoleLogger.InSequence(sequence).Setup(x => x.Log(expectedHeader));

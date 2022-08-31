@@ -10,7 +10,7 @@ namespace Katalyst_TDD_Starter.Test.Bank
         [TestMethod]
         public void Print_statement_with_deposit_and_withdrawal_history()
         {
-            var consoleLogger = new Mock<IConsoleLogger>();
+            var consoleLogger = new Mock<IConsoleLogger>(MockBehavior.Strict);
             var timeGetter = new Mock<ITimeGetter>();
             var statementPrinter = new StatementPrinter(consoleLogger.Object);
             IAccountService UnderTest = new AccountService(statementPrinter, timeGetter.Object);
@@ -28,6 +28,12 @@ namespace Katalyst_TDD_Starter.Test.Bank
             UnderTest.Withdraw(500);
 
             //When they print their bank statement
+            var sequence = new MockSequence();
+            consoleLogger.InSequence(sequence).Setup(x => x.Log("Date || Amount || Balance"));
+            consoleLogger.InSequence(sequence).Setup(x => x.Log("14/01/2012 || -500 || 2500"));
+            consoleLogger.InSequence(sequence).Setup(x => x.Log("13/01/2012 || 2000 || 3000"));
+            consoleLogger.InSequence(sequence).Setup(x => x.Log("10/01/2012 || 1000 || 1000"));
+
             UnderTest.PrintStatement();
 
             //Then they would see:

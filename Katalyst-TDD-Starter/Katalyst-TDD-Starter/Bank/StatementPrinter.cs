@@ -16,7 +16,7 @@ namespace Katalyst_TDD_Starter.Bank
         {
             consoleLogger.Log("Date || Amount || Balance");
 
-            foreach(var statement in statementLog)
+            foreach(var statement in statementLog.OrderByDescending(x => x.Timestamp))
             {
                 consoleLogger.Log(BuildStatementMessage(statement));
             }
