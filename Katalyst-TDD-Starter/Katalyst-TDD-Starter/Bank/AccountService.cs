@@ -27,16 +27,7 @@
 
         public void Withdraw(int amount)
         {
-            //currentBalance -= amount;
-
-            //var statement = new StatementEntry
-            //{
-            //    Amount = -amount,
-            //    Balance = currentBalance,
-            //    Timestamp = timeGetter.GetTime()
-            //};
-
-            //StatementLog.Add(statement);
+            statementLog.AddEntry(-amount);
         }
     }
 }
