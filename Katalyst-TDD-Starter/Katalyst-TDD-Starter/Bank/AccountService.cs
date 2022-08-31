@@ -22,7 +22,7 @@
 
         public void PrintStatement()
         {
-            statementPrinter.PrintStatement(StatementLog);
+            statementPrinter.PrintStatement(statementLog);
         }
 
         public void Withdraw(int amount)

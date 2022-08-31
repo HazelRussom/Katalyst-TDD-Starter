@@ -40,11 +40,11 @@ namespace Katalyst_TDD_Starter.Test.Bank
         }
 
         [TestMethod]
-        public void Print_empty_statement_log()
+        public void Print_statement_log()
         {
             UnderTest.PrintStatement();
 
-            StatementPrinter.Verify(x => x.PrintStatement(It.IsAny<List<StatementEntry>>()), Times.Exactly(1));
+            StatementPrinter.Verify(x => x.PrintStatement(It.IsAny<IStatementLog>()), Times.Exactly(1));
         }
 
         //[TestMethod]

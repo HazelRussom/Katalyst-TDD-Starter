@@ -12,6 +12,11 @@ namespace Katalyst_TDD_Starter.Bank
             this.consoleLogger = consoleLogger;
         }
 
+        public void PrintStatement(IStatementLog statementLog)
+        {
+            throw new NotImplementedException();
+        }
+
         public void PrintStatement(List<StatementEntry> statementLog)
         {
             consoleLogger.Log("Date || Amount || Balance");
