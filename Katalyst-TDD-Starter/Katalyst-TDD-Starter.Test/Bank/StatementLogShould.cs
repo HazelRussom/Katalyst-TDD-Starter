@@ -71,5 +71,27 @@ namespace Katalyst_TDD_Starter.Test.Bank
 
             Assert.AreEqual(1000, entries[0].Balance);
         }
+
+        [TestMethod]
+        public void Track_two_entry_balances()
+        {
+            UnderTest.AddEntry(1000);
+            UnderTest.AddEntry(100);
+            var entries = UnderTest.GetEntries();
+
+            Assert.AreEqual(1000, entries[0].Balance);
+            Assert.AreEqual(1100, entries[1].Balance);
+        }
+
+        [TestMethod]
+        public void Track_balances_with_negative_amounts()
+        {
+            UnderTest.AddEntry(1000);
+            UnderTest.AddEntry(-1100);
+            var entries = UnderTest.GetEntries();
+
+            Assert.AreEqual(1000, entries[0].Balance);
+            Assert.AreEqual(-100, entries[1].Balance);
+        }
     }
 }

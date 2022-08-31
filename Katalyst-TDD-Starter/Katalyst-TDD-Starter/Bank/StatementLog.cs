@@ -6,6 +6,7 @@ namespace Katalyst_TDD_Starter.Test.Bank
     {
         private readonly ITimeGetter timeGetter;
         private readonly List<StatementEntry> entries;
+        private int currentBalance = 0;
 
         public StatementLog(ITimeGetter timeGetter)
         {
@@ -15,11 +16,13 @@ namespace Katalyst_TDD_Starter.Test.Bank
 
         public void AddEntry(int amount)
         {
+            currentBalance += amount;
+
             entries.Add(new StatementEntry
             {
                 Amount = amount,
                 Timestamp = timeGetter.GetTime(),
-                Balance = 1000
+                Balance = currentBalance
             });
         }
 

@@ -5,7 +5,6 @@
         private readonly IStatementPrinter statementPrinter;
         private readonly ITimeGetter timeGetter;
         private readonly IStatementLog statementLog;
-        private int currentBalance = 0;
 
         public AccountService(IStatementPrinter statementPrinter, ITimeGetter timeGetter, IStatementLog statementLog)
         {
@@ -28,16 +27,16 @@
 
         public void Withdraw(int amount)
         {
-            currentBalance -= amount;
+            //currentBalance -= amount;
 
-            var statement = new StatementEntry
-            {
-                Amount = -amount,
-                Balance = currentBalance,
-                Timestamp = timeGetter.GetTime()
-            };
+            //var statement = new StatementEntry
+            //{
+            //    Amount = -amount,
+            //    Balance = currentBalance,
+            //    Timestamp = timeGetter.GetTime()
+            //};
 
-            StatementLog.Add(statement);
+            //StatementLog.Add(statement);
         }
     }
 }
