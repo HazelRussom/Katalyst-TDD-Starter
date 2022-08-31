@@ -18,7 +18,8 @@ namespace Katalyst_TDD_Starter.Test.Bank
             entries.Add(new StatementEntry
             {
                 Amount = amount,
-                Timestamp = timeGetter.GetTime()
+                Timestamp = timeGetter.GetTime(),
+                Balance = 1000
             });
         }
 

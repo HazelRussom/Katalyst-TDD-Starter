@@ -50,5 +50,26 @@ namespace Katalyst_TDD_Starter.Test.Bank
             Assert.AreEqual(1, entries.Count);
             Assert.AreEqual(expectedDate, entries[0].Timestamp);
         }
+
+        [TestMethod]
+        public void Log_multiple_statements()
+        {
+            UnderTest.AddEntry(1000);
+            UnderTest.AddEntry(-500);
+            var entries = UnderTest.GetEntries();
+
+            Assert.AreEqual(2, entries.Count);
+            Assert.AreEqual(1000, entries[0].Amount);
+            Assert.AreEqual(-500, entries[1].Amount);
+        }
+
+        [TestMethod]
+        public void Track_single_entry_balance()
+        {
+            UnderTest.AddEntry(1000);
+            var entries = UnderTest.GetEntries();
+
+            Assert.AreEqual(1000, entries[0].Balance);
+        }
     }
 }
