@@ -10,31 +10,34 @@ namespace Katalyst_TDD_Starter.Test.Bank
     public class StatementPrinterShould
     {
         readonly Mock<IConsoleLogger> ConsoleLogger;
+        readonly Mock<IStatementLog> StatementLog;
         readonly StatementPrinter UnderTest;
 
         public StatementPrinterShould()
         {
             ConsoleLogger = new Mock<IConsoleLogger>(MockBehavior.Strict);
+            StatementLog = new Mock<IStatementLog>();
             UnderTest = new StatementPrinter(ConsoleLogger.Object);
         }
 
         [TestMethod]
         public void Print_expected_statement_header()
         {
-            var input = new List<StatementEntry>();
             var expected = "Date || Amount || Balance";
 
             ConsoleLogger.Setup(x => x.Log(expected));
+            StatementLog.Setup(x => x.GetEntries()).Returns(new List<StatementEntry>());
 
-            UnderTest.PrintStatement(input);
+            UnderTest.PrintStatement(StatementLog.Object);
 
+            StatementLog.Verify(x => x.GetEntries(), Times.Exactly(1));
             ConsoleLogger.Verify(x => x.Log(expected), Times.Exactly(1));
         }
 
         [TestMethod]
         public void Print_single_statement_below_header_of_500_value()
         {
-            var input = new List<StatementEntry>
+            var entries = new List<StatementEntry>
             {
                 new StatementEntry { Amount = 500, Balance = 500, Timestamp = new DateTime(2012, 01, 14) }
             };
@@ -42,14 +45,16 @@ namespace Katalyst_TDD_Starter.Test.Bank
             var expectedHeader = "Date || Amount || Balance";
             var expectedStatement = "14/01/2012 || 500 || 500";
 
+            StatementLog.Setup(x => x.GetEntries()).Returns(entries);
             var sequence = new MockSequence();
             ConsoleLogger.InSequence(sequence).Setup(x => x.Log(expectedHeader));
             ConsoleLogger.InSequence(sequence).Setup(x => x.Log(expectedStatement));
 
 
-            UnderTest.PrintStatement(input);
+            UnderTest.PrintStatement(StatementLog.Object);
 
 
+            StatementLog.Verify(x => x.GetEntries(), Times.Exactly(1));
             ConsoleLogger.Verify(x => x.Log(It.IsAny<string>()), Times.Exactly(2));
         }
 

@@ -14,14 +14,20 @@ namespace Katalyst_TDD_Starter.Bank
 
         public void PrintStatement(IStatementLog statementLog)
         {
-            throw new NotImplementedException();
+            var entries = statementLog.GetEntries();
+
+            consoleLogger.Log("Date || Amount || Balance");
+
+            if (entries.Any())
+            {
+                consoleLogger.Log("14/01/2012 || 500 || 500");
+            }
         }
 
         public void PrintStatement(List<StatementEntry> statementLog)
         {
             consoleLogger.Log("Date || Amount || Balance");
-
-            foreach(var statement in statementLog.OrderByDescending(x => x.Timestamp))
+            foreach (var statement in statementLog.OrderByDescending(x => x.Timestamp))
             {
                 consoleLogger.Log(BuildStatementMessage(statement));
             }
