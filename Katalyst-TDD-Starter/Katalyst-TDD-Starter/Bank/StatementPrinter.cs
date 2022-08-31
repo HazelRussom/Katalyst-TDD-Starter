@@ -14,19 +14,28 @@ namespace Katalyst_TDD_Starter.Bank
 
         public void PrintStatement(IStatementLog statementLog)
         {
-            var entries = statementLog.GetEntries();
-
             consoleLogger.Log("Date || Amount || Balance");
 
-            foreach (var statement in entries.OrderByDescending(x => x.Timestamp))
+            var loggedStatements = statementLog.GetStatements();
+
+            foreach (var statement in InDescendingOrder(loggedStatements))
             {
                 consoleLogger.Log(BuildStatementMessage(statement));
             }
         }
 
+        private static IOrderedEnumerable<StatementEntry> InDescendingOrder(List<StatementEntry> entries)
+        {
+            return entries.OrderByDescending(x => x.Timestamp);
+        }
+
         private static string BuildStatementMessage(StatementEntry statement)
         {
-            return $"{FormatDateTime(statement.Timestamp)} || {statement.Amount} || {statement.Balance}";
+            var time = FormatDateTime(statement.Timestamp);
+            var amount = statement.Amount;
+            var balance = statement.Balance;
+
+            return $"{time} || {amount} || {balance}";
         }
 
         private static string FormatDateTime(DateTime time)

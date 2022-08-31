@@ -26,11 +26,11 @@ namespace Katalyst_TDD_Starter.Test.Bank
             var expected = "Date || Amount || Balance";
 
             ConsoleLogger.Setup(x => x.Log(expected));
-            StatementLog.Setup(x => x.GetEntries()).Returns(new List<StatementEntry>());
+            StatementLog.Setup(x => x.GetStatements()).Returns(new List<StatementEntry>());
 
             UnderTest.PrintStatement(StatementLog.Object);
 
-            StatementLog.Verify(x => x.GetEntries(), Times.Exactly(1));
+            StatementLog.Verify(x => x.GetStatements(), Times.Exactly(1));
             ConsoleLogger.Verify(x => x.Log(expected), Times.Exactly(1));
         }
 
@@ -45,7 +45,7 @@ namespace Katalyst_TDD_Starter.Test.Bank
             var expectedHeader = "Date || Amount || Balance";
             var expectedStatement = "14/01/2012 || 500 || 500";
 
-            StatementLog.Setup(x => x.GetEntries()).Returns(entries);
+            StatementLog.Setup(x => x.GetStatements()).Returns(entries);
             var sequence = new MockSequence();
             ConsoleLogger.InSequence(sequence).Setup(x => x.Log(expectedHeader));
             ConsoleLogger.InSequence(sequence).Setup(x => x.Log(expectedStatement));
@@ -54,7 +54,7 @@ namespace Katalyst_TDD_Starter.Test.Bank
             UnderTest.PrintStatement(StatementLog.Object);
 
 
-            StatementLog.Verify(x => x.GetEntries(), Times.Exactly(1));
+            StatementLog.Verify(x => x.GetStatements(), Times.Exactly(1));
             ConsoleLogger.Verify(x => x.Log(It.IsAny<string>()), Times.Exactly(2));
         }
 
@@ -69,7 +69,7 @@ namespace Katalyst_TDD_Starter.Test.Bank
             var expectedHeader = "Date || Amount || Balance";
             var expectedStatement = "15/02/2014 || 1000 || 1000";
 
-            StatementLog.Setup(x => x.GetEntries()).Returns(entries);
+            StatementLog.Setup(x => x.GetStatements()).Returns(entries);
             var sequence = new MockSequence();
             ConsoleLogger.InSequence(sequence).Setup(x => x.Log(expectedHeader));
             ConsoleLogger.InSequence(sequence).Setup(x => x.Log(expectedStatement));
@@ -95,7 +95,7 @@ namespace Katalyst_TDD_Starter.Test.Bank
             var expectedOldStatement = "15/02/2014 || 1000 || 1000";
 
 
-            StatementLog.Setup(x => x.GetEntries()).Returns(entries);
+            StatementLog.Setup(x => x.GetStatements()).Returns(entries);
             var sequence = new MockSequence();
             ConsoleLogger.InSequence(sequence).Setup(x => x.Log(expectedHeader));
             ConsoleLogger.InSequence(sequence).Setup(x => x.Log(expectedNewStatement));

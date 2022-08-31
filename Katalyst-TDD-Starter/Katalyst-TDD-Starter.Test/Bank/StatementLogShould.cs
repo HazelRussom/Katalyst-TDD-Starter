@@ -21,7 +21,7 @@ namespace Katalyst_TDD_Starter.Test.Bank
         [TestMethod]
         public void Be_empty()
         {
-            var entries = UnderTest.GetEntries();
+            var entries = UnderTest.GetStatements();
 
             Assert.AreEqual(0, entries.Count);
         }
@@ -32,7 +32,7 @@ namespace Katalyst_TDD_Starter.Test.Bank
             var amount = 100;
 
             UnderTest.AddEntry(amount);
-            var entries = UnderTest.GetEntries();
+            var entries = UnderTest.GetStatements();
 
             Assert.AreEqual(1, entries.Count);
             Assert.AreEqual(amount, entries[0].Amount);
@@ -45,7 +45,7 @@ namespace Katalyst_TDD_Starter.Test.Bank
             TimeGetter.Setup(x => x.GetTime()).Returns(expectedDate);
 
             UnderTest.AddEntry(100);
-            var entries = UnderTest.GetEntries();
+            var entries = UnderTest.GetStatements();
 
             Assert.AreEqual(1, entries.Count);
             Assert.AreEqual(expectedDate, entries[0].Timestamp);
@@ -56,7 +56,7 @@ namespace Katalyst_TDD_Starter.Test.Bank
         {
             UnderTest.AddEntry(1000);
             UnderTest.AddEntry(-500);
-            var entries = UnderTest.GetEntries();
+            var entries = UnderTest.GetStatements();
 
             Assert.AreEqual(2, entries.Count);
             Assert.AreEqual(1000, entries[0].Amount);
@@ -67,7 +67,7 @@ namespace Katalyst_TDD_Starter.Test.Bank
         public void Track_single_entry_balance()
         {
             UnderTest.AddEntry(1000);
-            var entries = UnderTest.GetEntries();
+            var entries = UnderTest.GetStatements();
 
             Assert.AreEqual(1000, entries[0].Balance);
         }
@@ -77,7 +77,7 @@ namespace Katalyst_TDD_Starter.Test.Bank
         {
             UnderTest.AddEntry(1000);
             UnderTest.AddEntry(100);
-            var entries = UnderTest.GetEntries();
+            var entries = UnderTest.GetStatements();
 
             Assert.AreEqual(1000, entries[0].Balance);
             Assert.AreEqual(1100, entries[1].Balance);
@@ -88,7 +88,7 @@ namespace Katalyst_TDD_Starter.Test.Bank
         {
             UnderTest.AddEntry(1000);
             UnderTest.AddEntry(-1100);
-            var entries = UnderTest.GetEntries();
+            var entries = UnderTest.GetStatements();
 
             Assert.AreEqual(1000, entries[0].Balance);
             Assert.AreEqual(-100, entries[1].Balance);

@@ -26,7 +26,7 @@ namespace Katalyst_TDD_Starter.Test.Bank
             });
         }
 
-        public List<StatementEntry> GetEntries()
+        public List<StatementEntry> GetStatements()
         {
             return entries;
         }

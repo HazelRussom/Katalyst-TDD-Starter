@@ -4,6 +4,6 @@
     {
         void AddEntry(int amount);
 
-        List<StatementEntry> GetEntries();
+        List<StatementEntry> GetStatements();
     }
 }
