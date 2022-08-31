@@ -61,7 +61,7 @@ namespace Katalyst_TDD_Starter.Test.Bank
         [TestMethod]
         public void Print_single_statement_below_header_of_1000_value()
         {
-            var input = new List<StatementEntry>
+            var entries = new List<StatementEntry>
             {
                 new StatementEntry { Amount = 1000, Balance = 1000, Timestamp = new DateTime(2014, 02, 15) }
             };
@@ -69,12 +69,13 @@ namespace Katalyst_TDD_Starter.Test.Bank
             var expectedHeader = "Date || Amount || Balance";
             var expectedStatement = "15/02/2014 || 1000 || 1000";
 
+            StatementLog.Setup(x => x.GetEntries()).Returns(entries);
             var sequence = new MockSequence();
             ConsoleLogger.InSequence(sequence).Setup(x => x.Log(expectedHeader));
             ConsoleLogger.InSequence(sequence).Setup(x => x.Log(expectedStatement));
 
 
-            UnderTest.PrintStatement(input);
+            UnderTest.PrintStatement(StatementLog.Object);
 
 
             ConsoleLogger.Verify(x => x.Log(It.IsAny<string>()), Times.Exactly(2));
@@ -83,7 +84,7 @@ namespace Katalyst_TDD_Starter.Test.Bank
         [TestMethod]
         public void Print_two_statements_in_descending_date_order()
         {
-            var input = new List<StatementEntry>
+            var entries = new List<StatementEntry>
             {
                 new StatementEntry { Amount = 1000, Balance = 1000, Timestamp = new DateTime(2014, 02, 15) },
                 new StatementEntry { Amount = 1000, Balance = 2000, Timestamp = new DateTime(2014, 02, 16) }
@@ -94,13 +95,14 @@ namespace Katalyst_TDD_Starter.Test.Bank
             var expectedOldStatement = "15/02/2014 || 1000 || 1000";
 
 
+            StatementLog.Setup(x => x.GetEntries()).Returns(entries);
             var sequence = new MockSequence();
             ConsoleLogger.InSequence(sequence).Setup(x => x.Log(expectedHeader));
             ConsoleLogger.InSequence(sequence).Setup(x => x.Log(expectedNewStatement));
             ConsoleLogger.InSequence(sequence).Setup(x => x.Log(expectedOldStatement));
 
 
-            UnderTest.PrintStatement(input);
+            UnderTest.PrintStatement(StatementLog.Object);
 
 
             ConsoleLogger.Verify(x => x.Log(It.IsAny<string>()), Times.Exactly(3));

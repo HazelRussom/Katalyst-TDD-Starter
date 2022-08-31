@@ -5,7 +5,7 @@ namespace Katalyst_TDD_Starter.Bank
 {
     public class StatementPrinter : IStatementPrinter
     {
-        private IConsoleLogger consoleLogger;
+        private readonly IConsoleLogger consoleLogger;
 
         public StatementPrinter(IConsoleLogger consoleLogger)
         {
@@ -18,16 +18,7 @@ namespace Katalyst_TDD_Starter.Bank
 
             consoleLogger.Log("Date || Amount || Balance");
 
-            if (entries.Any())
-            {
-                consoleLogger.Log("14/01/2012 || 500 || 500");
-            }
-        }
-
-        public void PrintStatement(List<StatementEntry> statementLog)
-        {
-            consoleLogger.Log("Date || Amount || Balance");
-            foreach (var statement in statementLog.OrderByDescending(x => x.Timestamp))
+            foreach (var statement in entries.OrderByDescending(x => x.Timestamp))
             {
                 consoleLogger.Log(BuildStatementMessage(statement));
             }
