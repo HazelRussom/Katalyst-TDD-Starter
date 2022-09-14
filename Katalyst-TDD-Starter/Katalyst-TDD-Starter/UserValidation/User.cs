@@ -2,8 +2,14 @@
 
 public class User
 {
+    private readonly string firstName;
+    private readonly string lastName;
+    private readonly string email;
+
     public User(string firstName, string lastName, string email)
     {
-        throw new NotImplementedException();
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
     }
 }

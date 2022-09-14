@@ -2,9 +2,13 @@
 
 public class UserService
 {
-    public UserService(IUserDataAccess userDataAccess)
+    private UserValidator userValidator;
+    private UserGenerator userGenerator;
+
+    public UserService(UserValidator userValidator, UserGenerator userGenerator)
     {
-        throw new NotImplementedException();
+        this.userValidator = userValidator;
+        this.userGenerator = userGenerator;
     }
 
     public void CreateUser(User input)
