@@ -24,7 +24,7 @@ namespace Katalyst_TDD_Starter.Bank
             }
         }
 
-        private static IOrderedEnumerable<StatementEntry> InDescendingOrder(List<StatementEntry> entries)
+        private static IOrderedEnumerable<StatementEntry> InDescendingOrder(IReadOnlyList<StatementEntry> entries)
         {
             return entries.OrderByDescending(x => x.Timestamp);
         }
