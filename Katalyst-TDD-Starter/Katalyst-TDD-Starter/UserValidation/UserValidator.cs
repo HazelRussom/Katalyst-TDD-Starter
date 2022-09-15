@@ -1,9 +1,10 @@
 ﻿namespace Katalyst_TDD_Starter.UserValidation
 {
-    public class UserValidator
+    public class UserValidator : IUserValidator
     {
-        public UserValidator()
+        public bool Validate(User userToValidate)
         {
+            throw new NotImplementedException();
         }
     }
 }

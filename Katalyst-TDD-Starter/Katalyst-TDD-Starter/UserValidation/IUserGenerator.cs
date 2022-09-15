@@ -1,6 +1,5 @@
 ﻿namespace Katalyst_TDD_Starter.UserValidation;
-
-public interface IUserDataAccess
+public interface IUserGenerator
 {
     void SaveUser(User isAny);
 }

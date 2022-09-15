@@ -8,21 +8,21 @@ namespace Katalyst_TDD_Starter.Test.UserValidation
     public class UserCreationFeatureShould
     {
         [TestMethod]
+        [Ignore]
         public void Not_create_user_missing_first_name()
         {
-            var userDataAccess = new Mock<IUserDataAccess>();
             var userValidator = new UserValidator();
-            var userGenerator = new UserGenerator(userDataAccess.Object);
+            var userGenerator = new Mock<IUserGenerator>();
             // Given a user without a first name
             var input = new User("", "LastName", "email@address.com");
 
             // When User Service is called to create the user
-            var userService = new UserService(userValidator, userGenerator);
+            var userService = new UserService(userValidator, userGenerator.Object);
             userService.CreateUser(input);
 
             // Then Validation should fail
             // And the user should not be created
-            userDataAccess.Verify(x => x.SaveUser(It.IsAny<User>()), Times.Never());
+            userGenerator.Verify(x => x.SaveUser(It.IsAny<User>()), Times.Never());
 
         }
     }

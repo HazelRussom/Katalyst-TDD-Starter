@@ -2,10 +2,10 @@
 
 public class UserService
 {
-    private UserValidator userValidator;
-    private UserGenerator userGenerator;
+    private IUserValidator userValidator;
+    private IUserGenerator userGenerator;
 
-    public UserService(UserValidator userValidator, UserGenerator userGenerator)
+    public UserService(IUserValidator userValidator, IUserGenerator userGenerator)
     {
         this.userValidator = userValidator;
         this.userGenerator = userGenerator;
@@ -13,6 +13,6 @@ public class UserService
 
     public void CreateUser(User input)
     {
-        throw new NotImplementedException();
+        userValidator.Validate(input);
     }
 }
