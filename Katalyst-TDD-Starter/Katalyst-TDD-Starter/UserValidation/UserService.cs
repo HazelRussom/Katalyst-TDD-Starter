@@ -13,6 +13,9 @@ public class UserService
 
     public void CreateUser(User input)
     {
-        userValidator.Validate(input);
+        if (userValidator.Validate(input))
+        {
+            userGenerator.SaveUser(input);
+        }
     }
 }

@@ -21,5 +21,20 @@ namespace Katalyst_TDD_Starter.Test.UserValidation
             userValidator.Verify(x => x.Validate(input), Times.Once());
             userGenerator.Verify(x => x.SaveUser(It.IsAny<User>()), Times.Never());
         }
+
+        [TestMethod]
+        public void Create_user_when_validation_passes()
+        {
+            var userValidator = new Mock<IUserValidator>();
+            var userGenerator = new Mock<IUserGenerator>();
+            var input = new User(string.Empty, string.Empty, string.Empty);
+            userValidator.Setup(x => x.Validate(input)).Returns(true);
+            var underTest = new UserService(userValidator.Object, userGenerator.Object);
+
+            underTest.CreateUser(input);
+
+            userValidator.Verify(x => x.Validate(input), Times.Once());
+            userGenerator.Verify(x => x.SaveUser(input), Times.Once());
+        }
     }
 }
