@@ -4,7 +4,7 @@
     {
         public ValidationResult Validate(User userToValidate)
         {
-            if (userToValidate.FirstNameIsEmpty())
+            if (userToValidate.FirstOrLastNameIsEmpty())
             {
                 return ValidationResult.Invalid;
             }

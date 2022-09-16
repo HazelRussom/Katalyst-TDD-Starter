@@ -13,8 +13,8 @@ public class User
         this.email = email;
     }
 
-    public bool FirstNameIsEmpty()
+    public bool FirstOrLastNameIsEmpty()
     {
-        return firstName.Count() == 0;
+        return firstName.Length == 0 || lastName.Length == 0;
     }
 }
