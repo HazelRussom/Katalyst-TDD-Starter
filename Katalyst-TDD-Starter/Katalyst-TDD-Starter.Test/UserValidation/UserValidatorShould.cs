@@ -39,5 +39,17 @@ namespace Katalyst_TDD_Starter.Test.UserValidation
             Assert.AreEqual(ValidationResult.Invalid, result);
         }
 
+        [TestMethod]
+        [Ignore]
+        public void Fail_validation_for_user_with_invalid_email()
+        {
+            var underTest = new UserValidator();
+            var input = new User("First", "Last", "email");
+
+            var result = underTest.Validate(input);
+
+            Assert.AreEqual(ValidationResult.Invalid, result);
+        }
+
     }
 }
