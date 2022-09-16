@@ -12,4 +12,9 @@ public class User
         this.lastName = lastName;
         this.email = email;
     }
+
+    public bool FirstNameIsEmpty()
+    {
+        return firstName.Count() == 0;
+    }
 }
