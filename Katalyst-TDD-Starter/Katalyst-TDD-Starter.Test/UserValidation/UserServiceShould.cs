@@ -13,7 +13,7 @@ namespace Katalyst_TDD_Starter.Test.UserValidation
             var userValidator = new Mock<IUserValidator>();
             var userGenerator = new Mock<IUserGenerator>();
             var input = new User(string.Empty, string.Empty, string.Empty);
-            userValidator.Setup(x => x.Validate(input)).Returns(false);
+            userValidator.Setup(x => x.Validate(input)).Returns(ValidationResult.Invalid);
             var underTest = new UserService(userValidator.Object, userGenerator.Object);
 
             underTest.CreateUser(input);
@@ -28,7 +28,7 @@ namespace Katalyst_TDD_Starter.Test.UserValidation
             var userValidator = new Mock<IUserValidator>();
             var userGenerator = new Mock<IUserGenerator>();
             var input = new User(string.Empty, string.Empty, string.Empty);
-            userValidator.Setup(x => x.Validate(input)).Returns(true);
+            userValidator.Setup(x => x.Validate(input)).Returns(ValidationResult.Valid);
             var underTest = new UserService(userValidator.Object, userGenerator.Object);
 
             underTest.CreateUser(input);

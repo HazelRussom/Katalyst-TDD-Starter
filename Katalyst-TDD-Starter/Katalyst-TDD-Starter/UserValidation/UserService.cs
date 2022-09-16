@@ -13,7 +13,7 @@ public class UserService
 
     public void CreateUser(User input)
     {
-        if (userValidator.Validate(input))
+        if (userValidator.Validate(input) == ValidationResult.Valid)
         {
             userGenerator.SaveUser(input);
         }
