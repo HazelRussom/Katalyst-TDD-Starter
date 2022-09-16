@@ -2,9 +2,9 @@
 {
     public class UserValidator : IUserValidator
     {
-        public bool Validate(User userToValidate)
+        public ValidationResult Validate(User userToValidate)
         {
-            throw new NotImplementedException();
+            return ValidationResult.Valid;
         }
     }
 }

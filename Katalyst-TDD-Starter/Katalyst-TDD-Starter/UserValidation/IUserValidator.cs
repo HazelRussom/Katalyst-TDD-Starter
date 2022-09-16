@@ -2,5 +2,5 @@
 
 public interface IUserValidator
 {
-    bool Validate(User userToValidate);
+    ValidationResult Validate(User userToValidate);
 }
