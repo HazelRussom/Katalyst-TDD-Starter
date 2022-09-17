@@ -8,6 +8,11 @@
             {
                 return ValidationResult.Invalid;
             }
+            
+            if (!userToValidate.HasValidEmail())
+            {
+                return ValidationResult.Invalid;
+            }
 
             return ValidationResult.Valid;
         }

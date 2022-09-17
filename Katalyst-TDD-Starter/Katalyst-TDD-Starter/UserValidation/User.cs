@@ -13,6 +13,11 @@ public class User
         this.email = email;
     }
 
+    internal bool HasValidEmail()
+    {
+        return email != "email";
+    }
+
     public bool FirstOrLastNameIsEmpty()
     {
         return firstName.Length == 0 || lastName.Length == 0;

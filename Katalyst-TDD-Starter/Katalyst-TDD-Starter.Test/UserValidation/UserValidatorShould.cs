@@ -40,7 +40,6 @@ namespace Katalyst_TDD_Starter.Test.UserValidation
         }
 
         [TestMethod]
-        [Ignore]
         public void Fail_validation_for_user_with_invalid_email()
         {
             var underTest = new UserValidator();
