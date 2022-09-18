@@ -8,7 +8,6 @@ namespace Katalyst_TDD_Starter.Test.UserValidation
     public class UserCreationFeatureShould
     {
         [TestMethod]
-        [Ignore]
         public void Not_create_user_missing_first_name()
         {
             var userValidator = new UserValidator();
