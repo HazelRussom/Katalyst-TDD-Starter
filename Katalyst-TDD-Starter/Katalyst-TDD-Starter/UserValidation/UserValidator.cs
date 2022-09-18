@@ -4,17 +4,7 @@
     {
         public ValidationResult Validate(User userToValidate)
         {
-            if (userToValidate.FirstOrLastNameIsEmpty())
-            {
-                return ValidationResult.Invalid;
-            }
-            
-            if (!userToValidate.HasValidEmail())
-            {
-                return ValidationResult.Invalid;
-            }
-
-            return ValidationResult.Valid;
+            return userToValidate.IsValid() ? ValidationResult.Valid : ValidationResult.Invalid;
         }
     }
 }
