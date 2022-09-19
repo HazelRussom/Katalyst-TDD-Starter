@@ -62,10 +62,10 @@ namespace Katalyst_TDD_Starter.Test.UserValidation
         }
 
         [TestMethod]
-        public void Fail_validation_for_user_with_email_missing_domain()
+        public void Fail_validation_for_user_with_email_missing_domain_extension()
         {
             var underTest = new UserValidator();
-            var input = new User("First", "Last", "email.com");
+            var input = new User("First", "Last", "email@address");
 
             var result = underTest.Validate(input);
 
