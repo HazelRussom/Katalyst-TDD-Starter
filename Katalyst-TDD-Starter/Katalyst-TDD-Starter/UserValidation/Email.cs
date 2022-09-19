@@ -11,7 +11,7 @@
 
         internal bool IsValid()
         {
-            return email != "email";
+            return email != "email" && email != "email.com";   
         }
     }
 }
