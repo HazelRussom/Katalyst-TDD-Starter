@@ -40,32 +40,13 @@ namespace Katalyst_TDD_Starter.Test.UserValidation
         }
 
         [TestMethod]
-        public void Fail_validation_for_user_with_invalid_email()
+        [DataRow ("email")]
+        [DataRow ("email.com")]
+        [DataRow ("email@address")]
+        public void Fail_validation_for_user_with_invalid_email(string email)
         {
             var underTest = new UserValidator();
-            var input = new User("First", "Last", "email");
-
-            var result = underTest.Validate(input);
-
-            Assert.AreEqual(ValidationResult.Invalid, result);
-        }
-
-        [TestMethod]
-        public void Fail_validation_for_user_with_email_missing_domain()
-        {
-            var underTest = new UserValidator();
-            var input = new User("First", "Last", "email.com");
-
-            var result = underTest.Validate(input);
-
-            Assert.AreEqual(ValidationResult.Invalid, result);
-        }
-
-        [TestMethod]
-        public void Fail_validation_for_user_with_email_missing_domain_extension()
-        {
-            var underTest = new UserValidator();
-            var input = new User("First", "Last", "email@address");
+            var input = new User("First", "Last", email);
 
             var result = underTest.Validate(input);
 

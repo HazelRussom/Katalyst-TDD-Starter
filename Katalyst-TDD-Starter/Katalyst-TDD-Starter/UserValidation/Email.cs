@@ -1,4 +1,7 @@
-﻿namespace Katalyst_TDD_Starter.UserValidation
+﻿using System.ComponentModel.DataAnnotations;
+using System.Text.RegularExpressions;
+
+namespace Katalyst_TDD_Starter.UserValidation
 {
     internal class Email
     {
@@ -11,7 +14,9 @@
 
         internal bool IsValid()
         {
-            return email != "email" && email != "email.com" && email != "email@address";   
+            var regex = @"^[^@\s]+@[^@\s]+\.(com)$"; 
+            
+            return Regex.IsMatch(email, regex);
         }
     }
 }
