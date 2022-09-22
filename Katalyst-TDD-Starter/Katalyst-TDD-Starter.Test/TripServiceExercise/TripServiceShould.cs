@@ -26,7 +26,7 @@ namespace Katalyst_TDD_Starter.Test.TripServiceExercise
                 return loggedInUser;
             }
 
-            protected override List<Trip> GetTripList(User user)
+            protected override List<Trip> TripsBy(User user)
             {
                 return tripList;
             }

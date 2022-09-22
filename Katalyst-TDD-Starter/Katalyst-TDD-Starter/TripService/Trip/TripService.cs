@@ -14,12 +14,12 @@ namespace TripServiceKata.Trip
                 throw new UserNotLoggedInException();
             }
 
-            if (!UsersAreFriends(user, loggedInUser))
+            if (user.IsFriendsWith(loggedInUser))
             {
-                return new List<Trip>();
+                return TripsBy(user);
             }
 
-            return GetTripList(user);
+            return new List<Trip>();
         }
 
         protected virtual User.User GetLoggedInUser()
@@ -32,20 +32,7 @@ namespace TripServiceKata.Trip
             return loggedUser == null;
         }
 
-        private static bool UsersAreFriends(User.User user, User.User loggedUser)
-        {
-            foreach (User.User friend in user.GetFriends())
-            {
-                if (friend.Equals(loggedUser))
-                {
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
-        protected virtual List<Trip> GetTripList(User.User user)
+        protected virtual List<Trip> TripsBy(User.User user)
         {
             return TripDAO.FindTripsByUser(user);
         }

@@ -25,6 +25,19 @@ namespace TripServiceKata.User
         public List<Trip.Trip> Trips()
         {
             return trips;
-        } 
+        }
+
+        internal bool IsFriendsWith(User loggedInUser)
+        {
+            foreach (var friend in GetFriends())
+            {
+                if (friend.Equals(loggedInUser))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
     }
 }
