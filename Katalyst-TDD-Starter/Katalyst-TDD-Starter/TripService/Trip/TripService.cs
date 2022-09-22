@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using TripServiceKata.Exception;
+﻿using TripServiceKata.Exception;
 using TripServiceKata.User;
 
 namespace TripServiceKata.Trip
@@ -8,7 +7,6 @@ namespace TripServiceKata.Trip
     {
         public List<Trip> GetTripsByUser(User.User user)
         {
-            var tripList = new List<Trip>();
             var isFriend = false;
 
             var loggedUser = GetLoggedInUser();
@@ -27,12 +25,12 @@ namespace TripServiceKata.Trip
                 }
             }
 
-            if (isFriend)
+            if (!isFriend)
             {
-                tripList = GetTripList(user);
+                return new List<Trip>();
             }
-
-            return tripList;
+            
+            return GetTripList(user);
         }
 
         protected virtual List<Trip> GetTripList(User.User user)
