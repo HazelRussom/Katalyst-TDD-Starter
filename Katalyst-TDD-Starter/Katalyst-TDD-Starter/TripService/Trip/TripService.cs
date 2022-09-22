@@ -7,19 +7,29 @@ namespace TripServiceKata.Trip
     {
         public List<Trip> GetTripsByUser(User.User user)
         {
-            var loggedUser = GetLoggedInUser();
+            var loggedInUser = GetLoggedInUser();
 
-            if (loggedUser == null)
+            if (UserIsNotLoggedIn(loggedInUser))
             {
                 throw new UserNotLoggedInException();
             }
 
-            if (!UsersAreFriends(user, loggedUser))
+            if (!UsersAreFriends(user, loggedInUser))
             {
                 return new List<Trip>();
             }
 
             return GetTripList(user);
+        }
+
+        protected virtual User.User GetLoggedInUser()
+        {
+            return UserSession.GetInstance().GetLoggedUser();
+        }
+
+        private static bool UserIsNotLoggedIn(User.User loggedUser)
+        {
+            return loggedUser == null;
         }
 
         private static bool UsersAreFriends(User.User user, User.User loggedUser)
@@ -38,11 +48,6 @@ namespace TripServiceKata.Trip
         protected virtual List<Trip> GetTripList(User.User user)
         {
             return TripDAO.FindTripsByUser(user);
-        }
-
-        protected virtual User.User GetLoggedInUser()
-        {
-            return UserSession.GetInstance().GetLoggedUser();
         }
     }
 }
