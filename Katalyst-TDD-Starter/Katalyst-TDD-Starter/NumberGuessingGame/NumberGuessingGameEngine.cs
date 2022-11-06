@@ -9,9 +9,10 @@
             this.randomNumberGenerator = randomNumberGenerator;
         }
 
-        public int Guess(int finalGuess)
+        public string Guess(int guessedNumber)
         {
-            throw new NotImplementedException();
+
+            return "You are correct!";
         }
     }
 }

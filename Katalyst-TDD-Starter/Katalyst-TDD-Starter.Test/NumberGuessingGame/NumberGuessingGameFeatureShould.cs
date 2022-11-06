@@ -12,6 +12,7 @@ namespace Katalyst_TDD_Starter.Test.NumberGuessingGame
         {
             var correctNumber = 5;
             var randomNumberGenerator = new Mock<IRandomNumberGenerator>();
+            randomNumberGenerator.Setup(x => x.Generate(It.IsAny<int>())).Returns(correctNumber);
             var gameEngine = new NumberGuessingGameEngine(randomNumberGenerator.Object);
 
             var firstGuess = correctNumber - 1;
