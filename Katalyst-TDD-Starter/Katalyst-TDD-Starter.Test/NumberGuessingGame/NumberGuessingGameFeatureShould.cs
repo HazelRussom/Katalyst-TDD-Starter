@@ -16,22 +16,22 @@ namespace Katalyst_TDD_Starter.Test.NumberGuessingGame
             var gameEngine = new NumberGuessingGameEngine(randomNumberGenerator.Object);
 
             var firstGuess = correctNumber - 1;
-            var firstMessage = gameEngine.Guess(firstGuess);
+            var firstResult = gameEngine.Guess(firstGuess);
 
             var expectedFirstMessage = "Incorrect! My number is higher.";
-            Assert.AreEqual(expectedFirstMessage, firstMessage);
+            Assert.AreEqual(expectedFirstMessage, firstResult.GetMessage());
 
             var secondGuess = correctNumber + 1;
-            var secondMessage = gameEngine.Guess(secondGuess);
+            var secondResult = gameEngine.Guess(secondGuess);
 
             var expectedSecondMessage = "Incorrect! My number is lower.";
-            Assert.AreEqual(expectedSecondMessage, secondMessage);
+            Assert.AreEqual(expectedSecondMessage, secondResult.GetMessage());
 
             var finalGuess = correctNumber;
-            var finalMessage = gameEngine.Guess(finalGuess);
+            var finalResult = gameEngine.Guess(finalGuess);
 
             var expectedFinalMessage = "You are correct!";
-            Assert.AreEqual(expectedFinalMessage, finalMessage);
+            Assert.AreEqual(expectedFinalMessage, finalResult);
         }
     }
 }

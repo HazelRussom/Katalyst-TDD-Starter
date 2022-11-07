@@ -9,10 +9,9 @@
             this.randomNumberGenerator = randomNumberGenerator;
         }
 
-        public string Guess(int guessedNumber)
+        public NumberGuessingGameResult Guess(int guessedNumber)
         {
-
-            return "You are correct!";
+            return new NumberGuessingGameResult("You are correct!");
         }
     }
 }

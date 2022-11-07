@@ -18,7 +18,7 @@ namespace Katalyst_TDD_Starter.Test.NumberGuessingGame
 
             var result = underTest.Guess(correctNumber);
 
-            Assert.AreEqual(expected, result);
+            Assert.AreEqual(expected, result.GetMessage());
         }
     }
 }
