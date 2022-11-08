@@ -18,6 +18,7 @@ namespace Katalyst_TDD_Starter.Test.NumberGuessingGame
 
             var result = underTest.Guess(correctNumber);
 
+            numberGenerator.Verify(x => x.Generate(It.IsAny<int>()), Times.Once);
             Assert.AreEqual(expected, result.GetMessage());
         }
     }
