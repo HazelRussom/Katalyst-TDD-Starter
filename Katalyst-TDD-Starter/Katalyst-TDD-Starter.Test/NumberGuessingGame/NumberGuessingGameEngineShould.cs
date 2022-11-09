@@ -8,9 +8,10 @@ namespace Katalyst_TDD_Starter.Test.NumberGuessingGame
     public class NumberGuessingGameEngineShould
     {
         [TestMethod]
-        public void Display_win_message()
+        [DataRow(2)]
+        [DataRow(1)]
+        public void Display_win_message(int correctNumber)
         {
-            var correctNumber = 2;
             var expected = "You are correct!";
             var numberGenerator = new Mock<IRandomNumberGenerator>();
             var underTest = new NumberGuessingGameEngine(numberGenerator.Object);

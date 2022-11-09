@@ -14,9 +14,9 @@
 
         public NumberGuessingGameResult Guess(int guessedNumber)
         {
-            randomNumberGenerator.Generate(Limit);
+            var correctNumber = randomNumberGenerator.Generate(Limit);
 
-            if(guessedNumber < 2)
+            if(guessedNumber < correctNumber)
             {
                 return new NumberGuessingGameResult(LowGuessMessage);
             }
