@@ -7,19 +7,26 @@ namespace Katalyst_TDD_Starter.Test.NumberGuessingGame
     [TestClass]
     public class NumberGuessingGameEngineShould
     {
+        private readonly Mock<IRandomNumberGenerator> _numberGenerator;
+        private readonly NumberGuessingGameEngine _underTest;
+
+        public NumberGuessingGameEngineShould()
+        {
+            _numberGenerator = new Mock<IRandomNumberGenerator>();
+            _underTest = new NumberGuessingGameEngine(_numberGenerator.Object);
+        }
+
         [TestMethod]
         [DataRow(2)]
         [DataRow(1)]
         public void Display_win_message(int correctNumber)
         {
             var expected = "You are correct!";
-            var numberGenerator = new Mock<IRandomNumberGenerator>();
-            var underTest = new NumberGuessingGameEngine(numberGenerator.Object);
-            numberGenerator.Setup(x => x.Generate(It.IsAny<int>())).Returns(correctNumber);
+            _numberGenerator.Setup(x => x.Generate(It.IsAny<int>())).Returns(correctNumber);
 
-            var result = underTest.Guess(correctNumber);
+            var result = _underTest.Guess(correctNumber);
 
-            numberGenerator.Verify(x => x.Generate(It.IsAny<int>()), Times.Once);
+            _numberGenerator.Verify(x => x.Generate(It.IsAny<int>()), Times.Once);
             Assert.AreEqual(expected, result.GetMessage());
         }
 
@@ -28,13 +35,11 @@ namespace Katalyst_TDD_Starter.Test.NumberGuessingGame
         {
             var correctNumber = 2;
             var expected = "Incorrect! My number is higher.";
-            var numberGenerator = new Mock<IRandomNumberGenerator>();
-            var underTest = new NumberGuessingGameEngine(numberGenerator.Object);
-            numberGenerator.Setup(x => x.Generate(It.IsAny<int>())).Returns(correctNumber);
+            _numberGenerator.Setup(x => x.Generate(It.IsAny<int>())).Returns(correctNumber);
 
-            var result = underTest.Guess(correctNumber - 1);
+            var result = _underTest.Guess(correctNumber - 1);
 
-            numberGenerator.Verify(x => x.Generate(It.IsAny<int>()), Times.Once);
+            _numberGenerator.Verify(x => x.Generate(It.IsAny<int>()), Times.Once);
             Assert.AreEqual(expected, result.GetMessage());
         }
 
@@ -43,13 +48,11 @@ namespace Katalyst_TDD_Starter.Test.NumberGuessingGame
         {
             var correctNumber = 4;
             var expected = "Incorrect! My number is lower.";
-            var numberGenerator = new Mock<IRandomNumberGenerator>();
-            var underTest = new NumberGuessingGameEngine(numberGenerator.Object);
-            numberGenerator.Setup(x => x.Generate(It.IsAny<int>())).Returns(correctNumber);
+            _numberGenerator.Setup(x => x.Generate(It.IsAny<int>())).Returns(correctNumber);
 
-            var result = underTest.Guess(correctNumber + 1);
+            var result = _underTest.Guess(correctNumber + 1);
 
-            numberGenerator.Verify(x => x.Generate(It.IsAny<int>()), Times.Once);
+            _numberGenerator.Verify(x => x.Generate(It.IsAny<int>()), Times.Once);
             Assert.AreEqual(expected, result.GetMessage());
         }
     }
