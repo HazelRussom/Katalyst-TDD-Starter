@@ -31,7 +31,8 @@ namespace Katalyst_TDD_Starter.Test.NumberGuessingGame
             var finalResult = gameEngine.Guess(finalGuess);
 
             var expectedFinalMessage = "You are correct!";
-            Assert.AreEqual(expectedFinalMessage, finalResult);
+            Assert.AreEqual(expectedFinalMessage, finalResult.GetMessage());
+            randomNumberGenerator.Verify(x => x.Generate(It.IsAny<int>()), Times.Once);
         }
     }
 }
