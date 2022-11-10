@@ -28,27 +28,22 @@
                 correctNumber = randomNumberGenerator.Generate(Limit);
             }
 
+            if(guessedNumber == correctNumber)
+            {
+                return new NumberGuessingGameResult(CorrectMessage);
+            }
+
+            if (currentTurn == TurnLimit)
+            {
+                return new NumberGuessingGameResult(LoseMessage + correctNumber + ".");
+            }
+
             if (guessedNumber < correctNumber)
             {
-                if(currentTurn == TurnLimit)
-                {
-                    return new NumberGuessingGameResult(LoseMessage + correctNumber + ".");
-                }
-
                 return new NumberGuessingGameResult(LowGuessMessage);
             }
 
-            if (guessedNumber > correctNumber)
-            {
-                if (currentTurn == TurnLimit)
-                {
-                    return new NumberGuessingGameResult(LoseMessage + correctNumber + ".");
-                }
-
-                return new NumberGuessingGameResult(HighGuessMessage);
-            }
-
-            return new NumberGuessingGameResult(CorrectMessage);
+            return new NumberGuessingGameResult(HighGuessMessage);
         }
     }
 }
