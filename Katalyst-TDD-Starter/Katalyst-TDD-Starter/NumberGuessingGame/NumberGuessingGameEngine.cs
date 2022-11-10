@@ -5,9 +5,9 @@
         private readonly IRandomNumberGenerator randomNumberGenerator;
         private int correctNumber = -1;
         private int currentTurn;
-        private int TurnLimit = 3;
 
-        private const int Limit = 10;
+        private const int NumberLimit = 10;
+        private const int TurnLimit = 3;
         private const string CorrectMessage = "You are correct!";
         private const string LowGuessMessage = "Incorrect! My number is higher.";
         private const string HighGuessMessage = "Incorrect! My number is lower.";
@@ -25,10 +25,15 @@
 
             if (correctNumber < 0)
             {
-                correctNumber = randomNumberGenerator.Generate(Limit);
+                correctNumber = randomNumberGenerator.Generate(NumberLimit);
             }
 
-            if(guessedNumber == correctNumber)
+            return BuildResult(guessedNumber);
+        }
+
+        private NumberGuessingGameResult BuildResult(int guessedNumber)
+        {
+            if (guessedNumber == correctNumber)
             {
                 return new NumberGuessingGameResult(CorrectMessage);
             }
