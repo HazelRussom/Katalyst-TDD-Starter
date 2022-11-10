@@ -55,5 +55,22 @@ namespace Katalyst_TDD_Starter.Test.NumberGuessingGame
             _numberGenerator.Verify(x => x.Generate(It.IsAny<int>()), Times.Once);
             Assert.AreEqual(expected, result.GetMessage());
         }
+
+        [TestMethod]
+        public void Display_correct_number_after_losing_three_turns()
+        {
+            var correctNumber = 4;
+            var expected = $"You lose! My number was {correctNumber}.";
+            _numberGenerator.Setup(x => x.Generate(It.IsAny<int>())).Returns(correctNumber);
+
+            _underTest.Guess(correctNumber + 1);
+            _underTest.Guess(correctNumber + 2);
+            var result = _underTest.Guess(correctNumber + 3);
+
+            _numberGenerator.Verify(x => x.Generate(It.IsAny<int>()), Times.Once);
+            Assert.AreEqual(expected, result.GetMessage());
+        }
+
+        // Multiple games
     }
 }
