@@ -35,6 +35,7 @@
         {
             if (guessedNumber == correctNumber)
             {
+                correctNumber = -1;
                 return new NumberGuessingGameResult(CorrectMessage);
             }
 
