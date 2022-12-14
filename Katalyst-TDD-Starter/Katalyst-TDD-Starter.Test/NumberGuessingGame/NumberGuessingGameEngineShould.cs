@@ -10,10 +10,19 @@ namespace Katalyst_TDD_Starter.Test.NumberGuessingGame
         private readonly Mock<IRandomNumberGenerator> _numberGenerator;
         private readonly NumberGuessingGameEngine _underTest;
 
+        private const string CorrectMessage = "You are correct!";
+        private const string LowGuessMessage = "Incorrect! My number is higher.";
+        private const string HighGuessMessage = "Incorrect! My number is lower.";
+        private const string LoseMessage = "You lose! My number was ";
+
+        private const int _correctNumber = 4;
+
+
         public NumberGuessingGameEngineShould()
         {
             _numberGenerator = new Mock<IRandomNumberGenerator>();
             _underTest = new NumberGuessingGameEngine(_numberGenerator.Object);
+            _numberGenerator.Setup(x => x.Generate(It.IsAny<int>())).Returns(_correctNumber);
         }
 
         [TestMethod]
@@ -21,7 +30,7 @@ namespace Katalyst_TDD_Starter.Test.NumberGuessingGame
         [DataRow(1)]
         public void Display_win_message(int correctNumber)
         {
-            var expected = "You are correct!";
+            var expected = CorrectMessage;
             _numberGenerator.Setup(x => x.Generate(It.IsAny<int>())).Returns(correctNumber);
 
             var result = _underTest.Guess(correctNumber);
@@ -33,11 +42,9 @@ namespace Katalyst_TDD_Starter.Test.NumberGuessingGame
         [TestMethod]
         public void Display_correct_number_is_higher_message()
         {
-            var correctNumber = 2;
-            var expected = "Incorrect! My number is higher.";
-            _numberGenerator.Setup(x => x.Generate(It.IsAny<int>())).Returns(correctNumber);
+            var expected = LowGuessMessage;
 
-            var result = _underTest.Guess(correctNumber - 1);
+            var result = _underTest.Guess(_correctNumber - 1);
 
             _numberGenerator.Verify(x => x.Generate(It.IsAny<int>()), Times.Once);
             Assert.AreEqual(expected, result.GetMessage());
@@ -46,11 +53,9 @@ namespace Katalyst_TDD_Starter.Test.NumberGuessingGame
         [TestMethod]
         public void Display_correct_number_is_lower_message()
         {
-            var correctNumber = 4;
-            var expected = "Incorrect! My number is lower.";
-            _numberGenerator.Setup(x => x.Generate(It.IsAny<int>())).Returns(correctNumber);
+            var expected = HighGuessMessage;
 
-            var result = _underTest.Guess(correctNumber + 1);
+            var result = _underTest.Guess(_correctNumber + 1);
 
             _numberGenerator.Verify(x => x.Generate(It.IsAny<int>()), Times.Once);
             Assert.AreEqual(expected, result.GetMessage());
@@ -59,13 +64,11 @@ namespace Katalyst_TDD_Starter.Test.NumberGuessingGame
         [TestMethod]
         public void Display_correct_number_after_losing_three_turns()
         {
-            var correctNumber = 4;
-            var expected = $"You lose! My number was {correctNumber}.";
-            _numberGenerator.Setup(x => x.Generate(It.IsAny<int>())).Returns(correctNumber);
+            var expected = $"{LoseMessage}{_correctNumber}.";
 
-            _underTest.Guess(correctNumber + 1);
-            _underTest.Guess(correctNumber + 2);
-            var result = _underTest.Guess(correctNumber + 3);
+            _underTest.Guess(_correctNumber + 1);
+            _underTest.Guess(_correctNumber + 2);
+            var result = _underTest.Guess(_correctNumber + 3);
 
             _numberGenerator.Verify(x => x.Generate(It.IsAny<int>()), Times.Once);
             Assert.AreEqual(expected, result.GetMessage());
@@ -74,15 +77,13 @@ namespace Katalyst_TDD_Starter.Test.NumberGuessingGame
         [TestMethod]
         public void Pick_new_number_after_a_correct_guess()
         {
-            var firstCorrectNumber = 5;
             var secondCorrectNumber = 3;
-            var firstExpectedMessage = "You are correct!";
-            var secondExpectedMessage = "Incorrect! My number is lower.";
-            _numberGenerator.Setup(x => x.Generate(It.IsAny<int>())).Returns(firstCorrectNumber);
-            var firstResult = _underTest.Guess(firstCorrectNumber);
+            var firstExpectedMessage = CorrectMessage;
+            var secondExpectedMessage = HighGuessMessage;
 
+            var firstResult = _underTest.Guess(_correctNumber);
             _numberGenerator.Setup(x => x.Generate(It.IsAny<int>())).Returns(secondCorrectNumber);
-            var secondResult = _underTest.Guess(firstCorrectNumber);
+            var secondResult = _underTest.Guess(secondCorrectNumber + 1);
 
             _numberGenerator.Verify(x => x.Generate(It.IsAny<int>()), Times.Exactly(2));
             Assert.AreEqual(firstExpectedMessage, firstResult.GetMessage());
@@ -92,18 +93,16 @@ namespace Katalyst_TDD_Starter.Test.NumberGuessingGame
         [TestMethod]
         public void Pick_new_number_after_losing()
         {
-            var firstCorrectNumber = 4;
             var secondCorrectNumber = 3;
-            var firstExpectedMessage = $"You lose! My number was {firstCorrectNumber}.";
-            var secondExpectedMessage = "Incorrect! My number is lower.";
-            _numberGenerator.Setup(x => x.Generate(It.IsAny<int>())).Returns(firstCorrectNumber);
+            var firstExpectedMessage = $"{LoseMessage}{_correctNumber}.";
+            var secondExpectedMessage = HighGuessMessage;
 
-            _underTest.Guess(firstCorrectNumber + 1);
-            _underTest.Guess(firstCorrectNumber + 2);
-            var firstResult = _underTest.Guess(firstCorrectNumber + 3);
+            _underTest.Guess(_correctNumber + 1);
+            _underTest.Guess(_correctNumber + 2);
+            var firstResult = _underTest.Guess(_correctNumber + 3);
 
             _numberGenerator.Setup(x => x.Generate(It.IsAny<int>())).Returns(secondCorrectNumber);
-            var secondResult = _underTest.Guess(firstCorrectNumber);
+            var secondResult = _underTest.Guess(secondCorrectNumber + 1);
 
             _numberGenerator.Verify(x => x.Generate(It.IsAny<int>()), Times.Exactly(2));
             Assert.AreEqual(firstExpectedMessage, firstResult.GetMessage());

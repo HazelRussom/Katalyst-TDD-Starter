@@ -11,7 +11,7 @@
         private const string CorrectMessage = "You are correct!";
         private const string LowGuessMessage = "Incorrect! My number is higher.";
         private const string HighGuessMessage = "Incorrect! My number is lower.";
-        private const string LoseMessage = $"You lose! My number was ";
+        private const string LoseMessage = "You lose! My number was ";
 
 
         public NumberGuessingGameEngine(IRandomNumberGenerator randomNumberGenerator)
@@ -39,10 +39,10 @@
                 return new NumberGuessingGameResult(CorrectMessage);
             }
 
-            if (currentTurn == TurnLimit)
+            if (IsLastTurn())
             {
                 currentTurn = 0;
-                return new NumberGuessingGameResult(LoseMessage + correctNumber + ".");
+                return new NumberGuessingGameResult($"{LoseMessage}{correctNumber}.");
             }
 
             if (guessedNumber < correctNumber)
@@ -51,6 +51,11 @@
             }
 
             return new NumberGuessingGameResult(HighGuessMessage);
+        }
+
+        private bool IsLastTurn()
+        {
+            return currentTurn == TurnLimit;
         }
     }
 }
