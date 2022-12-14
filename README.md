@@ -14,7 +14,11 @@ Text Processing | Complete | https://katalyst.codurance.com/text-processing
 Bag Organisation | On-Hold | https://katalyst.codurance.com/bags
 Password Validator | Complete | https://katalyst.codurance.com/password-validation
 Mars Rover | Complete | https://katalyst.codurance.com/simple-mars-rover
-Arithmetics | In-Progress | https://katalyst.codurance.com/arithmetics
+Bank | Complete | https://www.codurance.com/katalyst/bank
+Number Guessing Game | Complete | https://www.codurance.com/katalyst/random-number-kata
+Trip Service | ??? | ???
+Arithmetics | In Progress | https://katalyst.codurance.com/arithmetics
+Bags | On Hold | https://www.codurance.com/katalyst/bags
 
 ### Bags Note - 2022-06-28
 I feel I've bitten off too much with this exercise, or gone down an incorrect path.  
