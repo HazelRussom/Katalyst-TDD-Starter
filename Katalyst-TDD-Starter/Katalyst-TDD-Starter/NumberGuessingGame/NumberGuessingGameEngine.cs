@@ -23,7 +23,7 @@
         {
             currentTurn++;
 
-            if (correctNumber < 0)
+            if (currentTurn == 1)
             {
                 correctNumber = randomNumberGenerator.Generate(NumberLimit);
             }
@@ -35,12 +35,13 @@
         {
             if (guessedNumber == correctNumber)
             {
-                correctNumber = -1;
+                currentTurn = 0;
                 return new NumberGuessingGameResult(CorrectMessage);
             }
 
             if (currentTurn == TurnLimit)
             {
+                currentTurn = 0;
                 return new NumberGuessingGameResult(LoseMessage + correctNumber + ".");
             }
 

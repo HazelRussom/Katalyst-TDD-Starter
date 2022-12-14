@@ -76,18 +76,38 @@ namespace Katalyst_TDD_Starter.Test.NumberGuessingGame
         {
             var firstCorrectNumber = 5;
             var secondCorrectNumber = 3;
-            var expectedMessage = "Incorrect! My number is lower.";
+            var firstExpectedMessage = "You are correct!";
+            var secondExpectedMessage = "Incorrect! My number is lower.";
             _numberGenerator.Setup(x => x.Generate(It.IsAny<int>())).Returns(firstCorrectNumber);
-            _underTest.Guess(firstCorrectNumber);
+            var firstResult = _underTest.Guess(firstCorrectNumber);
 
             _numberGenerator.Setup(x => x.Generate(It.IsAny<int>())).Returns(secondCorrectNumber);
-            var result = _underTest.Guess(firstCorrectNumber);
+            var secondResult = _underTest.Guess(firstCorrectNumber);
 
             _numberGenerator.Verify(x => x.Generate(It.IsAny<int>()), Times.Exactly(2));
-            Assert.AreEqual(expectedMessage, result.GetMessage());
+            Assert.AreEqual(firstExpectedMessage, firstResult.GetMessage());
+            Assert.AreEqual(secondExpectedMessage, secondResult.GetMessage());
         }
 
+        [TestMethod]
+        public void Pick_new_number_after_losing()
+        {
+            var firstCorrectNumber = 4;
+            var secondCorrectNumber = 3;
+            var firstExpectedMessage = $"You lose! My number was {firstCorrectNumber}.";
+            var secondExpectedMessage = "Incorrect! My number is lower.";
+            _numberGenerator.Setup(x => x.Generate(It.IsAny<int>())).Returns(firstCorrectNumber);
 
-        // Second game after a loss
+            _underTest.Guess(firstCorrectNumber + 1);
+            _underTest.Guess(firstCorrectNumber + 2);
+            var firstResult = _underTest.Guess(firstCorrectNumber + 3);
+
+            _numberGenerator.Setup(x => x.Generate(It.IsAny<int>())).Returns(secondCorrectNumber);
+            var secondResult = _underTest.Guess(firstCorrectNumber);
+
+            _numberGenerator.Verify(x => x.Generate(It.IsAny<int>()), Times.Exactly(2));
+            Assert.AreEqual(firstExpectedMessage, firstResult.GetMessage());
+            Assert.AreEqual(secondExpectedMessage, secondResult.GetMessage());
+        }
     }
 }
