@@ -8,7 +8,6 @@ namespace Katalyst_TDD_Starter.Test.Bags
         [TestMethod]
         public void Organise_bags()
         {
-
             // Arrange :
             // Set up bags with various categories
             // Populate bags with items of various categories 
