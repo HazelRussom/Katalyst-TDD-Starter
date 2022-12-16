@@ -9,17 +9,18 @@ namespace Katalyst_TDD_Starter.Test.Bags
         public void Organise_bags()
         {
             // Arrange :
-            // Set up bags with various categories
-            // Populate bags with items of various categories 
+            // Create bag with no category
+            // Create bag with one of each category
+            // Add items of each category to bags
 
 
             // Act:
-            // Organise bags
-
+            // Call method to organise bags
 
             // Assert:
-            // Bags contain correct items in correct order
-            
+            // Find how to see contents of bags
+            // Verify each bag contains expected items
+            // Verify each bag contains items in alphabetical order
         }
     }
 }
