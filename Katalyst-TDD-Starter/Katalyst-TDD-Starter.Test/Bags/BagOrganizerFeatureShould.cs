@@ -64,9 +64,18 @@ namespace Katalyst_TDD_Starter.Test.Bags
             bagBelt.Organise();
 
             // Assert:
+            Assert.AreEqual(5, bagBelt.BagsCount());
             // Find how to see contents of bags
             // Verify each bag contains expected items
+
+            Assert.AreEqual(1, bagBelt.ItemsInBag(0).Count);
+            Assert.AreEqual(4, bagBelt.ItemsInBag(1).Count);
+            Assert.AreEqual(3, bagBelt.ItemsInBag(2).Count);
+            Assert.AreEqual(4, bagBelt.ItemsInBag(3).Count);
+            Assert.AreEqual(2, bagBelt.ItemsInBag(4).Count);
             // Verify each bag contains items in alphabetical order
+
+            Assert.AreEqual(silverItem, bagBelt.ItemsInBag(0)[0]);
         }
     }
 }
