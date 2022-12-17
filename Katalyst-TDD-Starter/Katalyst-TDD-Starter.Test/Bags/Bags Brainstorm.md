@@ -7,6 +7,7 @@
 	Can have a Category
 	Can contain *Items*
 	Has a limit to the number of items it can contain
+	Example has Backpack with 8, category bags with 4
 }
 *Items* {
 	Must have a Category
