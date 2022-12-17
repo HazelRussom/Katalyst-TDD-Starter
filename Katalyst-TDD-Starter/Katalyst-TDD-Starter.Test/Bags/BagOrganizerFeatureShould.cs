@@ -61,7 +61,7 @@ namespace Katalyst_TDD_Starter.Test.Bags
 
             // Act:
             // Call method to organise bags
-
+            bagBelt.Organise();
 
             // Assert:
             // Find how to see contents of bags
