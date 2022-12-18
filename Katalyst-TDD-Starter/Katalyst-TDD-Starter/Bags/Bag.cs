@@ -12,5 +12,10 @@
         {
             this.category = category;
         }
+
+        public IReadOnlyCollection<Item> GetItems()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -31,6 +31,22 @@ namespace Katalyst_TDD_Starter.Test.Bags
             Assert.AreEqual(2, bags.Count);
         }
 
+        [TestMethod]
+        public void Add_item_to_empty_bag()
+        {
+            var underTest = new BagBelt();
+            var bag = new Bag();
+            underTest.AddBag(bag);
+            var itemToAdd = new Item("TestItem", ItemCategory.Cloth);
+
+            underTest.AddItem(itemToAdd);
+
+            //Do we want to mock this?
+            var bagItems = bag.GetItems();
+            Assert.IsTrue(bagItems.Contains(itemToAdd));
+            Assert.AreEqual(1, bagItems.Count);
+        }
+
         // Add item to empty bags -> Put item in first bag
         // Add item to empty bag with different category -> Put in first bag regardless of category
         // Add item to bags where first bag is full -> Put in second bag
