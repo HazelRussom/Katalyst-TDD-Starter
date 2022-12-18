@@ -5,6 +5,11 @@
         public BagBelt()
         {
         }
+
+        public List<Bag> GetBags()
+        {
+            return new List<Bag>();
+        }
         
         public void AddBag(Bag bagToAdd)
         {
