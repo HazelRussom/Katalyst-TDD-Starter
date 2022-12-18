@@ -16,16 +16,19 @@ namespace Katalyst_TDD_Starter.Test.Bags
         }
 
         [TestMethod]
-        public void Add_a_bag()
+        public void Add_bags()
         {
             var underTest = new BagBelt();
-            var bagToAdd = new Bag();
+            var firstBagToAdd = new Bag();
+            var secondBagToAdd = new Bag(ItemCategory.Metal);
 
-            underTest.AddBag(bagToAdd);
+            underTest.AddBag(firstBagToAdd);
+            underTest.AddBag(secondBagToAdd);
 
             var bags = underTest.GetBags();
-            Assert.IsTrue(bags.Contains(bagToAdd));
-            Assert.AreEqual(1, bags.Count);
+            Assert.IsTrue(bags.Contains(firstBagToAdd));
+            Assert.IsTrue(bags.Contains(secondBagToAdd));
+            Assert.AreEqual(2, bags.Count);
         }
     }
 }
