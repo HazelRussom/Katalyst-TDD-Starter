@@ -43,20 +43,20 @@ namespace Katalyst_TDD_Starter.Test.Bags
             var axeItem = new Item("Axe", ItemCategory.Weapon);
             var maceItem = new Item("Mace", ItemCategory.Weapon);
 
-            bagBelt.AddItem(leatherItem);
             bagBelt.AddItem(linenItem);
-            bagBelt.AddItem(silkItem);
+            bagBelt.AddItem(leatherItem);
             bagBelt.AddItem(woolItem);
+            bagBelt.AddItem(silkItem);
+            bagBelt.AddItem(roseItem);
             bagBelt.AddItem(cherryBlossomItem);
             bagBelt.AddItem(marigoldItem);
-            bagBelt.AddItem(roseItem);
             bagBelt.AddItem(copperItem);
             bagBelt.AddItem(goldItem1);
             bagBelt.AddItem(goldItem2);
             bagBelt.AddItem(goldItem3);
             bagBelt.AddItem(silverItem);
-            bagBelt.AddItem(axeItem);
             bagBelt.AddItem(maceItem);
+            bagBelt.AddItem(axeItem);
 
 
             // Act:
@@ -76,6 +76,15 @@ namespace Katalyst_TDD_Starter.Test.Bags
             // Verify each bag contains items in alphabetical order
 
             Assert.AreEqual(silverItem, bagBelt.ItemsInBag(0)[0]);
+
+            Assert.AreEqual(leatherItem, bagBelt.ItemsInBag(1)[0]);
+
+            Assert.AreEqual(cherryBlossomItem, bagBelt.ItemsInBag(2)[0]);
+
+            Assert.AreEqual(copperItem, bagBelt.ItemsInBag(3)[0]);
+
+            Assert.AreEqual(axeItem, bagBelt.ItemsInBag(4)[0]);
+            Assert.AreEqual(maceItem, bagBelt.ItemsInBag(4)[1]);
         }
     }
 }
