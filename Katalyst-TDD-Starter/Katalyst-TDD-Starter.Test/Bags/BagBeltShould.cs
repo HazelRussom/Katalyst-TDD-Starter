@@ -30,5 +30,10 @@ namespace Katalyst_TDD_Starter.Test.Bags
             Assert.IsTrue(bags.Contains(secondBagToAdd));
             Assert.AreEqual(2, bags.Count);
         }
+
+        // Add item to empty bags -> Put item in first bag
+        // Add item to empty bag with different category -> Put in first bag regardless of category
+        // Add item to bags where first bag is full -> Put in second bag
+        // Add item to bags where all are full -> Don't add item. Throw exception?
     }
 }
