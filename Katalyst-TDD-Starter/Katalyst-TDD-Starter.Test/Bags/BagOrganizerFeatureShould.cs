@@ -64,7 +64,7 @@ namespace Katalyst_TDD_Starter.Test.Bags
             bagBelt.Organise();
 
             // Assert:
-            Assert.AreEqual(5, bagBelt.BagsCount());
+            Assert.AreEqual(5, bagBelt.GetBags().Count);
             // Find how to see contents of bags
             // Verify each bag contains expected items
 

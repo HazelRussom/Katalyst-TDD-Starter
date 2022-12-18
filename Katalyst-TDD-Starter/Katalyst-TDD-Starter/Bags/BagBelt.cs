@@ -2,14 +2,14 @@
 {
     public class BagBelt
     {
-        private List<Bag> _storedBags;
+        private readonly List<Bag> _storedBags;
 
         public BagBelt()
         {
             _storedBags = new List<Bag>();
         }
 
-        public List<Bag> GetBags()
+        public IReadOnlyCollection<Bag> GetBags()
         {
             return _storedBags;
         }
@@ -25,11 +25,6 @@
         }
 
         public void Organise()
-        {
-            throw new NotImplementedException();
-        }
-
-        public int BagsCount()
         {
             throw new NotImplementedException();
         }
