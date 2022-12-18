@@ -2,18 +2,21 @@
 {
     public class BagBelt
     {
+        private List<Bag> _storedBags;
+
         public BagBelt()
         {
+            _storedBags = new List<Bag>();
         }
 
         public List<Bag> GetBags()
         {
-            return new List<Bag>();
+            return _storedBags;
         }
         
         public void AddBag(Bag bagToAdd)
         {
-            throw new NotImplementedException();
+            _storedBags.Add(bagToAdd);
         }
 
         public void AddItem(Item itemToAdd)

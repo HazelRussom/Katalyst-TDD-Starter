@@ -14,5 +14,18 @@ namespace Katalyst_TDD_Starter.Test.Bags
 
             Assert.IsFalse(underTest.GetBags().Any());
         }
+
+        [TestMethod]
+        public void Add_a_bag()
+        {
+            var underTest = new BagBelt();
+            var bagToAdd = new Bag();
+
+            underTest.AddBag(bagToAdd);
+
+            var bags = underTest.GetBags();
+            Assert.IsTrue(bags.Contains(bagToAdd));
+            Assert.AreEqual(1, bags.Count);
+        }
     }
 }
