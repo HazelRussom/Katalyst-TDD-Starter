@@ -1,6 +1,7 @@
 ﻿using Katalyst_TDD_Starter.Bags;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using System;
 using System.Linq;
 
 namespace Katalyst_TDD_Starter.Test.Bags
@@ -37,6 +38,7 @@ namespace Katalyst_TDD_Starter.Test.Bags
         {
             var underTest = new BagBelt();
             var bag = new Mock<IBag>();
+            bag.Setup(x => x.HasSpace()).Returns(true);
             underTest.AddBag(bag.Object);
             var itemToAdd = new Item("TestItem", ItemCategory.Cloth);
 
@@ -64,10 +66,21 @@ namespace Katalyst_TDD_Starter.Test.Bags
             emptyBag.Verify(x => x.AddItem(itemToAdd), Times.Once);
         }
 
+        [TestMethod]
+        public void Not_add_item_when_all_bags_are_full()
+        {
+            var underTest = new BagBelt();
+            var fullBag = new Mock<IBag>();
+            fullBag.Setup(x => x.HasSpace()).Returns(false);
+            underTest.AddBag(fullBag.Object);
 
-        // Add item to empty bags -> Put item in first bag
-        // Add item to empty bag with different category -> Put in first bag regardless of category
-        // Add item to bags where first bag is full -> Put in second bag
+            var itemToAdd = new Item("TestItem", ItemCategory.Cloth);
+            var exception = Assert.ThrowsException<BagException>(() => underTest.AddItem(itemToAdd));
+
+            fullBag.Verify(x => x.AddItem(itemToAdd), Times.Never);
+            Assert.AreEqual("All bags are full, no more items can be added!", exception.Message);
+        }
+
         // Add item to bags where all are full -> Don't add item. Throw exception?
     }
 

@@ -21,8 +21,14 @@
 
         public void AddItem(Item itemToAdd)
         {
-            var firstOpenBag = _storedBags.Where(x => x.HasSpace()).First();
-            firstOpenBag.AddItem(itemToAdd);
+            var openBags = _storedBags.Where(x => x.HasSpace());
+
+            if(!openBags.Any())
+            {
+                throw new BagException("All bags are full, no more items can be added!");
+            }
+
+            openBags.First().AddItem(itemToAdd);
         }
 
         public void Organise()
