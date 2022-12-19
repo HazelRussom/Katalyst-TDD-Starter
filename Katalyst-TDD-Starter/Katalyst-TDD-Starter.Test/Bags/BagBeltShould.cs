@@ -1,5 +1,6 @@
 ﻿using Katalyst_TDD_Starter.Bags;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using System.Linq;
 
 namespace Katalyst_TDD_Starter.Test.Bags
@@ -35,16 +36,13 @@ namespace Katalyst_TDD_Starter.Test.Bags
         public void Add_item_to_empty_bag()
         {
             var underTest = new BagBelt();
-            var bag = new Bag();
-            underTest.AddBag(bag);
+            var bag = new Mock<IBag>();
+            underTest.AddBag(bag.Object);
             var itemToAdd = new Item("TestItem", ItemCategory.Cloth);
 
             underTest.AddItem(itemToAdd);
 
-            //Do we want to mock this?
-            var bagItems = bag.GetItems();
-            Assert.IsTrue(bagItems.Contains(itemToAdd));
-            Assert.AreEqual(1, bagItems.Count);
+            bag.Verify(x => x.AddItem(itemToAdd), Times.Once);
         }
 
         // Add item to empty bags -> Put item in first bag
@@ -52,4 +50,5 @@ namespace Katalyst_TDD_Starter.Test.Bags
         // Add item to bags where first bag is full -> Put in second bag
         // Add item to bags where all are full -> Don't add item. Throw exception?
     }
+
 }

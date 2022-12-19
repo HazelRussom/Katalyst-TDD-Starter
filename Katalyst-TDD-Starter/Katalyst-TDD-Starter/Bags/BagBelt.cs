@@ -2,26 +2,26 @@
 {
     public class BagBelt
     {
-        private readonly List<Bag> _storedBags;
+        private readonly List<IBag> _storedBags;
 
         public BagBelt()
         {
-            _storedBags = new List<Bag>();
+            _storedBags = new List<IBag>();
         }
 
-        public IReadOnlyCollection<Bag> GetBags()
+        public IReadOnlyCollection<IBag> GetBags()
         {
             return _storedBags;
         }
         
-        public void AddBag(Bag bagToAdd)
+        public void AddBag(IBag bagToAdd)
         {
             _storedBags.Add(bagToAdd);
         }
 
         public void AddItem(Item itemToAdd)
         {
-            throw new NotImplementedException();
+            _storedBags.First().AddItem(itemToAdd);
         }
 
         public void Organise()
