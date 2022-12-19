@@ -9,25 +9,25 @@ namespace Katalyst_TDD_Starter.Test.Bags
     [TestClass]
     public class BagBeltShould
     {
+        private readonly Item _testItem = new("TestItem", ItemCategory.Cloth);
+        private readonly BagBelt _underTest = new();
+
         [TestMethod]
         public void Start_with_no_bags()
         {
-            var underTest = new BagBelt();
-
-            Assert.IsFalse(underTest.GetBags().Any());
+            Assert.IsFalse(_underTest.GetBags().Any());
         }
 
         [TestMethod]
         public void Add_bags()
         {
-            var underTest = new BagBelt();
             var firstBagToAdd = new Bag();
             var secondBagToAdd = new Bag(ItemCategory.Metal);
 
-            underTest.AddBag(firstBagToAdd);
-            underTest.AddBag(secondBagToAdd);
+            _underTest.AddBag(firstBagToAdd);
+            _underTest.AddBag(secondBagToAdd);
 
-            var bags = underTest.GetBags();
+            var bags = _underTest.GetBags();
             Assert.IsTrue(bags.Contains(firstBagToAdd));
             Assert.IsTrue(bags.Contains(secondBagToAdd));
             Assert.AreEqual(2, bags.Count);
@@ -36,52 +36,43 @@ namespace Katalyst_TDD_Starter.Test.Bags
         [TestMethod]
         public void Add_item_to_empty_bag()
         {
-            var underTest = new BagBelt();
             var bag = new Mock<IBag>();
             bag.Setup(x => x.HasSpace()).Returns(true);
-            underTest.AddBag(bag.Object);
-            var itemToAdd = new Item("TestItem", ItemCategory.Cloth);
+            _underTest.AddBag(bag.Object);
 
-            underTest.AddItem(itemToAdd);
+            _underTest.AddItem(_testItem);
 
-            bag.Verify(x => x.AddItem(itemToAdd), Times.Once);
+            bag.Verify(x => x.AddItem(_testItem), Times.Once);
         }
 
         [TestMethod]
         public void Add_item_when_first_bag_is_full()
         {
-            var underTest = new BagBelt();
             var fullBag = new Mock<IBag>();
             fullBag.Setup(x => x.HasSpace()).Returns(false);
+            _underTest.AddBag(fullBag.Object);
             var emptyBag = new Mock<IBag>();
             emptyBag.Setup(x => x.HasSpace()).Returns(true);
-            underTest.AddBag(fullBag.Object);
-            underTest.AddBag(emptyBag.Object);
+            _underTest.AddBag(emptyBag.Object);
             
-            var itemToAdd = new Item("TestItem", ItemCategory.Cloth);
+            _underTest.AddItem(_testItem);
 
-            underTest.AddItem(itemToAdd);
-
-            fullBag.Verify(x => x.AddItem(itemToAdd), Times.Never);
-            emptyBag.Verify(x => x.AddItem(itemToAdd), Times.Once);
+            fullBag.Verify(x => x.AddItem(_testItem), Times.Never);
+            emptyBag.Verify(x => x.AddItem(_testItem), Times.Once);
         }
 
         [TestMethod]
         public void Not_add_item_when_all_bags_are_full()
         {
-            var underTest = new BagBelt();
             var fullBag = new Mock<IBag>();
             fullBag.Setup(x => x.HasSpace()).Returns(false);
-            underTest.AddBag(fullBag.Object);
+            _underTest.AddBag(fullBag.Object);
 
-            var itemToAdd = new Item("TestItem", ItemCategory.Cloth);
-            var exception = Assert.ThrowsException<BagException>(() => underTest.AddItem(itemToAdd));
+            var exception = Assert.ThrowsException<BagException>(() => _underTest.AddItem(_testItem));
 
-            fullBag.Verify(x => x.AddItem(itemToAdd), Times.Never);
+            fullBag.Verify(x => x.AddItem(_testItem), Times.Never);
             Assert.AreEqual("All bags are full, no more items can be added!", exception.Message);
         }
-
-        // Add item to bags where all are full -> Don't add item. Throw exception?
     }
 
 }
