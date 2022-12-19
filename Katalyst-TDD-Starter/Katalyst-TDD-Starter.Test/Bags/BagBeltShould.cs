@@ -45,6 +45,26 @@ namespace Katalyst_TDD_Starter.Test.Bags
             bag.Verify(x => x.AddItem(itemToAdd), Times.Once);
         }
 
+        [TestMethod]
+        public void Add_item_when_first_bag_is_full()
+        {
+            var underTest = new BagBelt();
+            var fullBag = new Mock<IBag>();
+            fullBag.Setup(x => x.HasSpace()).Returns(false);
+            var emptyBag = new Mock<IBag>();
+            emptyBag.Setup(x => x.HasSpace()).Returns(true);
+            underTest.AddBag(fullBag.Object);
+            underTest.AddBag(emptyBag.Object);
+            
+            var itemToAdd = new Item("TestItem", ItemCategory.Cloth);
+
+            underTest.AddItem(itemToAdd);
+
+            fullBag.Verify(x => x.AddItem(itemToAdd), Times.Never);
+            emptyBag.Verify(x => x.AddItem(itemToAdd), Times.Once);
+        }
+
+
         // Add item to empty bags -> Put item in first bag
         // Add item to empty bag with different category -> Put in first bag regardless of category
         // Add item to bags where first bag is full -> Put in second bag

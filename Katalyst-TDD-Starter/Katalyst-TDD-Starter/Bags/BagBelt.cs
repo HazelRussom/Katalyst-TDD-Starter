@@ -21,7 +21,8 @@
 
         public void AddItem(Item itemToAdd)
         {
-            _storedBags.First().AddItem(itemToAdd);
+            var firstOpenBag = _storedBags.Where(x => x.HasSpace()).First();
+            firstOpenBag.AddItem(itemToAdd);
         }
 
         public void Organise()

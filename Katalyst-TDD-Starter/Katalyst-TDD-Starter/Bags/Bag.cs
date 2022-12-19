@@ -3,6 +3,7 @@
     public interface IBag
     {
         void AddItem(Item itemToAdd);
+        bool HasSpace();
     }
 
     public class Bag : IBag
@@ -24,6 +25,11 @@
         }
 
         public IReadOnlyCollection<Item> GetItems()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool HasSpace()
         {
             throw new NotImplementedException();
         }
