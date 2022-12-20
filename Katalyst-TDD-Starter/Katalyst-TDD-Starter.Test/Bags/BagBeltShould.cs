@@ -21,7 +21,7 @@ namespace Katalyst_TDD_Starter.Test.Bags
         [TestMethod]
         public void Add_bags()
         {
-            var firstBagToAdd = new Bag();
+            var firstBagToAdd = new Bag(4);
             var secondBagToAdd = new Bag(ItemCategory.Metal);
 
             _underTest.AddBag(firstBagToAdd);

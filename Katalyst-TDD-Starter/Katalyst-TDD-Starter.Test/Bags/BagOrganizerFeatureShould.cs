@@ -11,7 +11,7 @@ namespace Katalyst_TDD_Starter.Test.Bags
         {
             // Arrange :
             // Create bag with no category
-            var defaultBag = new Bag();
+            var defaultBag = new Bag(8);
             // Create bag with one of each category
             var clothBag = new Bag(ItemCategory.Cloth);
             var herbBag = new Bag(ItemCategory.Herb);

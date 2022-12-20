@@ -8,10 +8,12 @@
 
     public class Bag : IBag
     {
+        private readonly int size;
         private ItemCategory category;
 
-        public Bag()
+        public Bag(int size)
         {
+            this.size = size;
         }
 
         public Bag(ItemCategory category)

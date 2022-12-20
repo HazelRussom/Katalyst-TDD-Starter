@@ -9,11 +9,19 @@ namespace Katalyst_TDD_Starter.Test.Bags
         [TestMethod]
         public void Have_space()
         {
-            var underTest = new Bag();
+            var underTest = new Bag(1);
 
             Assert.IsTrue(underTest.HasSpace());
         }
-        // hasSpace == true when it isn't full
-        // hasSpace == false when it's full
+
+        [TestMethod]
+        public void Not_have_space()
+        {
+            var underTest = new Bag(1);
+
+            underTest.AddItem(new Item(string.Empty, ItemCategory.Cloth));
+
+            Assert.IsFalse(underTest.HasSpace());
+        }
     }
 }
