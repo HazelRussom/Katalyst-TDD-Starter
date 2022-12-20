@@ -3,6 +3,7 @@
     public class BagBelt
     {
         private readonly List<IBag> _storedBags;
+        private const string FullBagsErrorMessage = "All bags are full, no more items can be added!";
 
         public BagBelt()
         {
@@ -25,7 +26,7 @@
 
             if(!openBags.Any())
             {
-                throw new BagException("All bags are full, no more items can be added!");
+                throw new BagException(FullBagsErrorMessage);
             }
 
             openBags.First().AddItem(itemToAdd);

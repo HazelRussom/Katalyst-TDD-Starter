@@ -31,7 +31,7 @@
 
         public bool HasSpace()
         {
-            throw new NotImplementedException();
+            return true;
         }
     }
 }
