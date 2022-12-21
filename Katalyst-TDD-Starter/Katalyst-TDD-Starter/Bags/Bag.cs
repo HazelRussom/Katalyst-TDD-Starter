@@ -10,6 +10,7 @@
     {
         private readonly int size;
         private ItemCategory category;
+        protected virtual List<Item> Items { get; } = new();
 
         public Bag(int size)
         {
@@ -33,7 +34,7 @@
 
         public bool HasSpace()
         {
-            return true;
+            return Items.Count < size;
         }
     }
 }
