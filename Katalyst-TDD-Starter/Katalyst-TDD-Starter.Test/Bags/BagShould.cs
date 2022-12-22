@@ -19,8 +19,11 @@ namespace Katalyst_TDD_Starter.Test.Bags
         public void Have_space_for_a_bag_with_some_items()
         {
             var testItem = new Item(string.Empty, ItemCategory.Cloth);
-            var items = new List<Item> { testItem, testItem, testItem };
-            var underTest = new TestableBag(4, items);
+            var underTest = new Bag(4);
+            underTest.AddItem(testItem);
+            underTest.AddItem(testItem);
+            underTest.AddItem(testItem);
+
 
             Assert.IsTrue(underTest.HasSpace());
         }
@@ -28,8 +31,8 @@ namespace Katalyst_TDD_Starter.Test.Bags
         [TestMethod]
         public void Not_have_space()
         {
-            var items = new List<Item> { new Item(string.Empty, ItemCategory.Cloth) };
-            var underTest = new TestableBag(1, items);
+            var underTest = new Bag(1);
+            underTest.AddItem(new Item(string.Empty, ItemCategory.Cloth));
 
             Assert.IsFalse(underTest.HasSpace());
         }
@@ -37,7 +40,7 @@ namespace Katalyst_TDD_Starter.Test.Bags
         [TestMethod]
         public void Add_an_item()
         {
-            var underTest = new TestableBag(1, new List<Item>());
+            var underTest = new TestableBag(1);
             var expectedItem = new Item(string.Empty, ItemCategory.Cloth);
 
             underTest.AddItem(expectedItem);
@@ -51,14 +54,11 @@ namespace Katalyst_TDD_Starter.Test.Bags
 
         private class TestableBag : Bag
         {
-            public TestableBag(int size, List<Item> items) : base(size)
+            public TestableBag(int size) : base(size)
             {
-                Items = items;
             }
 
             public new List<Item> GetItems() { return Items; }
-
-            protected override List<Item> Items { get; }
         }
     }
 }
