@@ -24,7 +24,7 @@
 
         public void AddItem(Item itemToAdd)
         {
-            throw new NotImplementedException();
+            Items.Add(itemToAdd);
         }
 
         public IReadOnlyCollection<Item> GetItems()

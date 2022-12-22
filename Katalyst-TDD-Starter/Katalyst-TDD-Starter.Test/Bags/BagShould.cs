@@ -14,6 +14,7 @@ namespace Katalyst_TDD_Starter.Test.Bags
 
             Assert.IsTrue(underTest.HasSpace());
         }
+
         [TestMethod]
         public void Have_space_for_a_bag_with_some_items()
         {
@@ -33,9 +34,20 @@ namespace Katalyst_TDD_Starter.Test.Bags
             Assert.IsFalse(underTest.HasSpace());
         }
 
-        // Add Item should add an item to the bag
+        [TestMethod]
+        public void Add_an_item()
+        {
+            var underTest = new TestableBag(1, new List<Item>());
+            var expectedItem = new Item(string.Empty, ItemCategory.Cloth);
 
+            underTest.AddItem(expectedItem);
 
+            var storedItems = underTest.GetItems();
+            Assert.IsTrue(storedItems.Contains(expectedItem));
+            Assert.AreEqual(1, storedItems.Count);
+        }
+
+        //Add multiple items
 
         private class TestableBag : Bag
         {
@@ -43,6 +55,8 @@ namespace Katalyst_TDD_Starter.Test.Bags
             {
                 Items = items;
             }
+
+            public new List<Item> GetItems() { return Items; }
 
             protected override List<Item> Items { get; }
         }
