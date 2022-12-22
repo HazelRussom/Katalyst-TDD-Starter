@@ -33,6 +33,10 @@ namespace Katalyst_TDD_Starter.Test.Bags
             Assert.IsFalse(underTest.HasSpace());
         }
 
+        // Add Item should add an item to the bag
+
+
+
         private class TestableBag : Bag
         {
             public TestableBag(int size, List<Item> items) : base(size)
