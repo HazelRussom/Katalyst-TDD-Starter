@@ -50,7 +50,24 @@ namespace Katalyst_TDD_Starter.Test.Bags
             Assert.AreEqual(1, storedItems.Count);
         }
 
-        //Add multiple items
+        [TestMethod]
+        public void Add_multiple_items()
+        {
+            var underTest = new TestableBag(1);
+            var expectedItem1 = new Item("1", ItemCategory.Cloth);
+            var expectedItem2 = new Item("2", ItemCategory.Metal);
+            var expectedItem3 = new Item("3", ItemCategory.Herb);
+
+            underTest.AddItem(expectedItem1);
+            underTest.AddItem(expectedItem2);
+            underTest.AddItem(expectedItem3);
+
+            var storedItems = underTest.GetItems();
+            Assert.IsTrue(storedItems.Contains(expectedItem1));
+            Assert.IsTrue(storedItems.Contains(expectedItem2));
+            Assert.IsTrue(storedItems.Contains(expectedItem3));
+            Assert.AreEqual(3, storedItems.Count);
+        }
 
         private class TestableBag : Bag
         {
