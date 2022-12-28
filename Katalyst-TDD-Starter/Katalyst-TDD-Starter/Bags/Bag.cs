@@ -17,9 +17,10 @@
             this.size = size;
         }
 
-        public Bag(ItemCategory category)
+        public Bag(ItemCategory category, int size)
         {
             this.category = category;
+            this.size = size;
         }
 
         public void AddItem(Item itemToAdd)

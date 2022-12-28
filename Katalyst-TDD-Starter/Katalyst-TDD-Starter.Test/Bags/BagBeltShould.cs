@@ -22,7 +22,7 @@ namespace Katalyst_TDD_Starter.Test.Bags
         public void Add_bags()
         {
             var firstBagToAdd = new Bag(4);
-            var secondBagToAdd = new Bag(ItemCategory.Metal);
+            var secondBagToAdd = new Bag(ItemCategory.Metal, 4);
 
             _underTest.AddBag(firstBagToAdd);
             _underTest.AddBag(secondBagToAdd);

@@ -13,10 +13,10 @@ namespace Katalyst_TDD_Starter.Test.Bags
             // Create bag with no category
             var defaultBag = new Bag(8);
             // Create bag with one of each category
-            var clothBag = new Bag(ItemCategory.Cloth);
-            var herbBag = new Bag(ItemCategory.Herb);
-            var metalBag = new Bag(ItemCategory.Metal);
-            var weaponBag = new Bag(ItemCategory.Weapon);
+            var clothBag = new Bag(ItemCategory.Cloth, 4);
+            var herbBag = new Bag(ItemCategory.Herb, 4);
+            var metalBag = new Bag(ItemCategory.Metal, 4);
+            var weaponBag = new Bag(ItemCategory.Weapon, 4);
             // Create bag belt to hold bags
             var bagBelt = new BagBelt();
             bagBelt.AddBag(defaultBag);
