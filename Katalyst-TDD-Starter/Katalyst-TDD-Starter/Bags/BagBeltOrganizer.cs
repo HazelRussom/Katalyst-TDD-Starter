@@ -6,9 +6,10 @@
         {
         }
 
-        public BagBelt Organize(BagBelt unsortedBagBelt)
+        public void Organize(BagBelt unsortedBagBelt)
         {
-            throw new NotImplementedException();
+            var unorderedBagItems = unsortedBagBelt.GetBags()[0].SortItems();
+
         }
     }
 }

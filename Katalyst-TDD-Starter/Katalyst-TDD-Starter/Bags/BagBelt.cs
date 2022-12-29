@@ -10,7 +10,7 @@
             _storedBags = new List<IBag>();
         }
 
-        public IReadOnlyList<IBag> GetBags()
+        public List<IBag> GetBags()
         {
             return _storedBags;
         }

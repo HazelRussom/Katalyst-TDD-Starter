@@ -12,7 +12,7 @@
     {
         private readonly int size;
         private ItemCategory category;
-        public virtual List<Item> Items { get; } = new();
+        public virtual List<Item> Items { get; set; } = new();
 
         public Bag(int size)
         {
