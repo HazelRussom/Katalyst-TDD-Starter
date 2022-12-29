@@ -73,15 +73,6 @@ namespace Katalyst_TDD_Starter.Test.Bags
             fullBag.Verify(x => x.AddItem(_testItem), Times.Never);
             Assert.AreEqual("All bags are full, no more items can be added!", exception.Message);
         }
-
-        // Organisation 
-        // Move single item to category bag
-        // Move multiple items to different category bags
-        // Leave item in first bag when no category bag exists
-        // Leave item in first bag when only full category bags exist
-        // Alphabetize items in bags
-        // Test for when all bags are full and unordered
-
     }
 
 }

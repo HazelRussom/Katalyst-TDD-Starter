@@ -2,6 +2,8 @@
 {
     public interface IBag
     {
+        public List<Item> Items { get; }
+
         void AddItem(Item itemToAdd);
         bool HasSpace();
     }
@@ -10,7 +12,7 @@
     {
         private readonly int size;
         private ItemCategory category;
-        protected virtual List<Item> Items { get; } = new();
+        public virtual List<Item> Items { get; } = new();
 
         public Bag(int size)
         {
