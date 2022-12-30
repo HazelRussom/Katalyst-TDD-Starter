@@ -73,6 +73,20 @@ namespace Katalyst_TDD_Starter.Test.Bags
             fullBag.Verify(x => x.AddItem(_testItem), Times.Never);
             Assert.AreEqual("All bags are full, no more items can be added!", exception.Message);
         }
-    }
 
+        // Bag belt should tell each bag to organise itself (alphabetisation)
+        [TestMethod]
+        public void Tell_bags_to_organise()
+        {
+            var bag = new Mock<IBag>();
+            _underTest.AddBag(bag.Object);
+
+            _underTest.Organise();
+
+            bag.Verify(x => x.Organise(), Times.Once);
+        }
+
+        // Bag belt should... do something to move items into correct bag
+
+    }
 }

@@ -2,17 +2,17 @@
 {
     public interface IBag
     {
-        public List<Item> Items { get; }
-
         void AddItem(Item itemToAdd);
         bool HasSpace();
+        object SortItems();
+        void Organise();
     }
 
     public class Bag : IBag
     {
         private readonly int size;
         private ItemCategory category;
-        public virtual List<Item> Items { get; set; } = new();
+        protected virtual List<Item> Items { get; set; } = new();
 
         public Bag(int size)
         {
@@ -38,6 +38,16 @@
         public bool HasSpace()
         {
             return Items.Count < size;
+        }
+
+        public object SortItems()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Organise()
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -10,7 +10,7 @@
             _storedBags = new List<IBag>();
         }
 
-        public List<IBag> GetBags()
+        public IReadOnlyList<IBag> GetBags()
         {
             return _storedBags;
         }
@@ -34,7 +34,7 @@
 
         public void Organise()
         {
-            throw new NotImplementedException();
+            _storedBags[0].Organise();
         }
 
         public List<Item> ItemsInBag(int bagIndex)
