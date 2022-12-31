@@ -1,5 +1,6 @@
 ﻿using Katalyst_TDD_Starter.Bags;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
 
 namespace Katalyst_TDD_Starter.Test.Bags
 {
@@ -66,33 +67,19 @@ namespace Katalyst_TDD_Starter.Test.Bags
 
             // Assert:
             Assert.AreEqual(5, bagBelt.GetBags().Count);
-            // Find how to see contents of bags
-            // Verify each bag contains expected items
-            var bag1Contents = bagBelt.ItemsInBag(0);
-            var bag2Contents = bagBelt.ItemsInBag(1);
-            var bag3Contents = bagBelt.ItemsInBag(2);
-            var bag4Contents = bagBelt.ItemsInBag(3);
-            var bag5Contents = bagBelt.ItemsInBag(4);
 
+            // Verify each bag contains expected items in alphabetical order
+            var expectedBag1Contents = new List<Item> { silverItem };
+            var expectedBag2Contents = new List<Item> { leatherItem, linenItem, silkItem, woolItem };
+            var expectedBag3Contents = new List<Item> { cherryBlossomItem, marigoldItem, roseItem };
+            var expectedBag4Contents = new List<Item> { copperItem, goldItem1, goldItem2, goldItem3 };
+            var expectedBag5Contents = new List<Item> { axeItem, maceItem }; 
 
-            Assert.AreEqual(1, bag1Contents.Count);
-            Assert.AreEqual(4, bag2Contents.Count);
-            Assert.AreEqual(3, bag3Contents.Count);
-            Assert.AreEqual(4, bag4Contents.Count);
-            Assert.AreEqual(2, bag5Contents.Count);
-            // Verify each bag contains items in alphabetical order
-
-            //TODO Expand these asserts? Build expected lists and use CollectionAssert?
-            Assert.AreEqual(silverItem, bag1Contents[0]);
-
-            Assert.AreEqual(leatherItem, bag2Contents[0]);
-
-            Assert.AreEqual(cherryBlossomItem, bag3Contents[0]);
-
-            Assert.AreEqual(copperItem, bag4Contents[0]);
-
-            Assert.AreEqual(axeItem, bag5Contents[0]);
-            Assert.AreEqual(maceItem, bag5Contents[1]);
+            CollectionAssert.AreEqual(expectedBag1Contents, bagBelt.ItemsInBag(0));
+            CollectionAssert.AreEqual(expectedBag2Contents, bagBelt.ItemsInBag(1));
+            CollectionAssert.AreEqual(expectedBag3Contents, bagBelt.ItemsInBag(2));
+            CollectionAssert.AreEqual(expectedBag4Contents, bagBelt.ItemsInBag(3));
+            CollectionAssert.AreEqual(expectedBag5Contents, bagBelt.ItemsInBag(4));
         }
     }
 }
