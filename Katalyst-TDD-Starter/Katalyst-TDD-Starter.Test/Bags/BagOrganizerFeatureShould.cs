@@ -17,14 +17,7 @@ namespace Katalyst_TDD_Starter.Test.Bags
             var herbBag = new Bag(ItemCategory.Herb, 4);
             var metalBag = new Bag(ItemCategory.Metal, 4);
             var weaponBag = new Bag(ItemCategory.Weapon, 4);
-            // Create bag belt to hold bags
-            var bagBelt = new BagBelt();
-            bagBelt.AddBag(defaultBag);
-            bagBelt.AddBag(clothBag);
-            bagBelt.AddBag(herbBag);
-            bagBelt.AddBag(metalBag);
-            bagBelt.AddBag(weaponBag);
-            // Add items of each category to bags
+
             var leatherItem = new Item("Leather", ItemCategory.Cloth);
             var linenItem = new Item("Linen", ItemCategory.Cloth);
             var silkItem = new Item("Silk", ItemCategory.Cloth);
@@ -43,6 +36,15 @@ namespace Katalyst_TDD_Starter.Test.Bags
             var axeItem = new Item("Axe", ItemCategory.Weapon);
             var maceItem = new Item("Mace", ItemCategory.Weapon);
 
+            // Create bag belt to hold bags
+            var bagBelt = new BagBelt();
+            bagBelt.AddBag(defaultBag);
+            bagBelt.AddBag(clothBag);
+            bagBelt.AddBag(herbBag);
+            bagBelt.AddBag(metalBag);
+            bagBelt.AddBag(weaponBag);
+
+            // Add items of each category to bags
             bagBelt.AddItem(linenItem);
             bagBelt.AddItem(leatherItem);
             bagBelt.AddItem(woolItem);
@@ -58,7 +60,6 @@ namespace Katalyst_TDD_Starter.Test.Bags
             bagBelt.AddItem(maceItem);
             bagBelt.AddItem(axeItem);
 
-
             // Act:
             // Call method to organise bags
             bagBelt.Organise();
@@ -67,24 +68,31 @@ namespace Katalyst_TDD_Starter.Test.Bags
             Assert.AreEqual(5, bagBelt.GetBags().Count);
             // Find how to see contents of bags
             // Verify each bag contains expected items
+            var bag1Contents = bagBelt.ItemsInBag(0);
+            var bag2Contents = bagBelt.ItemsInBag(1);
+            var bag3Contents = bagBelt.ItemsInBag(2);
+            var bag4Contents = bagBelt.ItemsInBag(3);
+            var bag5Contents = bagBelt.ItemsInBag(4);
 
-            Assert.AreEqual(1, bagBelt.ItemsInBag(0).Count);
-            Assert.AreEqual(4, bagBelt.ItemsInBag(1).Count);
-            Assert.AreEqual(3, bagBelt.ItemsInBag(2).Count);
-            Assert.AreEqual(4, bagBelt.ItemsInBag(3).Count);
-            Assert.AreEqual(2, bagBelt.ItemsInBag(4).Count);
+
+            Assert.AreEqual(1, bag1Contents.Count);
+            Assert.AreEqual(4, bag2Contents.Count);
+            Assert.AreEqual(3, bag3Contents.Count);
+            Assert.AreEqual(4, bag4Contents.Count);
+            Assert.AreEqual(2, bag5Contents.Count);
             // Verify each bag contains items in alphabetical order
 
-            Assert.AreEqual(silverItem, bagBelt.ItemsInBag(0)[0]);
+            //TODO Expand these asserts? Build expected lists and use CollectionAssert?
+            Assert.AreEqual(silverItem, bag1Contents[0]);
 
-            Assert.AreEqual(leatherItem, bagBelt.ItemsInBag(1)[0]);
+            Assert.AreEqual(leatherItem, bag2Contents[0]);
 
-            Assert.AreEqual(cherryBlossomItem, bagBelt.ItemsInBag(2)[0]);
+            Assert.AreEqual(cherryBlossomItem, bag3Contents[0]);
 
-            Assert.AreEqual(copperItem, bagBelt.ItemsInBag(3)[0]);
+            Assert.AreEqual(copperItem, bag4Contents[0]);
 
-            Assert.AreEqual(axeItem, bagBelt.ItemsInBag(4)[0]);
-            Assert.AreEqual(maceItem, bagBelt.ItemsInBag(4)[1]);
+            Assert.AreEqual(axeItem, bag5Contents[0]);
+            Assert.AreEqual(maceItem, bag5Contents[1]);
         }
     }
 }
