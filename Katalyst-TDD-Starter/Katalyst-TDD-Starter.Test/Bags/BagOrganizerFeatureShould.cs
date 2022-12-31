@@ -11,13 +11,8 @@ namespace Katalyst_TDD_Starter.Test.Bags
         public void Organise_bags()
         {
             // Arrange :
-            // Create bag with no category
-            var defaultBag = new Bag(8);
-            // Create bag with one of each category
-            var clothBag = new Bag(ItemCategory.Cloth, 4);
-            var herbBag = new Bag(ItemCategory.Herb, 4);
-            var metalBag = new Bag(ItemCategory.Metal, 4);
-            var weaponBag = new Bag(ItemCategory.Weapon, 4);
+            // Create bag belt to hold one bag of each category
+            BagBelt bagBelt = BuildBagBelt();
 
             var leatherItem = new Item("Leather", ItemCategory.Cloth);
             var linenItem = new Item("Linen", ItemCategory.Cloth);
@@ -31,19 +26,11 @@ namespace Katalyst_TDD_Starter.Test.Bags
             var copperItem = new Item("Copper", ItemCategory.Metal);
             var goldItem1 = new Item("Gold", ItemCategory.Metal);
             var goldItem2 = new Item("Gold", ItemCategory.Metal);
-            var goldItem3 = new Item("Gold", ItemCategory.Metal);
+            var platinumItem = new Item("Platinum", ItemCategory.Metal);
             var silverItem = new Item("Silver", ItemCategory.Metal);
 
             var axeItem = new Item("Axe", ItemCategory.Weapon);
             var maceItem = new Item("Mace", ItemCategory.Weapon);
-
-            // Create bag belt to hold bags
-            var bagBelt = new BagBelt();
-            bagBelt.AddBag(defaultBag);
-            bagBelt.AddBag(clothBag);
-            bagBelt.AddBag(herbBag);
-            bagBelt.AddBag(metalBag);
-            bagBelt.AddBag(weaponBag);
 
             // Add items of each category to bags
             bagBelt.AddItem(linenItem);
@@ -56,7 +43,7 @@ namespace Katalyst_TDD_Starter.Test.Bags
             bagBelt.AddItem(copperItem);
             bagBelt.AddItem(goldItem1);
             bagBelt.AddItem(goldItem2);
-            bagBelt.AddItem(goldItem3);
+            bagBelt.AddItem(platinumItem);
             bagBelt.AddItem(silverItem);
             bagBelt.AddItem(maceItem);
             bagBelt.AddItem(axeItem);
@@ -72,14 +59,25 @@ namespace Katalyst_TDD_Starter.Test.Bags
             var expectedBag1Contents = new List<Item> { silverItem };
             var expectedBag2Contents = new List<Item> { leatherItem, linenItem, silkItem, woolItem };
             var expectedBag3Contents = new List<Item> { cherryBlossomItem, marigoldItem, roseItem };
-            var expectedBag4Contents = new List<Item> { copperItem, goldItem1, goldItem2, goldItem3 };
-            var expectedBag5Contents = new List<Item> { axeItem, maceItem }; 
+            var expectedBag4Contents = new List<Item> { copperItem, goldItem1, goldItem2, platinumItem };
+            var expectedBag5Contents = new List<Item> { axeItem, maceItem };
 
             CollectionAssert.AreEqual(expectedBag1Contents, bagBelt.ItemsInBag(0));
             CollectionAssert.AreEqual(expectedBag2Contents, bagBelt.ItemsInBag(1));
             CollectionAssert.AreEqual(expectedBag3Contents, bagBelt.ItemsInBag(2));
             CollectionAssert.AreEqual(expectedBag4Contents, bagBelt.ItemsInBag(3));
             CollectionAssert.AreEqual(expectedBag5Contents, bagBelt.ItemsInBag(4));
+        }
+
+        private static BagBelt BuildBagBelt()
+        {
+            var bagBelt = new BagBelt();
+            bagBelt.AddBag(new Bag(8));
+            bagBelt.AddBag(new Bag(ItemCategory.Cloth, 4));
+            bagBelt.AddBag(new Bag(ItemCategory.Herb, 4));
+            bagBelt.AddBag(new Bag(ItemCategory.Metal, 4));
+            bagBelt.AddBag(new Bag(ItemCategory.Weapon, 4));
+            return bagBelt;
         }
     }
 }
