@@ -34,6 +34,7 @@
 
         public void Organise()
         {
+            _storedBags[0].TakeAllItems();
             foreach(var bag in _storedBags)
             {
                 bag.Organise();

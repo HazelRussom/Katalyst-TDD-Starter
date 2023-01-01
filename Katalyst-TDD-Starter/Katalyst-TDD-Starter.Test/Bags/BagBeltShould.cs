@@ -92,10 +92,12 @@ namespace Katalyst_TDD_Starter.Test.Bags
             var defaultBag = new Mock<IBag>();
             defaultBag.Setup(x => x.GetCategory()).Returns(ItemCategory.NotSpecified);
             defaultBag.Setup(x => x.TakeAllItems()).Returns(new List<Item> { clothItem });
+            _underTest.AddBag(defaultBag.Object);
             var clothBag = new Mock<IBag>();
             clothBag.Setup(x => x.GetCategory()).Returns(ItemCategory.Cloth);
-
             _underTest.AddBag(clothBag.Object);
+
+            _underTest.Organise();
 
             defaultBag.Verify(x => x.TakeAllItems(), Times.Once);
             clothBag.Verify(x => x.AddItem(clothItem), Times.Once);
