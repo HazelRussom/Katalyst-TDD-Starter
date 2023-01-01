@@ -6,6 +6,8 @@
         bool HasSpace();
         object SortItems();
         void Organise();
+        ItemCategory GetCategory();
+        List<Item> TakeAllItems();
     }
 
     public class Bag : IBag

@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Katalyst_TDD_Starter.Test.Bags
@@ -86,16 +87,15 @@ namespace Katalyst_TDD_Starter.Test.Bags
         [TestMethod]
         public void Move_cloth_item_into_cloth_bag()
         {
-            var defaultBag = new Mock<Bag>();
+            var clothItem = new Item(string.Empty, ItemCategory.Cloth);
+
+            var defaultBag = new Mock<IBag>();
             defaultBag.Setup(x => x.GetCategory()).Returns(ItemCategory.NotSpecified);
-            var clothBag = new Mock<Bag>();
+            defaultBag.Setup(x => x.TakeAllItems()).Returns(new List<Item> { clothItem });
+            var clothBag = new Mock<IBag>();
             clothBag.Setup(x => x.GetCategory()).Returns(ItemCategory.Cloth);
 
-            //TODO Setup default bag to give cloth item
-            Item clothItem = null;
-
             _underTest.AddBag(clothBag.Object);
-
 
             defaultBag.Verify(x => x.TakeAllItems(), Times.Once);
             clothBag.Verify(x => x.AddItem(clothItem), Times.Once);
