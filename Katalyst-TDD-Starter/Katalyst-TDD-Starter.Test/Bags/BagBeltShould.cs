@@ -74,15 +74,13 @@ namespace Katalyst_TDD_Starter.Test.Bags
         [TestMethod]
         public void Tell_bags_to_organise()
         {
-            var bag1 = new Mock<IBag>();
-            _underTest.AddBag(bag1.Object);
-            var bag2 = new Mock<IBag>();
-            _underTest.AddBag(bag2.Object);
+            _underTest.AddBag(_bagWithoutSpace.Object);
+            _underTest.AddBag(_bagWithSpace.Object);
 
             _underTest.Organise();
 
-            bag1.Verify(x => x.Organise(), Times.Once);
-            bag2.Verify(x => x.Organise(), Times.Once);
+            _bagWithoutSpace.Verify(x => x.Organise(), Times.Once);
+            _bagWithSpace.Verify(x => x.Organise(), Times.Once);
         }
 
         // Bag belt should... do something to move items into correct bag
