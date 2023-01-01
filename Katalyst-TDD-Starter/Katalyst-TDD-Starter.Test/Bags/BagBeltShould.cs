@@ -66,7 +66,7 @@ namespace Katalyst_TDD_Starter.Test.Bags
             _underTest.AddBag(_bagWithoutSpace.Object);
 
             var exception = Assert.ThrowsException<BagException>(() => _underTest.AddItem(_testItem));
-            //TODO Can we take the exception without asserting?
+            
             _bagWithoutSpace.Verify(x => x.AddItem(_testItem), Times.Never);
             Assert.AreEqual("All bags are full, no more items can be added!", exception.Message);
         }
@@ -74,14 +74,17 @@ namespace Katalyst_TDD_Starter.Test.Bags
         [TestMethod]
         public void Tell_bags_to_organise()
         {
-            var bag = new Mock<IBag>();
-            _underTest.AddBag(bag.Object);
+            var bag1 = new Mock<IBag>();
+            _underTest.AddBag(bag1.Object);
+            var bag2 = new Mock<IBag>();
+            _underTest.AddBag(bag2.Object);
 
             _underTest.Organise();
 
-            bag.Verify(x => x.Organise(), Times.Once);
+            bag1.Verify(x => x.Organise(), Times.Once);
+            bag2.Verify(x => x.Organise(), Times.Once);
         }
-        // Test for multiple bags
+
         // Bag belt should... do something to move items into correct bag
 
     }

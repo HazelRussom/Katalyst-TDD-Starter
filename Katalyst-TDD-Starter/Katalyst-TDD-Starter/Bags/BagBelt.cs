@@ -34,7 +34,10 @@
 
         public void Organise()
         {
-            _storedBags[0].Organise();
+            foreach(var bag in _storedBags)
+            {
+                bag.Organise();
+            }
         }
 
         public List<Item> ItemsInBag(int bagIndex)
