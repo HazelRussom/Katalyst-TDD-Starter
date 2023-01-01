@@ -83,6 +83,24 @@ namespace Katalyst_TDD_Starter.Test.Bags
             _bagWithSpace.Verify(x => x.Organise(), Times.Once);
         }
 
+        [TestMethod]
+        public void Move_cloth_item_into_cloth_bag()
+        {
+            var defaultBag = new Mock<Bag>();
+            defaultBag.Setup(x => x.GetCategory()).Returns(ItemCategory.NotSpecified);
+            var clothBag = new Mock<Bag>();
+            clothBag.Setup(x => x.GetCategory()).Returns(ItemCategory.Cloth);
+
+            //TODO Setup default bag to give cloth item
+            Item clothItem = null;
+
+            _underTest.AddBag(clothBag.Object);
+
+
+            defaultBag.Verify(x => x.TakeAllItems(), Times.Once);
+            clothBag.Verify(x => x.AddItem(clothItem), Times.Once);
+        }
+
         // Bag belt should... do something to move items into correct bag
 
     }

@@ -49,5 +49,15 @@
         {
             throw new NotImplementedException();
         }
+
+        public ItemCategory GetCategory()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Item> TakeAllItems()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
