@@ -36,17 +36,13 @@
         {
             var takenItems = _storedBags[0].TakeAllItems();
 
-
             foreach (var item in takenItems)
             {
-                if (_storedBags[1].GetCategory() == ItemCategory.Cloth)
+                var firstClothBag = _storedBags.Where(x => x.GetCategory() == ItemCategory.Cloth).FirstOrDefault();
+                if (firstClothBag != null)
                 {
-                    _storedBags[1].AddItem(item);
+                    firstClothBag.AddItem(item);
                 } 
-                else
-                {
-                    _storedBags[2].AddItem(item);
-                }
             }
 
             foreach(var bag in _storedBags)
