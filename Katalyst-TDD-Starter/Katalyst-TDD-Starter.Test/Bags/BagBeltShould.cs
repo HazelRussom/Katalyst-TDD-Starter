@@ -130,7 +130,11 @@ namespace Katalyst_TDD_Starter.Test.Bags
             clothBag.Verify(x => x.AddItem(clothItem), Times.Once);
         }
 
-        // Bag belt should... do something to move items into correct bag
+        // What still needs doing?
+        //TODO Item Categories other than Cloth
+        //TODO Move organisation into a seperate class?
+        //TODO Don't move items from first bag (Only one bag? First bag is same category?)
+        //TODO Alphabetize takenItems instead of making bags do it?
 
     }
 }
