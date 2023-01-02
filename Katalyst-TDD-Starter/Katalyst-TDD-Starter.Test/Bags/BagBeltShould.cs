@@ -89,7 +89,7 @@ namespace Katalyst_TDD_Starter.Test.Bags
         }
 
         [TestMethod]
-        public void Move_cloth_item_into_cloth_bag()
+        public void Move_cloth_item_into_second_slot_cloth_bag()
         {
             var clothItem = new Item(string.Empty, ItemCategory.Cloth);
 
@@ -104,6 +104,29 @@ namespace Katalyst_TDD_Starter.Test.Bags
             _underTest.Organise();
 
             defaultBag.Verify(x => x.TakeAllItems(), Times.Once);
+            clothBag.Verify(x => x.AddItem(clothItem), Times.Once);
+        }
+
+        [TestMethod]
+        public void Move_cloth_item_into_third_slot_cloth_bag()
+        {
+            var clothItem = new Item(string.Empty, ItemCategory.Cloth);
+
+            var defaultBag = new Mock<IBag>();
+            defaultBag.Setup(x => x.GetCategory()).Returns(ItemCategory.NotSpecified);
+            defaultBag.Setup(x => x.TakeAllItems()).Returns(new List<Item> { clothItem });
+            _underTest.AddBag(defaultBag.Object);
+            var herbBag = new Mock<IBag>();
+            herbBag.Setup(x => x.GetCategory()).Returns(ItemCategory.Herb);
+            _underTest.AddBag(herbBag.Object);
+            var clothBag = new Mock<IBag>();
+            clothBag.Setup(x => x.GetCategory()).Returns(ItemCategory.Cloth);
+            _underTest.AddBag(clothBag.Object);
+
+            _underTest.Organise();
+
+            defaultBag.Verify(x => x.TakeAllItems(), Times.Once);
+            herbBag.Verify(x => x.AddItem(It.IsAny<Item>()), Times.Never);
             clothBag.Verify(x => x.AddItem(clothItem), Times.Once);
         }
 

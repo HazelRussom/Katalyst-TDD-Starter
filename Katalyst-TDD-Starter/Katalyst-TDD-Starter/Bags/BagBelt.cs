@@ -36,9 +36,17 @@
         {
             var takenItems = _storedBags[0].TakeAllItems();
 
-            foreach(var item in takenItems)
+
+            foreach (var item in takenItems)
             {
-                _storedBags[1].AddItem(item);
+                if (_storedBags[1].GetCategory() == ItemCategory.Cloth)
+                {
+                    _storedBags[1].AddItem(item);
+                } 
+                else
+                {
+                    _storedBags[2].AddItem(item);
+                }
             }
 
             foreach(var bag in _storedBags)
