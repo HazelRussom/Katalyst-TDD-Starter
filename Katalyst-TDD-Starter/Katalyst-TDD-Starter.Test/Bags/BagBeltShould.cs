@@ -18,7 +18,11 @@ namespace Katalyst_TDD_Starter.Test.Bags
         public BagBeltShould()
         {
             _bagWithSpace.Setup(x => x.HasSpace()).Returns(true);
+            _bagWithSpace.Setup(x => x.TakeAllItems()).Returns(new List<Item>());
+
             _bagWithoutSpace.Setup(x => x.HasSpace()).Returns(false);
+            _bagWithoutSpace.Setup(x => x.TakeAllItems()).Returns(new List<Item>());
+
         }
 
         [TestMethod]

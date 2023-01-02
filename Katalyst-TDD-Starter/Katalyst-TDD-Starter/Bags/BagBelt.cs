@@ -34,7 +34,13 @@
 
         public void Organise()
         {
-            _storedBags[0].TakeAllItems();
+            var takenItems = _storedBags[0].TakeAllItems();
+
+            foreach(var item in takenItems)
+            {
+                _storedBags[1].AddItem(item);
+            }
+
             foreach(var bag in _storedBags)
             {
                 bag.Organise();
