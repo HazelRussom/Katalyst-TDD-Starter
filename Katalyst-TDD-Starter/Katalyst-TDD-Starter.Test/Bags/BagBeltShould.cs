@@ -96,9 +96,11 @@ namespace Katalyst_TDD_Starter.Test.Bags
             var defaultBag = new Mock<IBag>();
             defaultBag.Setup(x => x.GetCategory()).Returns(ItemCategory.NotSpecified);
             defaultBag.Setup(x => x.TakeAllItems()).Returns(new List<Item> { clothItem });
+            defaultBag.Setup(x => x.HasSpace()).Returns(true);
             _underTest.AddBag(defaultBag.Object);
             var clothBag = new Mock<IBag>();
             clothBag.Setup(x => x.GetCategory()).Returns(ItemCategory.Cloth);
+            clothBag.Setup(x => x.HasSpace()).Returns(true);
             _underTest.AddBag(clothBag.Object);
 
             _underTest.Organise();
@@ -115,12 +117,15 @@ namespace Katalyst_TDD_Starter.Test.Bags
             var defaultBag = new Mock<IBag>();
             defaultBag.Setup(x => x.GetCategory()).Returns(ItemCategory.NotSpecified);
             defaultBag.Setup(x => x.TakeAllItems()).Returns(new List<Item> { clothItem });
+            defaultBag.Setup(x => x.HasSpace()).Returns(true);
             _underTest.AddBag(defaultBag.Object);
             var herbBag = new Mock<IBag>();
             herbBag.Setup(x => x.GetCategory()).Returns(ItemCategory.Herb);
+            herbBag.Setup(x => x.HasSpace()).Returns(true);
             _underTest.AddBag(herbBag.Object);
             var clothBag = new Mock<IBag>();
             clothBag.Setup(x => x.GetCategory()).Returns(ItemCategory.Cloth);
+            clothBag.Setup(x => x.HasSpace()).Returns(true);
             _underTest.AddBag(clothBag.Object);
 
             _underTest.Organise();
@@ -130,11 +135,30 @@ namespace Katalyst_TDD_Starter.Test.Bags
             clothBag.Verify(x => x.AddItem(clothItem), Times.Once);
         }
 
+        [TestMethod]
+        public void Not_move_item_into_full_bag()
+        {
+            var clothItem = new Item(string.Empty, ItemCategory.Cloth);
+            _bagWithoutSpace.Setup(x => x.GetCategory()).Returns(ItemCategory.Cloth);
+            var defaultBag = new Mock<IBag>();
+            defaultBag.Setup(x => x.GetCategory()).Returns(ItemCategory.NotSpecified);
+            defaultBag.Setup(x => x.TakeAllItems()).Returns(new List<Item> { clothItem });
+            _underTest.AddBag(defaultBag.Object);
+            _underTest.AddBag(_bagWithoutSpace.Object);
+
+            _underTest.Organise();
+
+            defaultBag.Verify(x => x.TakeAllItems(), Times.Once);
+            _bagWithoutSpace.Verify(x => x.AddItem(It.IsAny<Item>()), Times.Never);
+        }
+
         // What still needs doing?
-        //TODO Item Categories other than Cloth
-        //TODO Move organisation into a seperate class?
         //TODO Don't move items from first bag (Only one bag? First bag is same category?)
+        //TODO Don't put into full bag
+        //TODO Moving multiple items
         //TODO Alphabetize takenItems instead of making bags do it?
+        //TODO Item Categories other than Cloth
+        //TODO Move organisation into a seperate class? Or make SortableItemList? 
 
     }
 }

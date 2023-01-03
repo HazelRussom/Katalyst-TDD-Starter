@@ -38,7 +38,7 @@
 
             foreach (var item in takenItems)
             {
-                var firstClothBag = _storedBags.Where(x => x.GetCategory() == ItemCategory.Cloth).FirstOrDefault();
+                var firstClothBag = _storedBags.Where(x => x.GetCategory() == ItemCategory.Cloth && x.HasSpace()).FirstOrDefault();
                 if (firstClothBag != null)
                 {
                     firstClothBag.AddItem(item);
