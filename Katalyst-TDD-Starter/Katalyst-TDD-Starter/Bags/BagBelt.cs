@@ -37,21 +37,6 @@
         public void Organise()
         {
             organizer.Organize(_storedBags);
-            //var takenItems = _storedBags[0].TakeAllItems();
-
-            //foreach (var item in takenItems)
-            //{
-            //    var firstClothBag = _storedBags.Where(x => x.GetCategory() == ItemCategory.Cloth && x.HasSpace()).FirstOrDefault();
-            //    if (firstClothBag != null)
-            //    {
-            //        firstClothBag.AddItem(item);
-            //    } 
-            //}
-
-            //foreach(var bag in _storedBags)
-            //{
-            //    bag.Organise();
-            //}
         }
 
         public List<Item> ItemsInBag(int bagIndex)

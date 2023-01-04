@@ -71,7 +71,7 @@ namespace Katalyst_TDD_Starter.Test.Bags
 
         private static BagBelt BuildBagBelt()
         {
-            var bagBelt = new BagBelt(null);
+            var bagBelt = new BagBelt(new BagOrganizer());
             bagBelt.AddBag(new Bag(8));
             bagBelt.AddBag(new Bag(ItemCategory.Cloth, 4));
             bagBelt.AddBag(new Bag(ItemCategory.Herb, 4));
