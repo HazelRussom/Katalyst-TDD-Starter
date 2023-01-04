@@ -79,13 +79,13 @@ namespace Katalyst_TDD_Starter.Test.Bags
         }
 
         [TestMethod]
-        public void Tell_the_organizer_to_organise_bags()
+        public void Tell_the_organizer_to_organize_bags()
         {
             var expectedBags = new List<IBag> { _bagWithoutSpace.Object, _bagWithSpace.Object };
             _underTest.AddBag(_bagWithoutSpace.Object);
             _underTest.AddBag(_bagWithSpace.Object);
 
-            _underTest.Organise();
+            _underTest.Organize();
 
             bagsOrganizer.Verify(x => x.Organize(expectedBags), Times.Once);
         }

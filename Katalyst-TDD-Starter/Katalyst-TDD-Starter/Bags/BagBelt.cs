@@ -34,7 +34,7 @@
             openBags.First().AddItem(itemToAdd);
         }
 
-        public void Organise()
+        public void Organize()
         {
             organizer.Organize(_storedBags);
         }

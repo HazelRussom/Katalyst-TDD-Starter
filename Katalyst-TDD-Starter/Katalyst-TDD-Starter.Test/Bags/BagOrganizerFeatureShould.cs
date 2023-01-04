@@ -50,7 +50,7 @@ namespace Katalyst_TDD_Starter.Test.Bags
 
             // Act:
             // Call method to organise bags
-            bagBelt.Organise();
+            bagBelt.Organize();
 
             // Assert:
             Assert.AreEqual(5, bagBelt.GetBags().Count);

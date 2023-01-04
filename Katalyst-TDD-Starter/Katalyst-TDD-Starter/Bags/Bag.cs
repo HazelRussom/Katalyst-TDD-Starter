@@ -4,9 +4,6 @@
     {
         void AddItem(Item itemToAdd);
         bool HasSpace();
-        object SortItems();
-        void Organise();
-        ItemCategory GetCategory();
         List<Item> TakeAllItems();
     }
 
@@ -40,21 +37,6 @@
         public bool HasSpace()
         {
             return Items.Count < size;
-        }
-
-        public object SortItems()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Organise()
-        {
-            throw new NotImplementedException();
-        }
-
-        public ItemCategory GetCategory()
-        {
-            throw new NotImplementedException();
         }
 
         public List<Item> TakeAllItems()
