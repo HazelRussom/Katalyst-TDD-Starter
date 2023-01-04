@@ -3,10 +3,12 @@
     public class BagBelt
     {
         private readonly List<IBag> _storedBags;
+        private IBagOrganizer organizer;
         private const string FullBagsErrorMessage = "All bags are full, no more items can be added!";
 
-        public BagBelt()
+        public BagBelt(IBagOrganizer organizer)
         {
+            this.organizer = organizer;
             _storedBags = new List<IBag>();
         }
 
@@ -34,21 +36,22 @@
 
         public void Organise()
         {
-            var takenItems = _storedBags[0].TakeAllItems();
+            organizer.Organize(_storedBags);
+            //var takenItems = _storedBags[0].TakeAllItems();
 
-            foreach (var item in takenItems)
-            {
-                var firstClothBag = _storedBags.Where(x => x.GetCategory() == ItemCategory.Cloth && x.HasSpace()).FirstOrDefault();
-                if (firstClothBag != null)
-                {
-                    firstClothBag.AddItem(item);
-                } 
-            }
+            //foreach (var item in takenItems)
+            //{
+            //    var firstClothBag = _storedBags.Where(x => x.GetCategory() == ItemCategory.Cloth && x.HasSpace()).FirstOrDefault();
+            //    if (firstClothBag != null)
+            //    {
+            //        firstClothBag.AddItem(item);
+            //    } 
+            //}
 
-            foreach(var bag in _storedBags)
-            {
-                bag.Organise();
-            }
+            //foreach(var bag in _storedBags)
+            //{
+            //    bag.Organise();
+            //}
         }
 
         public List<Item> ItemsInBag(int bagIndex)
