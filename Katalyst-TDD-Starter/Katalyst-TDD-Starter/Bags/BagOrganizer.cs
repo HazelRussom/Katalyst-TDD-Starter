@@ -20,11 +20,6 @@
             //        firstClothBag.AddItem(item);
             //    } 
             //}
-
-            //foreach(var bag in _storedBags)
-            //{
-            //    bag.Organise();
-            //}
         }
     }
 }
