@@ -9,17 +9,10 @@
     {
         public void Organize(List<IBag> bagsToOrganize)
         {
-            throw new NotImplementedException();
-            //var takenItems = _storedBags[0].TakeAllItems();
-
-            //foreach (var item in takenItems)
-            //{
-            //    var firstClothBag = _storedBags.Where(x => x.GetCategory() == ItemCategory.Cloth && x.HasSpace()).FirstOrDefault();
-            //    if (firstClothBag != null)
-            //    {
-            //        firstClothBag.AddItem(item);
-            //    } 
-            //}
+            foreach(var bag in bagsToOrganize)
+            {
+                bag.TakeAllItems();
+            }
         }
     }
 }
