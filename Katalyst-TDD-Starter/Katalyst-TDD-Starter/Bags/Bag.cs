@@ -26,6 +26,11 @@
 
         public void AddItem(Item itemToAdd)
         {
+            if (!HasSpace())
+            {
+                throw new BagException("This bag is full, no more items can be added!");
+            }
+
             Items.Add(itemToAdd);
         }
 

@@ -53,26 +53,42 @@ namespace Katalyst_TDD_Starter.Test.Bags
         [TestMethod]
         public void Add_multiple_items()
         {
-            var underTest = new Bag(1);
+            var underTest = new Bag(4);
             var expectedItem1 = new Item("1", ItemCategory.Cloth);
             var expectedItem2 = new Item("2", ItemCategory.Metal);
-            var expectedItem3 = new Item("3", ItemCategory.Herb);
 
             underTest.AddItem(expectedItem1);
             underTest.AddItem(expectedItem2);
-            underTest.AddItem(expectedItem3);
 
             var storedItems = underTest.GetItems();
             Assert.AreEqual(expectedItem1, storedItems[0]);
             Assert.AreEqual(expectedItem2, storedItems[1]);
-            Assert.AreEqual(expectedItem3, storedItems[2]);
-            Assert.AreEqual(3, storedItems.Count);
+            Assert.AreEqual(2, storedItems.Count);
+        }
+
+        [TestMethod]
+        public void Not_add_item_when_bag_is_full()
+        {
+            var underTest = new Bag(1);
+            var expectedItem1 = new Item("1", ItemCategory.Cloth);
+            var expectedItem2 = new Item("2", ItemCategory.Metal);
+
+            underTest.AddItem(expectedItem1);
+
+            var exception = Assert.ThrowsException<BagException>(() =>
+                underTest.AddItem(expectedItem2));
+
+            Assert.AreEqual("This bag is full, no more items can be added!", exception.Message);
+
+            var storedItems = underTest.GetItems();
+            Assert.AreEqual(expectedItem1, storedItems[0]);
+            Assert.AreEqual(1, storedItems.Count);
         }
 
         [TestMethod]
         public void Get_items_from_bag()
         {
-            var underTest = new Bag(1);
+            var underTest = new Bag(4);
             var firstItem = new Item("First", ItemCategory.Cloth);
             var secondItem = new Item("Second", ItemCategory.Herb);
             underTest.AddItem(firstItem);
