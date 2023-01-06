@@ -17,7 +17,8 @@
 
             foreach(var item in allItems)
             {
-                bagsToOrganize[1].AddItem(item);
+                var clothBags = bagsToOrganize.Where(x => x.GetCategory() == ItemCategory.Cloth);
+                clothBags.First().AddItem(item);
             }
         }
     }

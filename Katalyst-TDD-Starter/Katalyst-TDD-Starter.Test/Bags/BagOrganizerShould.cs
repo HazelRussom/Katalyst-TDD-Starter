@@ -28,7 +28,26 @@ namespace Katalyst_TDD_Starter.Test.Bags
         }
 
         [TestMethod]
-        public void Move_single_cloth_item_into_cloth_bag()
+        public void Move_single_cloth_item_into_first_slot_cloth_bag()
+        {
+            var underTest = new BagOrganizer();
+            var clothItem = new Item("ClothItem", ItemCategory.Cloth);
+            var clothBag = new Mock<IBag>();
+            clothBag.Setup(x => x.GetCategory()).Returns(ItemCategory.Cloth);
+            clothBag.Setup(x => x.TakeAllItems()).Returns(new List<Item>());
+            var defaultBag = new Mock<IBag>();
+            defaultBag.Setup(x => x.GetCategory()).Returns(ItemCategory.NotSpecified);
+            defaultBag.Setup(x => x.TakeAllItems()).Returns(new List<Item> { clothItem });
+            var bags = new List<IBag> { clothBag.Object, defaultBag.Object };
+
+            underTest.Organize(bags);
+
+            defaultBag.Verify(x => x.AddItem(It.IsAny<Item>()), Times.Never);
+            clothBag.Verify(x => x.AddItem(clothItem), Times.Once());
+        }
+
+        [TestMethod]
+        public void Move_single_cloth_item_into_second_slot_cloth_bag()
         {
             var underTest = new BagOrganizer();
             var clothItem = new Item("ClothItem", ItemCategory.Cloth);
