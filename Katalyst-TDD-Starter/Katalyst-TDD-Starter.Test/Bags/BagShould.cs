@@ -40,20 +40,20 @@ namespace Katalyst_TDD_Starter.Test.Bags
         [TestMethod]
         public void Add_an_item()
         {
-            var underTest = new TestableBag(1);
+            var underTest = new Bag(1);
             var expectedItem = new Item(string.Empty, ItemCategory.Cloth);
 
             underTest.AddItem(expectedItem);
 
             var storedItems = underTest.GetItems();
-            Assert.IsTrue(storedItems.Contains(expectedItem));
+            Assert.AreEqual(expectedItem, storedItems[0]);
             Assert.AreEqual(1, storedItems.Count);
         }
 
         [TestMethod]
         public void Add_multiple_items()
         {
-            var underTest = new TestableBag(1);
+            var underTest = new Bag(1);
             var expectedItem1 = new Item("1", ItemCategory.Cloth);
             var expectedItem2 = new Item("2", ItemCategory.Metal);
             var expectedItem3 = new Item("3", ItemCategory.Herb);
@@ -63,9 +63,9 @@ namespace Katalyst_TDD_Starter.Test.Bags
             underTest.AddItem(expectedItem3);
 
             var storedItems = underTest.GetItems();
-            Assert.IsTrue(storedItems.Contains(expectedItem1));
-            Assert.IsTrue(storedItems.Contains(expectedItem2));
-            Assert.IsTrue(storedItems.Contains(expectedItem3));
+            Assert.AreEqual(expectedItem1, storedItems[0]);
+            Assert.AreEqual(expectedItem2, storedItems[1]);
+            Assert.AreEqual(expectedItem3, storedItems[2]);
             Assert.AreEqual(3, storedItems.Count);
         }
 
@@ -84,15 +84,6 @@ namespace Katalyst_TDD_Starter.Test.Bags
             Assert.AreEqual(expectedItems.Count, actualItems.Count);
             Assert.AreEqual(expectedItems[0], actualItems[0]);
             Assert.AreEqual(expectedItems[1], actualItems[1]);
-        }
-
-        private class TestableBag : Bag
-        {
-            public TestableBag(int size) : base(size)
-            {
-            }
-
-            public new List<Item> GetItems() { return Items; }
         }
     }
 }
