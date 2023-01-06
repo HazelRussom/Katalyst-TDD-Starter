@@ -65,8 +65,22 @@ namespace Katalyst_TDD_Starter.Test.Bags
             clothBag.Verify(x => x.AddItem(clothItem), Times.Once());
         }
 
+        [TestMethod]
+        public void Put_cloth_item_into_first_bag()
+        {
+            var underTest = new BagOrganizer();
+            var clothItem = new Item("ClothItem", ItemCategory.Cloth);
+            var defaultBag = new Mock<IBag>();
+            defaultBag.Setup(x => x.GetCategory()).Returns(ItemCategory.NotSpecified);
+            defaultBag.Setup(x => x.TakeAllItems()).Returns(new List<Item> { clothItem });
+            var bags = new List<IBag> { defaultBag.Object };
+
+            underTest.Organize(bags);
+
+            defaultBag.Verify(x => x.AddItem(It.IsAny<Item>()), Times.Once);
+        }
+
         // What still needs doing?
-        //TODO Move cloth item into cloth bag
         //TODO Don't move items from first bag (Only one bag? First bag is same category?)
         //TODO Don't put into full bag
         //TODO Moving multiple items
