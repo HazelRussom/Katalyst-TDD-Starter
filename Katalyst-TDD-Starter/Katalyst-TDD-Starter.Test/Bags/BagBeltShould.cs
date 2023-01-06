@@ -10,21 +10,17 @@ namespace Katalyst_TDD_Starter.Test.Bags
     [TestClass]
     public class BagBeltShould
     {
-        private readonly Item _testItem = new("TestItem", ItemCategory.Cloth);
-        private readonly Mock<IBagOrganizer> bagsOrganizer = new();
         private readonly BagBelt _underTest;
+        private readonly Item _testItem = new("TestItem", ItemCategory.Cloth);
         private readonly Mock<IBag> _bagWithSpace = new();
         private readonly Mock<IBag> _bagWithoutSpace = new();
+        private readonly Mock<IBagOrganizer> bagsOrganizer = new();
 
         public BagBeltShould()
         {
             _underTest = new BagBelt(bagsOrganizer.Object);
             _bagWithSpace.Setup(x => x.HasSpace()).Returns(true);
-            _bagWithSpace.Setup(x => x.TakeAllItems()).Returns(new List<Item>());
-
             _bagWithoutSpace.Setup(x => x.HasSpace()).Returns(false);
-            _bagWithoutSpace.Setup(x => x.TakeAllItems()).Returns(new List<Item>());
-
         }
 
         [TestMethod]
@@ -40,6 +36,7 @@ namespace Katalyst_TDD_Starter.Test.Bags
             _underTest.AddBag(_bagWithoutSpace.Object);
 
             var bags = _underTest.GetBags();
+
             Assert.IsTrue(bags.Contains(_bagWithSpace.Object));
             Assert.IsTrue(bags.Contains(_bagWithoutSpace.Object));
             Assert.AreEqual(2, bags.Count);
