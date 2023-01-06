@@ -9,9 +9,15 @@
     {
         public void Organize(List<IBag> bagsToOrganize)
         {
+            var allItems = new List<Item>();
             foreach(var bag in bagsToOrganize)
             {
-                bag.TakeAllItems();
+                allItems.AddRange(bag.TakeAllItems());
+            }
+
+            foreach(var item in allItems)
+            {
+                bagsToOrganize[1].AddItem(item);
             }
         }
     }

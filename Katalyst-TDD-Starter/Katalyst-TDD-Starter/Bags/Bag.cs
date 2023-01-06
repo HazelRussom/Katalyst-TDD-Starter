@@ -5,6 +5,7 @@
         void AddItem(Item itemToAdd);
         bool HasSpace();
         List<Item> TakeAllItems();
+        ItemCategory GetCategory();
     }
 
     public class Bag : IBag
@@ -24,6 +25,21 @@
             this.size = size;
         }
 
+        public ItemCategory GetCategory()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool HasSpace()
+        {
+            return Items.Count < size;
+        }
+
+        public IReadOnlyList<Item> GetItems()
+        {
+            return Items;
+        }
+
         public void AddItem(Item itemToAdd)
         {
             if (!HasSpace())
@@ -32,16 +48,6 @@
             }
 
             Items.Add(itemToAdd);
-        }
-
-        public IReadOnlyList<Item> GetItems()
-        {
-            return Items;
-        }
-
-        public bool HasSpace()
-        {
-            return Items.Count < size;
         }
 
         public List<Item> TakeAllItems()
