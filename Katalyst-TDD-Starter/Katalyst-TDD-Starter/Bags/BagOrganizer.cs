@@ -25,7 +25,8 @@
                     continue;
                 }
 
-                bagsToOrganize[0].AddItem(item);
+                var bagsWithSpace = bagsToOrganize.Where(x => x.HasSpace());
+                bagsWithSpace.First().AddItem(item);
             }
         }
     }
