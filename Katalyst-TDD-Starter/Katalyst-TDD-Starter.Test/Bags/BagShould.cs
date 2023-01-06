@@ -69,6 +69,23 @@ namespace Katalyst_TDD_Starter.Test.Bags
             Assert.AreEqual(3, storedItems.Count);
         }
 
+        [TestMethod]
+        public void Get_items_from_bag()
+        {
+            var underTest = new Bag(1);
+            var firstItem = new Item("First", ItemCategory.Cloth);
+            var secondItem = new Item("Second", ItemCategory.Herb);
+            underTest.AddItem(firstItem);
+            underTest.AddItem(secondItem);
+            var expectedItems = new List<Item> { firstItem, secondItem };
+
+            var actualItems = underTest.GetItems();
+
+            Assert.AreEqual(expectedItems.Count, actualItems.Count);
+            Assert.AreEqual(expectedItems[0], actualItems[0]);
+            Assert.AreEqual(expectedItems[1], actualItems[1]);
+        }
+
         private class TestableBag : Bag
         {
             public TestableBag(int size) : base(size)

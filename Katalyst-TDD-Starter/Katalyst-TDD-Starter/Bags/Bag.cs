@@ -29,9 +29,9 @@
             Items.Add(itemToAdd);
         }
 
-        public IReadOnlyCollection<Item> GetItems()
+        public IReadOnlyList<Item> GetItems()
         {
-            throw new NotImplementedException();
+            return Items;
         }
 
         public bool HasSpace()
