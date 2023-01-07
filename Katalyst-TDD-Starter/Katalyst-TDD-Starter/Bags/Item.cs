@@ -10,5 +10,10 @@
             this.name = name;
             this.category = category;
         }
+
+        internal ItemCategory GetCategory()
+        {
+            return category;
+        }
     }
 }

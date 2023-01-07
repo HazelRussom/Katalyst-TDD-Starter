@@ -20,11 +20,11 @@
             foreach(var item in allItems)
             {
                 var bagsWithSpace = bagsToOrganize.Where(x => x.HasSpace());
-                var clothBag = bagsWithSpace.Where(x => x.GetCategory() == ItemCategory.Cloth).FirstOrDefault();
+                var categoryBag = bagsWithSpace.Where(x => x.GetCategory() == item.GetCategory()).FirstOrDefault();
                 
-                if(clothBag != null)
+                if(categoryBag != null)
                 {
-                    clothBag.AddItem(item);
+                    categoryBag.AddItem(item);
                     continue;
                 }
 

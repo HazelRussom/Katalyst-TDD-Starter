@@ -122,6 +122,26 @@ namespace Katalyst_TDD_Starter.Test.Bags
             _defaultBag.Verify(x => x.AddItem(secondAlphabeticalItem));
         }
 
+        [TestMethod]
+        public void Move_herb_item_to_herb_bag()
+        {
+            var herbItem = new Item("HerbItem", ItemCategory.Herb);
+
+            _defaultBag.Setup(x => x.TakeAllItems()).Returns(new List<Item> { herbItem });
+
+            var herbBag = new Mock<IBag>();
+            herbBag.Setup(x => x.GetCategory()).Returns(ItemCategory.Herb);
+            herbBag.Setup(x => x.TakeAllItems()).Returns(new List<Item>());
+            herbBag.Setup(x => x.HasSpace()).Returns(true);
+            var bags = new List<IBag> { _defaultBag.Object, _clothBag.Object, herbBag.Object };
+
+            _underTest.Organize(bags);
+
+            _defaultBag.Verify(x => x.AddItem(It.IsAny<Item>()), Times.Never);
+            _clothBag.Verify(x => x.AddItem(It.IsAny<Item>()), Times.Never);
+            herbBag.Verify(x => x.AddItem(herbItem), Times.Once);
+        }
+
         // What still needs doing?
         //TODO Item Categories other than Cloth
     }
