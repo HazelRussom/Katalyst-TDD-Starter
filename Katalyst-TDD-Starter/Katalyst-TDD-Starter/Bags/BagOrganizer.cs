@@ -15,6 +15,8 @@
                 allItems.AddRange(bag.TakeAllItems());
             }
 
+            allItems = allItems.OrderBy(x => x.name).ToList();
+
             foreach(var item in allItems)
             {
                 var bagsWithSpace = bagsToOrganize.Where(x => x.HasSpace());

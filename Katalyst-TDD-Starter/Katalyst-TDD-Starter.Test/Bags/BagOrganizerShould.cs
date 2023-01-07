@@ -17,7 +17,7 @@ namespace Katalyst_TDD_Starter.Test.Bags
             _defaultBag = new Mock<IBag>();
             _defaultBag.Setup(x => x.GetCategory()).Returns(ItemCategory.NotSpecified);
             _defaultBag.Setup(x => x.HasSpace()).Returns(true);
-            _clothBag = new Mock<IBag>(); 
+            _clothBag = new Mock<IBag>();
             _clothBag.Setup(x => x.GetCategory()).Returns(ItemCategory.Cloth);
             _clothBag.Setup(x => x.TakeAllItems()).Returns(new List<Item>());
             _clothBag.Setup(x => x.HasSpace()).Returns(true);
@@ -107,6 +107,28 @@ namespace Katalyst_TDD_Starter.Test.Bags
 
             _defaultBag.Verify(x => x.AddItem(It.IsAny<Item>()), Times.Never);
             _clothBag.Verify(x => x.AddItem(_clothItem), Times.Exactly(2));
+        }
+
+        [TestMethod]
+        public void Organize_items_in_alphabetical_order()
+        {
+            var underTest = new BagOrganizer();
+            _clothBag.SetupSequence(x => x.HasSpace()).Returns(true).Returns(false);
+
+            var firstAlphabeticalItem = new Item("A", ItemCategory.Cloth);
+            var secondAlphabeticalItem = new Item("B", ItemCategory.Cloth);
+
+            _defaultBag.Setup(x => x.TakeAllItems()).Returns(new List<Item> {
+                secondAlphabeticalItem,
+                firstAlphabeticalItem
+            });
+
+            var bags = new List<IBag> { _defaultBag.Object, _clothBag.Object };
+
+            underTest.Organize(bags);
+
+            _clothBag.Verify(x => x.AddItem(firstAlphabeticalItem));
+            _defaultBag.Verify(x => x.AddItem(secondAlphabeticalItem));
         }
 
         // What still needs doing?
