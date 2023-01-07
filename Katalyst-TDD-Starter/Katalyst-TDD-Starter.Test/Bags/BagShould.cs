@@ -98,5 +98,22 @@ namespace Katalyst_TDD_Starter.Test.Bags
             Assert.AreEqual(expectedItems[0], actualItems[0]);
             Assert.AreEqual(expectedItems[1], actualItems[1]);
         }
+
+        [TestMethod]
+        public void Take_out_all_items()
+        {
+            _underTest.AddItem(_clothTestItem);
+            _underTest.AddItem(_herbTestItem);
+            var expectedTakenItems = new List<Item> { _clothTestItem, _herbTestItem };
+
+            var takenItems = _underTest.TakeAllItems();
+            var storedItems = _underTest.GetItems();
+
+            Assert.AreEqual(0, storedItems.Count);
+            Assert.AreEqual(expectedTakenItems.Count, takenItems.Count);
+            Assert.AreEqual(expectedTakenItems[0], takenItems[0]);
+            Assert.AreEqual(expectedTakenItems[1], takenItems[1]);
+
+        }
     }
 }
