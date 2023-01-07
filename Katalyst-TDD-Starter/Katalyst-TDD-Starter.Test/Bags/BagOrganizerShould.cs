@@ -11,12 +11,16 @@ namespace Katalyst_TDD_Starter.Test.Bags
         private readonly Mock<IBag> _defaultBag;
         private readonly Mock<IBag> _clothBag;
         private readonly Item _clothItem;
+        private BagOrganizer _underTest;
 
         public BagOrganizerShould()
         {
+            _underTest = new BagOrganizer();
+
             _defaultBag = new Mock<IBag>();
             _defaultBag.Setup(x => x.GetCategory()).Returns(ItemCategory.NotSpecified);
             _defaultBag.Setup(x => x.HasSpace()).Returns(true);
+
             _clothBag = new Mock<IBag>();
             _clothBag.Setup(x => x.GetCategory()).Returns(ItemCategory.Cloth);
             _clothBag.Setup(x => x.TakeAllItems()).Returns(new List<Item>());
@@ -28,11 +32,10 @@ namespace Katalyst_TDD_Starter.Test.Bags
         [TestMethod]
         public void Take_all_items_out_from_bags()
         {
-            var underTest = new BagOrganizer();
             _defaultBag.Setup(x => x.TakeAllItems()).Returns(new List<Item>());
             var bags = new List<IBag> { _defaultBag.Object, _clothBag.Object };
 
-            underTest.Organize(bags);
+            _underTest.Organize(bags);
 
             _defaultBag.Verify(x => x.TakeAllItems(), Times.Once);
             _clothBag.Verify(x => x.TakeAllItems(), Times.Once);
@@ -41,11 +44,10 @@ namespace Katalyst_TDD_Starter.Test.Bags
         [TestMethod]
         public void Move_single_cloth_item_into_first_slot_cloth_bag()
         {
-            var underTest = new BagOrganizer();
             _defaultBag.Setup(x => x.TakeAllItems()).Returns(new List<Item> { _clothItem });
             var bags = new List<IBag> { _clothBag.Object, _defaultBag.Object };
 
-            underTest.Organize(bags);
+            _underTest.Organize(bags);
 
             _defaultBag.Verify(x => x.AddItem(It.IsAny<Item>()), Times.Never);
             _clothBag.Verify(x => x.AddItem(_clothItem), Times.Once());
@@ -54,11 +56,10 @@ namespace Katalyst_TDD_Starter.Test.Bags
         [TestMethod]
         public void Move_single_cloth_item_into_second_slot_cloth_bag()
         {
-            var underTest = new BagOrganizer();
             _defaultBag.Setup(x => x.TakeAllItems()).Returns(new List<Item> { _clothItem });
             var bags = new List<IBag> { _defaultBag.Object, _clothBag.Object };
 
-            underTest.Organize(bags);
+            _underTest.Organize(bags);
 
             _defaultBag.Verify(x => x.AddItem(It.IsAny<Item>()), Times.Never);
             _clothBag.Verify(x => x.AddItem(_clothItem), Times.Once());
@@ -67,11 +68,10 @@ namespace Katalyst_TDD_Starter.Test.Bags
         [TestMethod]
         public void Put_cloth_item_into_first_bag()
         {
-            var underTest = new BagOrganizer();
             _defaultBag.Setup(x => x.TakeAllItems()).Returns(new List<Item> { _clothItem });
             var bags = new List<IBag> { _defaultBag.Object };
 
-            underTest.Organize(bags);
+            _underTest.Organize(bags);
 
             _defaultBag.Verify(x => x.AddItem(_clothItem), Times.Once);
         }
@@ -79,7 +79,6 @@ namespace Katalyst_TDD_Starter.Test.Bags
         [TestMethod]
         public void Put_cloth_item_into_first_bag_with_space()
         {
-            var underTest = new BagOrganizer();
             _defaultBag.Setup(x => x.TakeAllItems()).Returns(new List<Item> { _clothItem });
             _defaultBag.Setup(x => x.HasSpace()).Returns(false);
             _clothBag.Setup(x => x.HasSpace()).Returns(false);
@@ -89,7 +88,7 @@ namespace Katalyst_TDD_Starter.Test.Bags
             herbBag.Setup(x => x.HasSpace()).Returns(true);
             var bags = new List<IBag> { _defaultBag.Object, _clothBag.Object, herbBag.Object };
 
-            underTest.Organize(bags);
+            _underTest.Organize(bags);
 
             _defaultBag.Verify(x => x.AddItem(It.IsAny<Item>()), Times.Never);
             _clothBag.Verify(x => x.AddItem(It.IsAny<Item>()), Times.Never);
@@ -99,11 +98,10 @@ namespace Katalyst_TDD_Starter.Test.Bags
         [TestMethod]
         public void Move_two_cloth_items_to_cloth_bag()
         {
-            var underTest = new BagOrganizer();
             _defaultBag.Setup(x => x.TakeAllItems()).Returns(new List<Item> { _clothItem, _clothItem });
             var bags = new List<IBag> { _defaultBag.Object, _clothBag.Object };
 
-            underTest.Organize(bags);
+            _underTest.Organize(bags);
 
             _defaultBag.Verify(x => x.AddItem(It.IsAny<Item>()), Times.Never);
             _clothBag.Verify(x => x.AddItem(_clothItem), Times.Exactly(2));
@@ -112,29 +110,19 @@ namespace Katalyst_TDD_Starter.Test.Bags
         [TestMethod]
         public void Organize_items_in_alphabetical_order()
         {
-            var underTest = new BagOrganizer();
             _clothBag.SetupSequence(x => x.HasSpace()).Returns(true).Returns(false);
-
             var firstAlphabeticalItem = new Item("A", ItemCategory.Cloth);
             var secondAlphabeticalItem = new Item("B", ItemCategory.Cloth);
-
-            _defaultBag.Setup(x => x.TakeAllItems()).Returns(new List<Item> {
-                secondAlphabeticalItem,
-                firstAlphabeticalItem
-            });
-
+            _defaultBag.Setup(x => x.TakeAllItems()).Returns(new List<Item> { secondAlphabeticalItem, firstAlphabeticalItem });
             var bags = new List<IBag> { _defaultBag.Object, _clothBag.Object };
 
-            underTest.Organize(bags);
+            _underTest.Organize(bags);
 
             _clothBag.Verify(x => x.AddItem(firstAlphabeticalItem));
             _defaultBag.Verify(x => x.AddItem(secondAlphabeticalItem));
         }
 
         // What still needs doing?
-        //TODO Moving multiple items
-        //TODO Alphabetize takenItems instead of making bags do it?
         //TODO Item Categories other than Cloth
-        //TODO Move organisation into a seperate class? Or make SortableItemList? 
     }
 }
