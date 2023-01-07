@@ -39,9 +39,9 @@
             organizer.Organize(_storedBags);
         }
 
-        public List<Item> ItemsInBag(int bagIndex)
+        public IReadOnlyList<Item> GetItemsInBag(int bagIndex)
         {
-            throw new NotImplementedException();
+            return _storedBags[bagIndex].GetItems();
         }
     }
 }

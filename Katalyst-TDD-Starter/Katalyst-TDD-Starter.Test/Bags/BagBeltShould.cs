@@ -86,5 +86,18 @@ namespace Katalyst_TDD_Starter.Test.Bags
 
             bagsOrganizer.Verify(x => x.Organize(expectedBags), Times.Once);
         }
+
+        [TestMethod]
+        public void Get_all_items_in_bag()
+        {
+            _bagWithoutSpace.Setup(x => x.GetItems()).Returns(new List<Item> { _testItem });
+            _underTest.AddBag(_bagWithSpace.Object);
+            _underTest.AddBag(_bagWithoutSpace.Object);
+
+            var actualItems = _underTest.GetItemsInBag(1);
+
+            Assert.AreEqual(1, actualItems.Count);
+            Assert.AreEqual(_testItem, actualItems[0]);
+        }
     }
 }

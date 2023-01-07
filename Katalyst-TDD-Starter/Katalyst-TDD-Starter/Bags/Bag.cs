@@ -6,6 +6,7 @@
         bool HasSpace();
         List<Item> TakeAllItems();
         ItemCategory GetCategory();
+        IReadOnlyList<Item> GetItems();
     }
 
     public class Bag : IBag

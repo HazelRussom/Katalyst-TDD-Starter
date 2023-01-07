@@ -62,11 +62,11 @@ namespace Katalyst_TDD_Starter.Test.Bags
             var expectedBag4Contents = new List<Item> { copperItem, goldItem1, goldItem2, platinumItem };
             var expectedBag5Contents = new List<Item> { axeItem, maceItem };
 
-            CollectionAssert.AreEqual(expectedBag1Contents, bagBelt.ItemsInBag(0));
-            CollectionAssert.AreEqual(expectedBag2Contents, bagBelt.ItemsInBag(1));
-            CollectionAssert.AreEqual(expectedBag3Contents, bagBelt.ItemsInBag(2));
-            CollectionAssert.AreEqual(expectedBag4Contents, bagBelt.ItemsInBag(3));
-            CollectionAssert.AreEqual(expectedBag5Contents, bagBelt.ItemsInBag(4));
+            CollectionAssert.AreEqual(expectedBag1Contents, new List<Item>(bagBelt.GetItemsInBag(0)));
+            CollectionAssert.AreEqual(expectedBag2Contents, new List<Item>(bagBelt.GetItemsInBag(1)));
+            CollectionAssert.AreEqual(expectedBag3Contents, new List<Item>(bagBelt.GetItemsInBag(2)));
+            CollectionAssert.AreEqual(expectedBag4Contents, new List<Item>(bagBelt.GetItemsInBag(3)));
+            CollectionAssert.AreEqual(expectedBag5Contents, new List<Item>(bagBelt.GetItemsInBag(4)));
         }
 
         private static BagBelt BuildBagBelt()
