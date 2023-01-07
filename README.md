@@ -18,7 +18,7 @@ Bank | Complete | https://www.codurance.com/katalyst/bank
 Number Guessing Game | Complete | https://www.codurance.com/katalyst/random-number-kata
 Trip Service | ??? | ???
 Arithmetics | In Progress | https://katalyst.codurance.com/arithmetics
-Bags | On Hold | https://www.codurance.com/katalyst/bags
+Bags | Complete | https://www.codurance.com/katalyst/bags
 
 ### Bags Note - 2022-06-28
 I feel I've bitten off too much with this exercise, or gone down an incorrect path.  

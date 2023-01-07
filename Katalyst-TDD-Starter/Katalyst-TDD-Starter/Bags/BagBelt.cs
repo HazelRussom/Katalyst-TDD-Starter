@@ -3,7 +3,7 @@
     public class BagBelt
     {
         private readonly List<IBag> _storedBags;
-        private IBagOrganizer organizer;
+        private readonly IBagOrganizer organizer;
         private const string FullBagsErrorMessage = "All bags are full, no more items can be added!";
 
         public BagBelt(IBagOrganizer organizer)
