@@ -60,7 +60,6 @@ namespace Katalyst_TDD_Starter.Test.Bags
         [TestMethod]
         public void Add_multiple_items()
         {
-
             _underTest.AddItem(_clothTestItem);
             _underTest.AddItem(_herbTestItem);
 
@@ -113,7 +112,6 @@ namespace Katalyst_TDD_Starter.Test.Bags
             Assert.AreEqual(expectedTakenItems.Count, takenItems.Count);
             Assert.AreEqual(expectedTakenItems[0], takenItems[0]);
             Assert.AreEqual(expectedTakenItems[1], takenItems[1]);
-
         }
     }
 }

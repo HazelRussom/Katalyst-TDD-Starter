@@ -11,7 +11,7 @@
     public class Bag : IBag
     {
         private readonly int size;
-        private ItemCategory category;
+        private readonly ItemCategory category;
         protected virtual List<Item> Items { get; set; } = new();
 
         public Bag(int size)
@@ -27,7 +27,7 @@
 
         public ItemCategory GetCategory()
         {
-            throw new NotImplementedException();
+            return category;
         }
 
         public bool HasSpace()
