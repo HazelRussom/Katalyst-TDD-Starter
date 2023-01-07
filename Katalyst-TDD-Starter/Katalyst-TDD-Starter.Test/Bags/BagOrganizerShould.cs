@@ -82,21 +82,34 @@ namespace Katalyst_TDD_Starter.Test.Bags
             var underTest = new BagOrganizer();
             _defaultBag.Setup(x => x.TakeAllItems()).Returns(new List<Item> { _clothItem });
             _defaultBag.Setup(x => x.HasSpace()).Returns(false);
+            _clothBag.Setup(x => x.HasSpace()).Returns(false);
             var herbBag = new Mock<IBag>();
             herbBag.Setup(x => x.GetCategory()).Returns(ItemCategory.Herb);
             herbBag.Setup(x => x.TakeAllItems()).Returns(new List<Item>());
             herbBag.Setup(x => x.HasSpace()).Returns(true);
-            var bags = new List<IBag> { _defaultBag.Object, herbBag.Object };
+            var bags = new List<IBag> { _defaultBag.Object, _clothBag.Object, herbBag.Object };
 
             underTest.Organize(bags);
 
             _defaultBag.Verify(x => x.AddItem(It.IsAny<Item>()), Times.Never);
+            _clothBag.Verify(x => x.AddItem(It.IsAny<Item>()), Times.Never);
             herbBag.Verify(x => x.AddItem(_clothItem), Times.Once);
         }
 
+        [TestMethod]
+        public void Move_two_cloth_items_to_cloth_bag()
+        {
+            var underTest = new BagOrganizer();
+            _defaultBag.Setup(x => x.TakeAllItems()).Returns(new List<Item> { _clothItem, _clothItem });
+            var bags = new List<IBag> { _defaultBag.Object, _clothBag.Object };
+
+            underTest.Organize(bags);
+
+            _defaultBag.Verify(x => x.AddItem(It.IsAny<Item>()), Times.Never);
+            _clothBag.Verify(x => x.AddItem(_clothItem), Times.Exactly(2));
+        }
+
         // What still needs doing?
-        //TODO Don't move items from first bag (Only one bag? First bag is same category?)
-        //TODO Don't put into full bag
         //TODO Moving multiple items
         //TODO Alphabetize takenItems instead of making bags do it?
         //TODO Item Categories other than Cloth
