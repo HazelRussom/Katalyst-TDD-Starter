@@ -141,8 +141,5 @@ namespace Katalyst_TDD_Starter.Test.Bags
             _clothBag.Verify(x => x.AddItem(It.IsAny<Item>()), Times.Never);
             herbBag.Verify(x => x.AddItem(herbItem), Times.Once);
         }
-
-        // What still needs doing?
-        //TODO Item Categories other than Cloth
     }
 }

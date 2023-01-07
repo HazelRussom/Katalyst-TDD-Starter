@@ -52,7 +52,9 @@
 
         public List<Item> TakeAllItems()
         {
-            throw new NotImplementedException();
+            var itemsToReturn = new List<Item>(Items);
+            Items.Clear();
+            return itemsToReturn;
         }
     }
 }

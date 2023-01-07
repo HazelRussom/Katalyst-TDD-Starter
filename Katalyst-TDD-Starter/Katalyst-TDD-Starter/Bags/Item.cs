@@ -2,13 +2,18 @@
 {
     public class Item
     {
-        public string name;
-        private ItemCategory category;
+        private readonly string name;
+        private readonly ItemCategory category;
 
         public Item(string name, ItemCategory category)
         {
             this.name = name;
             this.category = category;
+        }
+
+        internal string GetName()
+        {
+            return name;
         }
 
         internal ItemCategory GetCategory()
