@@ -16,11 +16,13 @@ Password Validator | Complete | https://katalyst.codurance.com/password-validati
 Mars Rover | Complete | https://katalyst.codurance.com/simple-mars-rover
 Bank | Complete | https://www.codurance.com/katalyst/bank
 Number Guessing Game | Complete | https://www.codurance.com/katalyst/random-number-kata
-Trip Service | ??? | ???
-Arithmetics | In Progress | https://katalyst.codurance.com/arithmetics
 Bags | Complete | https://www.codurance.com/katalyst/bags
+Arithmetics | In Progress | https://katalyst.codurance.com/arithmetics
 
 ### Bags Note - 2022-06-28
 I feel I've bitten off too much with this exercise, or gone down an incorrect path.  
 Currently can't see any clear "small steps" to take forward, moving this to On-Hold while I refine my skills.   
 Will come back to this.
+
+### Bags Note - 2023-01-09
+The solution? Acceptance tests! 
