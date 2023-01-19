@@ -8,7 +8,6 @@ jobs:
         with:
           dotnet-version: '6.0.x'
       - name: Build and test
-        run: dotnet add package coverlet.collector
       - run: dotnet test --collect:"XPlat Code Coverage"
         working-directory: Katalyst-TDD-Starter
       - run: dotnet tool install -g dotnet-reportgenerator-globaltool
