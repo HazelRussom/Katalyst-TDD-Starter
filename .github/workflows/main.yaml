@@ -12,4 +12,6 @@ jobs:
         working-directory: Katalyst-TDD-Starter
       - run: dotnet tool install -g dotnet-reportgenerator-globaltool
       - name: Generate code coverage report
-        run: reportgenerator -reports:Katalyst-TDD-Starter/TestResults/**/coverage.cobertura.xml -targetdir:coveragereport -reporttypes:Html
+        run: reportgenerator -reports:Katalyst-TDD-Starter/TestResults/**/coverage.cobertura.xml -targetdir:coveragereport -reporttypes:MarkdownSummaryGithub
+      - name: Write to Job Summary
+        run: cat coveragereport\SummaryGithub.md >> $GITHUB_STEP_SUMMARY
