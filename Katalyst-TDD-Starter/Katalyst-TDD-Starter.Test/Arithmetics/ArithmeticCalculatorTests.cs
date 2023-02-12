@@ -13,7 +13,7 @@ namespace Katalyst_TDD_Starter.Test.Arithmetics
 
             var result = UnderTest.Calculate("()");
 
-            Assert.AreEqual(result, "0");
+            Assert.AreEqual("0", result);
         }
 
         [TestMethod]
@@ -26,7 +26,7 @@ namespace Katalyst_TDD_Starter.Test.Arithmetics
 
             var result = UnderTest.Calculate($"( 1 + {numberToAdd} )");
 
-            Assert.AreEqual(result, expectedResult);
+            Assert.AreEqual(expectedResult, result);
         }
     }
 }

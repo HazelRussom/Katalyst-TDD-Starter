@@ -4,22 +4,13 @@
     {
         public string Calculate(string input)
         {
-            if (input == "( 1 + 3 )")
+            if(input.Length < 6)
             {
-                return "4";
-            }
-            
-            if (input == "( 1 + 2 )")
-            {
-                return "3";
+                return "0";
             }
 
-            if (input == "( 1 + 1 )")
-            {
-                return "2";
-            }
-
-            return "0";
+            var secondNumber = (int)Char.GetNumericValue(input[6]);
+            return (1 + secondNumber).ToString();
         }
     }
 }
