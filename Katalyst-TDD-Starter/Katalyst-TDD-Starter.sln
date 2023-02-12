@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Katalyst-TDD-Starter", "Katalyst-TDD-Starter\Katalyst-TDD-Starter.csproj", "{E18F0D8B-D519-4F1A-98AC-61FE929F0705}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Katalyst-TDD-Starter", "Katalyst-TDD-Starter\Katalyst-TDD-Starter.csproj", "{E18F0D8B-D519-4F1A-98AC-61FE929F0705}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Katalyst-TDD-Starter.Test", "Katalyst-TDD-Starter.Test\Katalyst-TDD-Starter.Test.csproj", "{EDE53E76-737D-4900-A7DC-ED8FBD60980E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Katalyst-TDD-Starter.Test", "Katalyst-TDD-Starter.Test\Katalyst-TDD-Starter.Test.csproj", "{EDE53E76-737D-4900-A7DC-ED8FBD60980E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

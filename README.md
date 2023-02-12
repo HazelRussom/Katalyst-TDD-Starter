@@ -11,7 +11,6 @@ Leap Year validator | Complete | https://katalyst.codurance.com/leap-year
 Roman Numeral converter | Complete | https://katalyst.codurance.com/roman-numerals
 String Calculator | Complete | https://katalyst.codurance.com/string-calculator
 Text Processing | Complete | https://katalyst.codurance.com/text-processing
-Bag Organisation | On-Hold | https://katalyst.codurance.com/bags
 Password Validator | Complete | https://katalyst.codurance.com/password-validation
 Mars Rover | Complete | https://katalyst.codurance.com/simple-mars-rover
 Bank | Complete | https://www.codurance.com/katalyst/bank

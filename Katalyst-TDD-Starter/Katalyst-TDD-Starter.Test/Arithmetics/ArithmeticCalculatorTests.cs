@@ -35,5 +35,15 @@ namespace Katalyst_TDD_Starter.Test.Arithmetics
 
             Assert.AreEqual(result, "3");
         }
+
+        [TestMethod]
+        public void Parentheses_with_1_plus_3_should_calculate_4()
+        {
+            var UnderTest = new ArithmeticCalculator();
+
+            var result = UnderTest.Calculate("( 1 + 3 )");
+
+            Assert.AreEqual(result, "4");
+        }
     }
 }
