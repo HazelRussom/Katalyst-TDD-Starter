@@ -17,33 +17,16 @@ namespace Katalyst_TDD_Starter.Test.Arithmetics
         }
 
         [TestMethod]
-        public void Parentheses_with_1_plus_1_should_calculate_2()
+        [DataRow("1", "2")]
+        [DataRow("2", "3")]
+        [DataRow("3", "4")]
+        public void Parentheses_with_1_plus_another_number_should_calculate_expected_result(string numberToAdd, string expectedResult)
         {
             var UnderTest = new ArithmeticCalculator();
 
-            var result = UnderTest.Calculate("( 1 + 1 )");
+            var result = UnderTest.Calculate($"( 1 + {numberToAdd} )");
 
-            Assert.AreEqual(result, "2");
-        }
-
-        [TestMethod]
-        public void Parentheses_with_1_plus_2_should_calculate_3()
-        {
-            var UnderTest = new ArithmeticCalculator();
-
-            var result = UnderTest.Calculate("( 1 + 2 )");
-
-            Assert.AreEqual(result, "3");
-        }
-
-        [TestMethod]
-        public void Parentheses_with_1_plus_3_should_calculate_4()
-        {
-            var UnderTest = new ArithmeticCalculator();
-
-            var result = UnderTest.Calculate("( 1 + 3 )");
-
-            Assert.AreEqual(result, "4");
+            Assert.AreEqual(result, expectedResult);
         }
     }
 }
