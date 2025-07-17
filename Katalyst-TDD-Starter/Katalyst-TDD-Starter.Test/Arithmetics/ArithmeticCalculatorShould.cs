@@ -18,11 +18,13 @@ namespace Katalyst_TDD_Starter.Test.Arithmetics
         }
 
         [TestMethod]
-        public void Throw_when_parenthesis_do_not_match()
+        [DataRow("(")]
+        [DataRow("())")]
+        public void Throw_when_parenthesis_do_not_match(string input)
         {
             var calculator = new ArithmeticCalculator();
 
-            var exception = Assert.ThrowsException<Exception>(() => calculator.Calculate("("));
+            var exception = Assert.ThrowsException<Exception>(() => calculator.Calculate(input));
 
             Assert.AreEqual(exception.Message, "Invalid record error");
         }

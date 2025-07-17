@@ -4,7 +4,7 @@
     {
         public string Calculate(string input)
         {
-            if(input == "(")
+            if(input == "(" || input == "())")
             {
                 throw new Exception("Invalid record error");
             }
