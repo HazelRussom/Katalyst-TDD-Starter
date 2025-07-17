@@ -4,7 +4,10 @@
     {
         public string Calculate(string input)
         {
-            if(input == "(" || input == "())")
+            var openParenthesisCount = input.Count(x => x.Equals('('));
+            var closeParenthesisCount = input.Count(x => x.Equals(')'));
+
+            if (openParenthesisCount != closeParenthesisCount)
             {
                 throw new Exception("Invalid record error");
             }
