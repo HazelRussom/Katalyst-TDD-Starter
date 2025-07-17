@@ -25,3 +25,7 @@ Will come back to this.
 
 ### Bags Note - 2023-01-09
 The solution? Acceptance tests! 
+
+### Arithmetic Outline 2025-07-16
+- Addition / Subtraction / Multiplication / Division
+- Even parentheses count
