@@ -4,13 +4,15 @@
     {
         public string Calculate(string input)
         {
-            if(input.Length < 6)
+            if(input == "(")
             {
-                return "0";
+                throw new Exception("Invalid record error");
             }
 
-            var secondNumber = (int)Char.GetNumericValue(input[6]);
-            return (1 + secondNumber).ToString();
+            return "0";
+
+            //var secondNumber = (int)Char.GetNumericValue(input[6]);
+            //return (1 + secondNumber).ToString();
         }
     }
 }
