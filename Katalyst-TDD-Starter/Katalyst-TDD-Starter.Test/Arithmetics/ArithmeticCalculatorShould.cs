@@ -21,6 +21,7 @@ namespace Katalyst_TDD_Starter.Test.Arithmetics
         [DataRow("(")]
         [DataRow("())")]
         [DataRow("((())")]
+        //[DataRow(")(")]
         public void Throw_when_parenthesis_do_not_match(string input)
         {
             var calculator = new ArithmeticCalculator();
