@@ -7,7 +7,7 @@
             var openParenthesisCount = input.Count(x => x.Equals('('));
             var closeParenthesisCount = input.Count(x => x.Equals(')'));
 
-            if (openParenthesisCount != closeParenthesisCount || openParenthesisCount == 0)
+            if (openParenthesisCount != closeParenthesisCount)
             {
                 throw new Exception("Invalid record error");
             }
