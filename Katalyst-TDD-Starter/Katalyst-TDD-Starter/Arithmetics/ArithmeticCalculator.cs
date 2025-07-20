@@ -12,6 +12,10 @@
                 throw new Exception("Invalid record error");
             }
 
+            if(input.First() != '(' || input.Last() != ')') {
+                throw new Exception("Invalid record error");
+            }
+
             return "0";
 
             //var secondNumber = (int)Char.GetNumericValue(input[6]);

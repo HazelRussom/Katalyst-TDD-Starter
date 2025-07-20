@@ -33,8 +33,7 @@ namespace Katalyst_TDD_Starter.Test.Arithmetics
 
         [TestMethod]
         [DataRow("1")]
-        //[DataRow("1 + 2")]
-        //[DataRow("3 + ( 1 + 2 )")]
+        [DataRow("3 + ( 1 + 2 )")]
         public void Throw_when_input_is_not_wrapped_in_parenthesis(string input)
         {
             var calculator = new ArithmeticCalculator();
