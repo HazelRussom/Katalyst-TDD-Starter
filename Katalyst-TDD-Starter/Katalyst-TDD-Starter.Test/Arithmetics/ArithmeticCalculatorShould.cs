@@ -14,7 +14,7 @@ namespace Katalyst_TDD_Starter.Test.Arithmetics
 
             var result = calculator.Calculate("()");
 
-            Assert.AreEqual("0", result);
+            Assert.AreEqual(0, result);
         }
 
         [TestMethod]

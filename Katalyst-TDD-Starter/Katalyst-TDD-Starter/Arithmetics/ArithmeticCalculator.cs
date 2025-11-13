@@ -2,7 +2,7 @@
 {
     public class ArithmeticCalculator
     {
-        public string Calculate(string input)
+        public int Calculate(string input)
         {
             var openParenthesisCount = input.Count(x => x.Equals('('));
             var closeParenthesisCount = input.Count(x => x.Equals(')'));
@@ -16,7 +16,7 @@
                 throw new Exception("Invalid record error");
             }
 
-            return "0";
+            return 0;
 
             //var secondNumber = (int)Char.GetNumericValue(input[6]);
             //return (1 + secondNumber).ToString();
