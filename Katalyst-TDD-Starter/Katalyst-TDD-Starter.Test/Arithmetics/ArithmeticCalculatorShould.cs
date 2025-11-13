@@ -43,6 +43,16 @@ namespace Katalyst_TDD_Starter.Test.Arithmetics
             Assert.AreEqual(exception.Message, "Invalid record error");
         }
 
+        [TestMethod]
+        public void Calculate_1_plus_1()
+        {
+            var calculator = new ArithmeticCalculator();
+
+            var result = calculator.Calculate("(1 + 1)");
+
+            Assert.AreEqual(2, result);
+        }
+
         //[TestMethod]
         //[DataRow("1", "2")]
         //[DataRow("2", "3")]

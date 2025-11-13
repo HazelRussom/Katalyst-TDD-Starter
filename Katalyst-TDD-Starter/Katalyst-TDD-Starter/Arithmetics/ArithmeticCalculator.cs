@@ -16,6 +16,15 @@
                 throw new Exception("Invalid record error");
             }
 
+            var startParenthesisIndex = input.IndexOf("(");
+            var endParenthesisIndex = input.LastIndexOf(")");
+
+            var unwrappedInput = input.Substring(startParenthesisIndex + 1, endParenthesisIndex - startParenthesisIndex - 1);
+            if(unwrappedInput.Length > 0)
+            {
+                return 2;
+            }
+
             return 0;
 
             //var secondNumber = (int)Char.GetNumericValue(input[6]);
