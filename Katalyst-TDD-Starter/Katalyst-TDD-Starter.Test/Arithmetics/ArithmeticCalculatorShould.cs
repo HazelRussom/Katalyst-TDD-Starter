@@ -7,11 +7,16 @@ namespace Katalyst_TDD_Starter.Test.Arithmetics
     [TestClass]
     public class ArithmeticCalculatorShould
     {
+        ArithmeticCalculator calculator;
+
+        public ArithmeticCalculatorShould()
+        {
+            calculator = new ArithmeticCalculator();
+        }
+
         [TestMethod]
         public void Calculate_empty_parenthesis_as_0()
         {
-            var calculator = new ArithmeticCalculator();
-
             var result = calculator.Calculate("()");
 
             Assert.AreEqual(0, result);
@@ -24,8 +29,6 @@ namespace Katalyst_TDD_Starter.Test.Arithmetics
         [DataRow(")(")]
         public void Throw_when_parenthesis_do_not_match(string input)
         {
-            var calculator = new ArithmeticCalculator();
-
             var exception = Assert.ThrowsException<Exception>(() => calculator.Calculate(input));
 
             Assert.AreEqual(exception.Message, "Invalid record error");
@@ -36,8 +39,6 @@ namespace Katalyst_TDD_Starter.Test.Arithmetics
         [DataRow("3 + ( 1 + 2 )")]
         public void Throw_when_input_is_not_wrapped_in_parenthesis(string input)
         {
-            var calculator = new ArithmeticCalculator();
-
             var exception = Assert.ThrowsException<Exception>(() => calculator.Calculate(input));
 
             Assert.AreEqual(exception.Message, "Invalid record error");
@@ -46,8 +47,6 @@ namespace Katalyst_TDD_Starter.Test.Arithmetics
         [TestMethod]
         public void Calculate_1_plus_1()
         {
-            var calculator = new ArithmeticCalculator();
-
             var result = calculator.Calculate("(1 + 1)");
 
             Assert.AreEqual(2, result);
