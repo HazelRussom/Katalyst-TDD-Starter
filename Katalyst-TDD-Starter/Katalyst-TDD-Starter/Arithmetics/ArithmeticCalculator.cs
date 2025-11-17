@@ -24,7 +24,7 @@
             {
                 var numbers = unwrappedInput.Split("+").Select(x => int.Parse(x)).ToList();
 
-                return 1 + numbers[1];
+                return numbers[0] + numbers[1];
             }
 
             return 0;

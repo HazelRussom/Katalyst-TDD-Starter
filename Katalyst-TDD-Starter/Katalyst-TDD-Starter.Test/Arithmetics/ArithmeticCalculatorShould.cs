@@ -47,6 +47,7 @@ namespace Katalyst_TDD_Starter.Test.Arithmetics
         [TestMethod]
         [DataRow(1, 1, 2)]
         [DataRow(1, 2, 3)]
+        [DataRow(3, 6, 9)]
         public void Sum_two_numbers(int firstNumber, int secondNumber, int expectedResult)
         {
             var actualResult = calculator.Calculate($"({firstNumber} + {secondNumber})");
