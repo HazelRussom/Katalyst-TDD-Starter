@@ -45,11 +45,12 @@ namespace Katalyst_TDD_Starter.Test.Arithmetics
         }
 
         [TestMethod]
-        public void Calculate_1_plus_1()
+        [DataRow(1, 1, 2)]
+        public void Sum_two_numbers(int firstNumber, int secondNumber, int expectedResult)
         {
-            var result = calculator.Calculate("(1 + 1)");
+            var actualResult = calculator.Calculate($"({firstNumber} + {secondNumber})");
 
-            Assert.AreEqual(2, result);
+            Assert.AreEqual(expectedResult, actualResult);
         }
 
         //[TestMethod]
