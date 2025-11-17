@@ -22,7 +22,9 @@
             var unwrappedInput = input.Substring(startParenthesisIndex + 1, endParenthesisIndex - startParenthesisIndex - 1);
             if(unwrappedInput.Length > 0)
             {
-                return 2;
+                var numbers = unwrappedInput.Split("+").Select(x => int.Parse(x)).ToList();
+
+                return 1 + numbers[1];
             }
 
             return 0;
