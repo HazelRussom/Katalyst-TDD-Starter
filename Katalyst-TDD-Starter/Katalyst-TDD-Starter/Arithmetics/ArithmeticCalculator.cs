@@ -30,15 +30,25 @@
 
             if (splitInput[1] == "*")
             {
-                return double.Parse(splitInput[0]) * double.Parse(splitInput[2]);
+                return GetFirstNumber(splitInput) * GetSecondNumber(splitInput);
             }
 
             if (splitInput[1] == "+")
             {
-                return double.Parse(splitInput[0]) + double.Parse(splitInput[2]);
+                return GetFirstNumber(splitInput) + GetSecondNumber(splitInput);
             }
-            
-            return double.Parse(splitInput[0]) - double.Parse(splitInput[2]);
+
+            return GetFirstNumber(splitInput) - GetSecondNumber(splitInput);
+        }
+
+        private static double GetFirstNumber(List<string> splitInput)
+        {
+            return double.Parse(splitInput[0]);
+        }
+
+        private static double GetSecondNumber(List<string> splitInput)
+        {
+            return double.Parse(splitInput[2]);
         }
     }
 }
