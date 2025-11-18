@@ -66,5 +66,15 @@ namespace Katalyst_TDD_Starter.Test.Arithmetics
 
             Assert.AreEqual(expectedResult, actualResult);
         }
+
+        [TestMethod]
+        [DataRow(2, 1, 2)]
+
+        public void Multiply_two_numbers(int firstNumber, int secondNumber, int expectedResult)
+        {
+            var actualResult = calculator.Calculate($"({firstNumber} * {secondNumber})");
+
+            Assert.AreEqual(expectedResult, actualResult);
+        }
     }
 }

@@ -28,15 +28,17 @@
 
             var splitInput = unwrappedInput.Split(" ").ToList();
 
+            if (splitInput[1] == "*")
+            {
+                return int.Parse(splitInput[0]) * int.Parse(splitInput[2]);
+            }
+
             if (splitInput[1] == "+")
             {
                 return int.Parse(splitInput[0]) + int.Parse(splitInput[2]);
             }
-            else
-            {
-                return int.Parse(splitInput[0]) - int.Parse(splitInput[2]);
-            }
-
+            
+            return int.Parse(splitInput[0]) - int.Parse(splitInput[2]);
         }
     }
 }
