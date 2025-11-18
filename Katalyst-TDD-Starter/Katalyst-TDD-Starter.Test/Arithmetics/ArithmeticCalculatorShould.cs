@@ -47,7 +47,7 @@ namespace Katalyst_TDD_Starter.Test.Arithmetics
         [TestMethod]
         [DataRow(1, 1, 2)]
         [DataRow(1, 2, 3)]
-        [DataRow(3, 6, 9)]
+        [DataRow(13, 6, 19)]
         public void Sum_two_numbers(int firstNumber, int secondNumber, int expectedResult)
         {
             var actualResult = calculator.Calculate($"({firstNumber} + {secondNumber})");
@@ -57,7 +57,9 @@ namespace Katalyst_TDD_Starter.Test.Arithmetics
 
         [TestMethod]
         [DataRow(2, 1, 1)]
-        
+        [DataRow(10, 4, 6)]
+        [DataRow(1, 12, -11)]
+
         public void Subtract_two_numbers(int firstNumber, int secondNumber, int expectedResult)
         {
             var actualResult = calculator.Calculate($"({firstNumber} - {secondNumber})");
