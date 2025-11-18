@@ -12,7 +12,8 @@
                 throw new Exception("Invalid record error");
             }
 
-            if(input.First() != '(' || input.Last() != ')') {
+            if (input.First() != '(' || input.Last() != ')')
+            {
                 throw new Exception("Invalid record error");
             }
 
@@ -20,14 +21,14 @@
             var endParenthesisIndex = input.LastIndexOf(")");
 
             var unwrappedInput = input.Substring(startParenthesisIndex + 1, endParenthesisIndex - startParenthesisIndex - 1);
-            if(unwrappedInput.Length > 0)
+            if (unwrappedInput.Length == 0)
             {
-                var numbers = unwrappedInput.Split("+").Select(x => int.Parse(x)).ToList();
-
-                return numbers[0] + numbers[1];
+                return 0;
             }
 
-            return 0;
+            var numbers = unwrappedInput.Split("+").Select(x => int.Parse(x)).ToList();
+
+            return numbers[0] + numbers[1];
 
             //var secondNumber = (int)Char.GetNumericValue(input[6]);
             //return (1 + secondNumber).ToString();
