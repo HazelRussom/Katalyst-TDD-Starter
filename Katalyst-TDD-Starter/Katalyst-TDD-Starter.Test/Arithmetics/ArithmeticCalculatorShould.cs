@@ -55,17 +55,14 @@ namespace Katalyst_TDD_Starter.Test.Arithmetics
             Assert.AreEqual(expectedResult, actualResult);
         }
 
-        //[TestMethod]
-        //[DataRow("1", "2")]
-        //[DataRow("2", "3")]
-        //[DataRow("3", "4")]
-        //public void Calculate_two_numbers_summed(string numberToAdd, string expectedResult)
-        //{
-        //    var UnderTest = new ArithmeticCalculator();
+        [TestMethod]
+        [DataRow(2, 1, 1)]
+        
+        public void Subtract_two_numbers(int firstNumber, int secondNumber, int expectedResult)
+        {
+            var actualResult = calculator.Calculate($"({firstNumber} - {secondNumber})");
 
-        //    var result = UnderTest.Calculate($"( 1 + {numberToAdd} )");
-
-        //    Assert.AreEqual(expectedResult, result);
-        //}
+            Assert.AreEqual(expectedResult, actualResult);
+        }
     }
 }

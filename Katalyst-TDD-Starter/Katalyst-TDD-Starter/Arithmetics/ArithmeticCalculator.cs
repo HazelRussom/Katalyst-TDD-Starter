@@ -26,12 +26,17 @@
                 return 0;
             }
 
-            var numbers = unwrappedInput.Split("+").Select(x => int.Parse(x)).ToList();
+            var splitInput = unwrappedInput.Split(" ").ToList();
 
-            return numbers[0] + numbers[1];
+            if (splitInput[1] == "+")
+            {
+                return int.Parse(splitInput[0]) + int.Parse(splitInput[2]);
+            }
+            else
+            {
+                return int.Parse(splitInput[0]) - int.Parse(splitInput[2]);
+            }
 
-            //var secondNumber = (int)Char.GetNumericValue(input[6]);
-            //return (1 + secondNumber).ToString();
         }
     }
 }
