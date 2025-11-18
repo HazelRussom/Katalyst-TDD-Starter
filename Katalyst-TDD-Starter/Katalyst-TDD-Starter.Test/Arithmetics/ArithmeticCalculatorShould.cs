@@ -59,19 +59,6 @@ namespace Katalyst_TDD_Starter.Test.Arithmetics
         //[DataRow("1", "2")]
         //[DataRow("2", "3")]
         //[DataRow("3", "4")]
-        //public void Calculate_one_plus_another_number(string numberToAdd, string expectedResult)
-        //{
-        //    var UnderTest = new ArithmeticCalculator();
-
-        //    var result = UnderTest.Calculate($"( 1 + {numberToAdd} )");
-
-        //    Assert.AreEqual(expectedResult, result);
-        //}
-
-        //[TestMethod]
-        //[DataRow("1", "2")]
-        //[DataRow("2", "3")]
-        //[DataRow("3", "4")]
         //public void Calculate_two_numbers_summed(string numberToAdd, string expectedResult)
         //{
         //    var UnderTest = new ArithmeticCalculator();
