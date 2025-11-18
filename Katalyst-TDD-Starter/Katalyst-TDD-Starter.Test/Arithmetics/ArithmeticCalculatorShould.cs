@@ -69,8 +69,10 @@ namespace Katalyst_TDD_Starter.Test.Arithmetics
 
         [TestMethod]
         [DataRow(2, 1, 2)]
+        [DataRow(5, 4, 20)]
+        [DataRow(0.5, 5, 2.5)]
 
-        public void Multiply_two_numbers(int firstNumber, int secondNumber, int expectedResult)
+        public void Multiply_two_numbers(double firstNumber, double secondNumber, double expectedResult)
         {
             var actualResult = calculator.Calculate($"({firstNumber} * {secondNumber})");
 

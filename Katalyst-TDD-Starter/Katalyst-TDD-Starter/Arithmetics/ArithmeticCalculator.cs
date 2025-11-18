@@ -2,7 +2,7 @@
 {
     public class ArithmeticCalculator
     {
-        public int Calculate(string input)
+        public double Calculate(string input)
         {
             var openParenthesisCount = input.Count(x => x.Equals('('));
             var closeParenthesisCount = input.Count(x => x.Equals(')'));
@@ -30,15 +30,15 @@
 
             if (splitInput[1] == "*")
             {
-                return int.Parse(splitInput[0]) * int.Parse(splitInput[2]);
+                return double.Parse(splitInput[0]) * double.Parse(splitInput[2]);
             }
 
             if (splitInput[1] == "+")
             {
-                return int.Parse(splitInput[0]) + int.Parse(splitInput[2]);
+                return double.Parse(splitInput[0]) + double.Parse(splitInput[2]);
             }
             
-            return int.Parse(splitInput[0]) - int.Parse(splitInput[2]);
+            return double.Parse(splitInput[0]) - double.Parse(splitInput[2]);
         }
     }
 }
