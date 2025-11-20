@@ -11,15 +11,20 @@ public class ArithmeticCalculatorShould
         calculator = new ArithmeticCalculator();
     }
 
+    private void ExpectInputGeneratesResult(string input, double expectedResult)
+    {
+        var actualResult = calculator.Calculate(input);
+
+        Assert.Equal(expectedResult, actualResult);
+    }
+
     [Theory]
     [InlineData("()")]
     [InlineData("(())")]
     [InlineData("((()))")]
     public void Calculate_empty_parenthesis_as_0(string input)
     {
-        var result = calculator.Calculate(input);
-
-        Assert.Equal(0, result);
+        ExpectInputGeneratesResult(input, 0);
     }
 
     [Theory]
@@ -50,9 +55,7 @@ public class ArithmeticCalculatorShould
     [InlineData(13, 6, 19)]
     public void Sum_two_numbers(int firstNumber, int secondNumber, int expectedResult)
     {
-        var actualResult = calculator.Calculate($"({firstNumber} + {secondNumber})");
-
-        Assert.Equal(expectedResult, actualResult);
+        ExpectInputGeneratesResult($"({firstNumber} + {secondNumber})", expectedResult);
     }
 
     [Theory]
@@ -62,9 +65,7 @@ public class ArithmeticCalculatorShould
 
     public void Subtract_two_numbers(int firstNumber, int secondNumber, int expectedResult)
     {
-        var actualResult = calculator.Calculate($"({firstNumber} - {secondNumber})");
-
-        Assert.Equal(expectedResult, actualResult);
+        ExpectInputGeneratesResult($"({firstNumber} - {secondNumber})", expectedResult);
     }
 
     [Theory]
@@ -74,9 +75,7 @@ public class ArithmeticCalculatorShould
 
     public void Multiply_two_numbers(double firstNumber, double secondNumber, double expectedResult)
     {
-        var actualResult = calculator.Calculate($"({firstNumber} * {secondNumber})");
-
-        Assert.Equal(expectedResult, actualResult);
+        ExpectInputGeneratesResult($"({firstNumber} * {secondNumber})", expectedResult);
     }
 
     [Theory]
@@ -86,8 +85,6 @@ public class ArithmeticCalculatorShould
 
     public void Divide_two_numbers(double firstNumber, double secondNumber, double expectedResult)
     {
-        var actualResult = calculator.Calculate($"({firstNumber} / {secondNumber})");
-
-        Assert.Equal(expectedResult, actualResult);
+        ExpectInputGeneratesResult($"({firstNumber} / {secondNumber})", expectedResult);
     }
 }
