@@ -19,6 +19,14 @@ public class ArithmeticCalculatorShould
         Assert.Equal(0, result);
     }
 
+    [Fact]
+    public void Calculate_nested_empty_parenthesis_as_0()
+    {
+        var result = calculator.Calculate("(())");
+
+        Assert.Equal(0, result);
+    }
+
     [Theory]
     [InlineData("(")]
     [InlineData("())")]

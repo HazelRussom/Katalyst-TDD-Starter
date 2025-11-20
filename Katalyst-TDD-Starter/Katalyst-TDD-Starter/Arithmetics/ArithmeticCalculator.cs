@@ -26,6 +26,11 @@
                 return 0;
             }
 
+            if(unwrappedInput == "()")
+            {
+                return 0;
+            }
+
             var splitInput = unwrappedInput.Split(" ").ToList();
 
             if (splitInput[1] == "/")
