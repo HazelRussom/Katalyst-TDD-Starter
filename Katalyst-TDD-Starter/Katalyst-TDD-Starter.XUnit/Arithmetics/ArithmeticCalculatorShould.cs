@@ -11,18 +11,12 @@ public class ArithmeticCalculatorShould
         calculator = new ArithmeticCalculator();
     }
 
-    [Fact]
-    public void Calculate_empty_parenthesis_as_0()
+    [Theory]
+    [InlineData("()")]
+    [InlineData("(())")]
+    public void Calculate_empty_parenthesis_as_0(string input)
     {
-        var result = calculator.Calculate("()");
-
-        Assert.Equal(0, result);
-    }
-
-    [Fact]
-    public void Calculate_nested_empty_parenthesis_as_0()
-    {
-        var result = calculator.Calculate("(())");
+        var result = calculator.Calculate(input);
 
         Assert.Equal(0, result);
     }
