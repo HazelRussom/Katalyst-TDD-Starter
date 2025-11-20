@@ -28,6 +28,11 @@
 
             var splitInput = unwrappedInput.Split(" ").ToList();
 
+            if (splitInput[1] == "/")
+            {
+                return GetFirstNumber(splitInput) / GetSecondNumber(splitInput);
+            }
+
             if (splitInput[1] == "*")
             {
                 return GetFirstNumber(splitInput) * GetSecondNumber(splitInput);

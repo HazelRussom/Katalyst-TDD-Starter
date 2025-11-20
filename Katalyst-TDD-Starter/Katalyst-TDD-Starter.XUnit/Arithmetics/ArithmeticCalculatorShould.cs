@@ -75,4 +75,16 @@ public class ArithmeticCalculatorShould
 
         Assert.Equal(expectedResult, actualResult);
     }
+
+    [Theory]
+    [InlineData(5, 1, 5)]
+    [InlineData(24, 4, 6)]
+    [InlineData(2, 4, 0.5)]
+
+    public void Divide_two_numbers(double firstNumber, double secondNumber, double expectedResult)
+    {
+        var actualResult = calculator.Calculate($"({firstNumber} / {secondNumber})");
+
+        Assert.Equal(expectedResult, actualResult);
+    }
 }
