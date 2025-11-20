@@ -58,6 +58,12 @@ public class ArithmeticCalculatorShould
         ExpectInputGeneratesResult($"({firstNumber} + {secondNumber})", expectedResult);
     }
 
+    [Fact]
+    public void Sum_nested_parentheses()
+    {
+        ExpectInputGeneratesResult($"( 1 + ( 2 + 3 ) )", 6);
+    }
+
     [Theory]
     [InlineData(2, 1, 1)]
     [InlineData(10, 4, 6)]
