@@ -14,6 +14,7 @@ public class ArithmeticCalculatorShould
     [Theory]
     [InlineData("()")]
     [InlineData("(())")]
+    [InlineData("((()))")]
     public void Calculate_empty_parenthesis_as_0(string input)
     {
         var result = calculator.Calculate(input);

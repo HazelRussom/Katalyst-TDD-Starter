@@ -26,7 +26,7 @@
                 return 0;
             }
 
-            if(unwrappedInput == "()")
+            if(unwrappedInput.Contains("("))
             {
                 return 0;
             }
