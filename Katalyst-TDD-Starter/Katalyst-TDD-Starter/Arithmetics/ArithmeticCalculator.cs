@@ -26,9 +26,25 @@
                 return 0;
             }
 
-            if(unwrappedInput.Contains("("))
+            if (unwrappedInput.Contains("("))
             {
-                return 0;
+                if (!unwrappedInput.Contains("+")) {
+                    return 0;
+                }
+
+
+                var innerStartParenthesisIndex = unwrappedInput.IndexOf("(");
+                var innerEndParenthesisIndex = unwrappedInput.LastIndexOf(")");
+                var unwrappedInnerInput = unwrappedInput.Substring(innerStartParenthesisIndex + 1, innerEndParenthesisIndex - innerStartParenthesisIndex - 1);
+
+                var innerResult = 0d;
+                var splitInnerInput = unwrappedInnerInput.Split(" ").ToList();
+                if (splitInnerInput[1] == "+")
+                {
+                    innerResult = GetFirstNumber(splitInnerInput) + GetSecondNumber(splitInnerInput);
+                }
+                unwrappedInput = $"{unwrappedInput.Substring(0, innerStartParenthesisIndex-1)} {innerResult} {unwrappedInput.Substring(innerEndParenthesisIndex)}";
+                
             }
 
             var splitInput = unwrappedInput.Split(" ").ToList();

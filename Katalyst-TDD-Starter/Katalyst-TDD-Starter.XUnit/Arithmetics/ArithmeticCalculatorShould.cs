@@ -61,7 +61,7 @@ public class ArithmeticCalculatorShould
     [Fact]
     public void Sum_nested_parentheses()
     {
-        ExpectInputGeneratesResult($"( 1 + ( 2 + 3 ) )", 6);
+        ExpectInputGeneratesResult($"(1 + (2 + 3))", 6);
     }
 
     [Theory]
