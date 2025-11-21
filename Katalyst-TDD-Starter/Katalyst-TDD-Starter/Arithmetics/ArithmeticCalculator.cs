@@ -17,11 +17,6 @@
                 throw new Exception("Invalid record error");
             }
 
-            return CalculateString(input);
-        }
-
-        private double CalculateString(string input)
-        {
             var startParenthesisIndex = input.IndexOf("(");
             var endParenthesisIndex = input.LastIndexOf(")");
 
@@ -31,23 +26,28 @@
                 return 0;
             }
 
-            if (unwrappedInput.Contains("("))
+            return CalculateString(unwrappedInput);
+        }
+
+        private double CalculateString(string input)
+        {
+            if (input.Length == 0)
             {
-                if (!unwrappedInput.Contains("+"))
-                {
-                    return 0;
-                }
+                return 0;
+            }
 
-                var innerResult = CalculateString(unwrappedInput);
+            if (input.Contains('('))
+            {
+                var innerStartParenthesisIndex = input.IndexOf("(");
+                var innerEndParenthesisIndex = input.LastIndexOf(")");
+                var innerValue = input.Substring(innerStartParenthesisIndex + 1, innerEndParenthesisIndex - innerStartParenthesisIndex - 1);
+                var innerResult = CalculateString(innerValue);
 
-                var innerStartParenthesisIndex = unwrappedInput.IndexOf("(");
-                var innerEndParenthesisIndex = unwrappedInput.LastIndexOf(")");
-
-                unwrappedInput = $"{unwrappedInput.Substring(0, innerStartParenthesisIndex - 1)} {innerResult} {unwrappedInput.Substring(innerEndParenthesisIndex)}";
+                input = $"{input.Substring(0, innerStartParenthesisIndex)}{innerResult}{input.Substring(innerEndParenthesisIndex + 1)}";
 
             }
 
-            var splitInput = unwrappedInput.Split(" ").ToList();
+            var splitInput = input.Split(" ").ToList();
 
             if (splitInput[1] == "/")
             {
