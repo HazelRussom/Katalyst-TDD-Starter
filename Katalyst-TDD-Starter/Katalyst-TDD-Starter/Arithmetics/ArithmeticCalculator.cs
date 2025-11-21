@@ -43,7 +43,10 @@
                 var innerValue = input.Substring(innerStartParenthesisIndex + 1, innerEndParenthesisIndex - innerStartParenthesisIndex - 1);
                 var innerResult = CalculateString(innerValue);
 
-                input = $"{input.Substring(0, innerStartParenthesisIndex)}{innerResult}{input.Substring(innerEndParenthesisIndex + 1)}";
+                var inputStart = input.Substring(0, innerStartParenthesisIndex);
+                var inputEnd = input.Substring(innerEndParenthesisIndex + 1);
+
+                input = $"{inputStart}{innerResult}{inputEnd}";
 
             }
 
