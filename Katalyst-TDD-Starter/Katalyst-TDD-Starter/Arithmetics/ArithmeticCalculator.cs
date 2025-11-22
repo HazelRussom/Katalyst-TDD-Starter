@@ -36,10 +36,10 @@
                 return 0;
             }
 
-            if (input.Contains('('))
+            while (input.Contains('('))
             {
                 var innerStartParenthesisIndex = input.IndexOf("(");
-                var innerEndParenthesisIndex = input.LastIndexOf(")");
+                var innerEndParenthesisIndex = input.IndexOf(")");
                 var innerValue = input.Substring(innerStartParenthesisIndex + 1, innerEndParenthesisIndex - innerStartParenthesisIndex - 1);
                 var innerResult = CalculateString(innerValue);
 

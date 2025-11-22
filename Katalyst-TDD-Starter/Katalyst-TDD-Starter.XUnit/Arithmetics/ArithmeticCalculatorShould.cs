@@ -58,10 +58,19 @@ public class ArithmeticCalculatorShould
         ExpectInputGeneratesResult($"({firstNumber} + {secondNumber})", expectedResult);
     }
 
-    [Fact]
-    public void Sum_nested_parentheses()
+    [Theory]
+    [InlineData("(1 + (2 + 3))", 6)]
+    [InlineData("(1 - (3 - 1))", -1)]
+    public void Calculate_nested_parentheses(string input, double expectedResult)
     {
-        ExpectInputGeneratesResult($"(1 + (2 + 3))", 6);
+        ExpectInputGeneratesResult(input, expectedResult);
+    }
+
+    [Theory]
+    [InlineData("((1 + 2) + (2 + 3))", 8)]
+    public void Calculate_multiple_parentheses_in_the_same_layer(string input, double expectedResult)
+    {
+        ExpectInputGeneratesResult(input, expectedResult);
     }
 
     [Theory]
