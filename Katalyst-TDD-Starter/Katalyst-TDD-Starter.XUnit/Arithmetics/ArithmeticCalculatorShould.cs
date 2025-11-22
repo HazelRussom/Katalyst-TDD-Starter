@@ -61,6 +61,7 @@ public class ArithmeticCalculatorShould
     [Theory]
     [InlineData("(1 + (2 + 3))", 6)]
     [InlineData("(1 - (3 - 1))", -1)]
+    [InlineData("((1 + 2) + ((2 + 3) - 5))", 3)]
     public void Calculate_nested_parentheses(string input, double expectedResult)
     {
         ExpectInputGeneratesResult(input, expectedResult);

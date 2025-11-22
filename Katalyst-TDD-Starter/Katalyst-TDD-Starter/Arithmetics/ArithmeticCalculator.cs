@@ -39,7 +39,28 @@
             while (input.Contains('('))
             {
                 var innerStartParenthesisIndex = input.IndexOf("(");
-                var innerEndParenthesisIndex = input.IndexOf(")");
+                var innerEndParenthesisIndex = 0;
+                var openParentheses = 0;
+                for (int index = innerStartParenthesisIndex; index < input.Length; index++)
+                {
+                    if (input[index] == '(')
+                    {
+                        openParentheses++;
+                        continue;
+                    }
+
+                    if (input[index] == ')')
+                    {
+                        openParentheses--;
+
+                        if(openParentheses == 0)
+                        {
+                            innerEndParenthesisIndex = index;
+                            break;
+                        }
+                    }
+                }
+
                 var innerValue = input.Substring(innerStartParenthesisIndex + 1, innerEndParenthesisIndex - innerStartParenthesisIndex - 1);
                 var innerResult = CalculateString(innerValue);
 
