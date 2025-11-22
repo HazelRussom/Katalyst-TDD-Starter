@@ -52,6 +52,11 @@
 
             var splitInput = input.Split(" ").ToList();
 
+            if(splitInput.Count == 1)
+            {
+                return Convert.ToDouble(input);
+            }
+
             if (splitInput[1] == "/")
             {
                 return GetFirstNumber(splitInput) / GetSecondNumber(splitInput);
