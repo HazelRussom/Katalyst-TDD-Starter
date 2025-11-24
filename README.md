@@ -16,7 +16,7 @@ Mars Rover | Complete | https://katalyst.codurance.com/simple-mars-rover
 Bank | Complete | https://www.codurance.com/katalyst/bank
 Number Guessing Game | Complete | https://www.codurance.com/katalyst/random-number-kata
 Bags | Complete | https://www.codurance.com/katalyst/bags
-Arithmetics | In Progress | https://www.codurance.com/katas/arithmetics
+Arithmetics | Complete | https://www.codurance.com/katas/arithmetics
 
 ### Bags Note - 2022-06-28
 I feel I've bitten off too much with this exercise, or gone down an incorrect path.  
