@@ -39,6 +39,12 @@ public class ArithmeticCalculatorShould
         Assert.Equal("Invalid record error", exception.Message);
     }
 
+    [Fact]
+    public void Handle_leading_and_trailing_whitespace()
+    {
+        ExpectInputGeneratesResult($"( 1 + ( 5 + 2 )  )", 8);
+    }
+
     [Theory]
     [InlineData("1")]
     [InlineData("3 + ( 1 + 2 )")]
@@ -63,6 +69,14 @@ public class ArithmeticCalculatorShould
     [InlineData("(1 - (3 - 1))", -1)]
     [InlineData("((1 + 2) + ((2 + 3) - 5))", 3)]
     public void Calculate_nested_parentheses(string input, double expectedResult)
+    {
+        ExpectInputGeneratesResult(input, expectedResult);
+    }
+
+    [Theory]
+    [InlineData("( 1 + 2 + 3 )", 6)]
+    [InlineData("( 2 * 9 / 3 - 7 )", -1)]
+    public void Calculate_multiple_steps(string input, double expectedResult)
     {
         ExpectInputGeneratesResult(input, expectedResult);
     }

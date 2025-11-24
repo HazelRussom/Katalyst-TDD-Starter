@@ -31,6 +31,8 @@
 
         private double CalculateString(string input)
         {
+            input = input.Trim();
+
             if (input.Length == 0)
             {
                 return 0;
@@ -39,27 +41,7 @@
             while (input.Contains('('))
             {
                 var innerStartParenthesisIndex = input.IndexOf("(");
-                var innerEndParenthesisIndex = 0;
-                var openParentheses = 0;
-                for (int index = innerStartParenthesisIndex; index < input.Length; index++)
-                {
-                    if (input[index] == '(')
-                    {
-                        openParentheses++;
-                        continue;
-                    }
-
-                    if (input[index] == ')')
-                    {
-                        openParentheses--;
-
-                        if(openParentheses == 0)
-                        {
-                            innerEndParenthesisIndex = index;
-                            break;
-                        }
-                    }
-                }
+                int innerEndParenthesisIndex = GetClosingParentheses(input, innerStartParenthesisIndex);
 
                 var innerValue = input.Substring(innerStartParenthesisIndex + 1, innerEndParenthesisIndex - innerStartParenthesisIndex - 1);
                 var innerResult = CalculateString(innerValue);
@@ -73,11 +55,17 @@
 
             var splitInput = input.Split(" ").ToList();
 
-            if(splitInput.Count == 1)
+            while(splitInput.Count > 1)
             {
-                return Convert.ToDouble(input);
+                var result = CalculateFirstTwoNumbers(input, splitInput);
+                splitInput.RemoveRange(1, 2);
+                splitInput[0] = $"{result}";
             }
+            return Convert.ToDouble(splitInput[0]);
+        }
 
+        private static double CalculateFirstTwoNumbers(string input, List<string> splitInput)
+        {
             if (splitInput[1] == "/")
             {
                 return GetFirstNumber(splitInput) / GetSecondNumber(splitInput);
@@ -94,6 +82,34 @@
             }
 
             return GetFirstNumber(splitInput) - GetSecondNumber(splitInput);
+        }
+
+        private static int GetClosingParentheses(string input, int startParenthesisIndex)
+        {
+            var endParenthesisIndex = 0;
+            var openParentheses = 0;
+            for (int index = startParenthesisIndex; index < input.Length; index++)
+            {
+                if (input[index] == '(')
+                {
+                    openParentheses++;
+                    continue;
+                }
+
+                if (input[index] == ')')
+                {
+                    openParentheses--;
+
+                    if (openParentheses == 0)
+                    {
+                        endParenthesisIndex = index;
+                        break;
+                    }
+                    continue;
+                }
+            }
+
+            return endParenthesisIndex;
         }
 
         private static double GetFirstNumber(List<string> splitInput)
