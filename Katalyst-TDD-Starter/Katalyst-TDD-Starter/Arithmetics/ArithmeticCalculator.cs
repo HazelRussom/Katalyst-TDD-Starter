@@ -55,16 +55,63 @@
 
             var splitInput = input.Split(" ").ToList();
 
-            while(splitInput.Count > 1)
+            var currentIndex = 0;
+
+            while (splitInput.Contains("/"))
             {
-                var result = CalculateFirstTwoNumbers(input, splitInput);
+                if (splitInput[currentIndex + 1] == "/")
+                {
+                    var result = CalculateNumbersAt(currentIndex, splitInput);
+                    splitInput.RemoveRange(currentIndex + 1, 2);
+                    splitInput[currentIndex] = $"{result}";
+                }
+                currentIndex++;
+            }
+
+            currentIndex = 0;
+
+            while (splitInput.Contains("*")) {
+                if (splitInput[currentIndex + 1] == "*") { 
+                    var result = CalculateNumbersAt(currentIndex, splitInput);
+                    splitInput.RemoveRange(currentIndex + 1, 2);
+                    splitInput[currentIndex] = $"{result}";
+                }
+                currentIndex++;
+            }
+
+
+            while (splitInput.Count > 1)
+            {
+               
+                var result = CalculateFirstTwoNumbers(splitInput);
                 splitInput.RemoveRange(1, 2);
                 splitInput[0] = $"{result}";
             }
             return Convert.ToDouble(splitInput[0]);
         }
 
-        private static double CalculateFirstTwoNumbers(string input, List<string> splitInput)
+        private double CalculateNumbersAt(int currentIndex, List<string> splitInput)
+        {
+            var symbol = splitInput[currentIndex + 1];
+            if (symbol == "/")
+            {
+                return GetNumber(splitInput[currentIndex]) / GetNumber(splitInput[currentIndex + 2]);
+            }
+
+            if (symbol == "*")
+            {
+                return GetNumber(splitInput[currentIndex]) * GetNumber(splitInput[currentIndex + 2]);
+            }
+
+            if (symbol == "+")
+            {
+                return GetNumber(splitInput[currentIndex]) + GetNumber(splitInput[currentIndex + 2]);
+            }
+
+            return GetNumber(splitInput[currentIndex]) - GetNumber(splitInput[currentIndex + 2]);
+        }
+
+        private static double CalculateFirstTwoNumbers(List<string> splitInput)
         {
             if (splitInput[1] == "/")
             {
@@ -110,6 +157,11 @@
             }
 
             return endParenthesisIndex;
+        }
+
+        private static double GetNumber(string input)
+        {
+            return double.Parse(input);
         }
 
         private static double GetFirstNumber(List<string> splitInput)

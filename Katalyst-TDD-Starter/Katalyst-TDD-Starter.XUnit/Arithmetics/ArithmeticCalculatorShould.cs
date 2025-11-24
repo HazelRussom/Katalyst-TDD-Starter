@@ -82,6 +82,14 @@ public class ArithmeticCalculatorShould
     }
 
     [Theory]
+    [InlineData("( 2 - 5 * 6 )", -28)]
+    [InlineData("( 10 - 30 / 6 )", 5)]
+    public void Complete_operations_in_correct_order(string input, double expectedResult)
+    {
+        ExpectInputGeneratesResult(input, expectedResult);
+    }
+
+    [Theory]
     [InlineData("((1 + 2) + (2 + 3))", 8)]
     public void Calculate_multiple_parentheses_in_the_same_layer(string input, double expectedResult)
     {
